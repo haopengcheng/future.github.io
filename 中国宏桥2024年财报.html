@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中国宏桥集团2024年财报</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary-color: #1a5276;
+            --secondary-color: #2980b9;
+            --accent-color: #3498db;
+            --text-color: #333;
+            --light-gray: #f5f5f5;
+            --medium-gray: #e0e0e0;
+            --dark-gray: #7f8c8d;
+            --success-color: #27ae60;
+            --danger-color: #e74c3c;
+        }
+        
+        body {
+            font-family: 'Microsoft YaHei', 'PingFang SC', Arial, sans-serif;
+            line-height: 1.5;
+            color: var(--text-color);
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+        
+        .header h1 {
+            color: var(--primary-color);
+            font-size: 26px;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        
+        .header .subtitle {
+            color: var(--dark-gray);
+            font-size: 14px;
+        }
+        
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            padding: 18px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+        }
+        
+        .card-title {
+            color: var(--primary-color);
+            font-size: 18px;
+            margin: 0 0 15px 0;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--medium-gray);
+            font-weight: 600;
+        }
+        
+        .metric {
+            margin-bottom: 15px;
+        }
+        
+        .metric-title {
+            font-size: 14px;
+            color: var(--dark-gray);
+            margin-bottom: 5px;
+        }
+        
+        .metric-value {
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 3px;
+        }
+        
+        .metric-change {
+            font-size: 13px;
+            font-weight: 500;
+        }
+        
+        .positive {
+            color: var(--success-color);
+        }
+        
+        .negative {
+            color: var(--danger-color);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 14px;
+        }
+        
+        th, td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--medium-gray);
+        }
+        
+        th {
+            background-color: var(--light-gray);
+            color: var(--primary-color);
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+        }
+        
+        tr:hover {
+            background-color: rgba(0,0,0,0.02);
+        }
+        
+        .highlight {
+            font-weight: 600;
+            background-color: rgba(52, 152, 219, 0.1);
+        }
+        
+        .chart-container {
+            height: 250px;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .tab-container {
+            margin: 20px 0;
+        }
+        
+        .tab-buttons {
+            display: flex;
+            border-bottom: 1px solid var(--medium-gray);
+            margin-bottom: 15px;
+        }
+        
+        .tab-button {
+            padding: 8px 16px;
+            background: none;
+            border: none;
+            border-bottom: 2px solid transparent;
+            cursor: pointer;
+            font-size: 14px;
+            color: var(--dark-gray);
+            transition: all 0.2s;
+        }
+        
+        .tab-button.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 15px;
+            border-top: 1px solid var(--medium-gray);
+            color: var(--dark-gray);
+            font-size: 13px;
+        }
+        
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+        }
+        
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 8px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 13px;
+            font-weight: normal;
+        }
+        
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+        
+        .expand-button {
+            background: none;
+            border: none;
+            color: var(--accent-color);
+            cursor: pointer;
+            font-size: 13px;
+            padding: 5px 0;
+            margin-top: 5px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .expand-button i {
+            margin-left: 5px;
+            transition: transform 0.2s;
+        }
+        
+        .expand-button.active i {
+            transform: rotate(180deg);
+        }
+        
+        .collapsible {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        
+        @media (max-width: 768px) {
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+            
+            th, td {
+                padding: 8px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>中国宏桥集团有限公司 2024年年度报告</h1>
+        <div class="subtitle">截至二零二四年十二月三十一日止年度</div>
+    </div>
+
+    <div class="grid-container">
+        <div class="card">
+            <h2 class="card-title">总收入</h2>
+            <div class="metric">
+                <div class="metric-value">¥156,168.7百万</div>
+                <div class="metric-change positive">同比增加16.9%</div>
+            </div>
+            <div class="metric">
+                <div class="metric-title">铝合金产品收入</div>
+                <div class="metric-value">¥102,433.8百万</div>
+                <div class="metric-change positive">同比增加8.2%</div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2 class="card-title">净利润</h2>
+            <div class="metric">
+                <div class="metric-value">¥22,372.3百万</div>
+                <div class="metric-change positive">同比增加95.2%</div>
+            </div>
+            <div class="metric">
+                <div class="metric-title">每股基本盈利</div>
+                <div class="metric-value">¥2.3611</div>
+                <div class="metric-change positive">同比增加95.2%</div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2 class="card-title">毛利</h2>
+            <div class="metric">
+                <div class="metric-value">¥42,162.7百万</div>
+                <div class="metric-change positive">同比增加101.2%</div>
+            </div>
+            <div class="metric">
+                <div class="metric-title">整体毛利率</div>
+                <div class="metric-value">27.0%</div>
+                <div class="metric-change positive">+11.3个百分点</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2 class="card-title">收入构成分析</h2>
+        
+        <div class="chart-container">
+            <canvas id="revenueChart"></canvas>
+        </div>
+        
+        <div class="tab-container">
+            <div class="tab-buttons">
+                <button class="tab-button active" onclick="openTab(event, 'revenue-table')">收入明细</button>
+                <button class="tab-button" onclick="openTab(event, 'sales-data')">销售数据</button>
+                <button class="tab-button" onclick="openTab(event, 'region-data')">地区分布</button>
+            </div>
+            
+            <div id="revenue-table" class="tab-content active">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>产品</th>
+                            <th>收入(百万)</th>
+                            <th>占比</th>
+                            <th>毛利(百万)</th>
+                            <th>毛利率</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>铝合金产品</td>
+                            <td>102,433.8</td>
+                            <td>65.6%</td>
+                            <td>25,200.4</td>
+                            <td class="positive">24.6% (+7.2)</td>
+                        </tr>
+                        <tr>
+                            <td>氧化铝</td>
+                            <td>37,351.7</td>
+                            <td>23.9%</td>
+                            <td>13,238.0</td>
+                            <td class="positive">35.4% (+24.3)</td>
+                        </tr>
+                        <tr>
+                            <td>铝合金加工产品</td>
+                            <td>15,571.0</td>
+                            <td>10.0%</td>
+                            <td>3,798.5</td>
+                            <td class="positive">24.4% (+10.2)</td>
+                        </tr>
+                        <tr>
+                            <td>蒸汽</td>
+                            <td>812.2</td>
+                            <td>0.5%</td>
+                            <td class="negative">(74.2)</td>
+                            <td class="positive">-9.1% (+1.2)</td>
+                        </tr>
+                        <tr class="highlight">
+                            <td>总计</td>
+                            <td>156,168.7</td>
+                            <td>100.0%</td>
+                            <td>42,162.7</td>
+                            <td class="positive">27.0% (+11.3)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div id="sales-data" class="tab-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>产品</th>
+                            <th>销量(万吨)</th>
+                            <th>同比变化</th>
+                            <th>平均售价(元/吨)</th>
+                            <th>同比变化</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>铝合金产品</td>
+                            <td>583.7</td>
+                            <td class="positive">+1.5%</td>
+                            <td>17,550</td>
+                            <td class="positive">+6.6%</td>
+                        </tr>
+                        <tr>
+                            <td>氧化铝产品</td>
+                            <td>1,092.1</td>
+                            <td class="positive">+5.3%</td>
+                            <td>3,420</td>
+                            <td class="positive">+33.6%</td>
+                        </tr>
+                        <tr>
+                            <td>铝合金加工产品</td>
+                            <td>76.6</td>
+                            <td class="positive">+32.1%</td>
+                            <td>20,324</td>
+                            <td class="positive">+2.5%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div id="region-data" class="tab-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>地区</th>
+                            <th>收入(百万)</th>
+                            <th>占比</th>
+                            <th>同比变化</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>中国</td>
+                            <td>142,787.0</td>
+                            <td>91.4%</td>
+                            <td class="positive">+13.0%</td>
+                        </tr>
+                        <tr>
+                            <td>印度</td>
+                            <td>4,623.7</td>
+                            <td>3.0%</td>
+                            <td class="positive">+91.7%</td>
+                        </tr>
+                        <tr>
+                            <td>欧洲</td>
+                            <td>4,324.1</td>
+                            <td>2.8%</td>
+                            <td class="positive">+91.7%</td>
+                        </tr>
+                        <tr>
+                            <td>其他地区</td>
+                            <td>4,433.9</td>
+                            <td>2.8%</td>
+                            <td class="positive">+82.1%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2 class="card-title">财务摘要</h2>
+        
+        <button class="expand-button" onclick="toggleCollapsible('financial-highlights')">
+            点击查看财务摘要详情
+            <i>▼</i>
+        </button>
+        
+        <div id="financial-highlights" class="collapsible">
+            <table>
+                <thead>
+                    <tr>
+                        <th>项目</th>
+                        <th>2024年(百万)</th>
+                        <th>2023年(百万)</th>
+                        <th>变化</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>收入</td>
+                        <td>156,168.7</td>
+                        <td>133,623.6</td>
+                        <td class="positive">+16.9%</td>
+                    </tr>
+                    <tr>
+                        <td>销售成本</td>
+                        <td>(114,006.0)</td>
+                        <td>(112,669.0)</td>
+                        <td class="positive">+1.2%</td>
+                    </tr>
+                    <tr>
+                        <td>毛利</td>
+                        <td>42,162.7</td>
+                        <td>20,954.6</td>
+                        <td class="positive">+101.2%</td>
+                    </tr>
+                    <tr>
+                        <td>其他收入及收益</td>
+                        <td>2,984.4</td>
+                        <td>3,713.0</td>
+                        <td class="negative">-19.6%</td>
+                    </tr>
+                    <tr>
+                        <td>销售及分销开支</td>
+                        <td>(661.0)</td>
+                        <td>(755.3)</td>
+                        <td class="positive">-12.5%</td>
+                    </tr>
+                    <tr>
+                        <td>行政开支</td>
+                        <td>(4,992.9)</td>
+                        <td>(4,952.9)</td>
+                        <td class="positive">+0.8%</td>
+                    </tr>
+                    <tr>
+                        <td>财务费用</td>
+                        <td>(3,363.3)</td>
+                        <td>(3,267.9)</td>
+                        <td class="positive">+2.9%</td>
+                    </tr>
+                    <tr>
+                        <td>年度溢利</td>
+                        <td>24,545.7</td>
+                        <td>12,497.8</td>
+                        <td class="positive">+96.4%</td>
+                    </tr>
+                    <tr class="highlight">
+                        <td>公司股东应占净利润</td>
+                        <td>22,372.3</td>
+                        <td>11,460.7</td>
+                        <td class="positive">+95.2%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2 class="card-title">资产负债表摘要</h2>
+        
+        <div class="chart-container">
+            <canvas id="balanceSheetChart"></canvas>
+        </div>
+        
+        <button class="expand-button" onclick="toggleCollapsible('balance-sheet')">
+            点击查看资产负债表详情
+            <i>▼</i>
+        </button>
+        
+        <div id="balance-sheet" class="collapsible">
+            <table>
+                <thead>
+                    <tr>
+                        <th>项目</th>
+                        <th>2024年12月31日(百万)</th>
+                        <th>2023年12月31日(百万)</th>
+                        <th>变化</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="4"><strong>资产</strong></td>
+                    </tr>
+                    <tr>
+                        <td>物业、厂房及设备</td>
+                        <td>75,393.1</td>
+                        <td>70,200.2</td>
+                        <td class="positive">+7.4%</td>
+                    </tr>
+                    <tr>
+                        <td>存货</td>
+                        <td>37,344.0</td>
+                        <td>33,958.5</td>
+                        <td class="positive">+10.0%</td>
+                    </tr>
+                    <tr>
+                        <td>贸易应收账款</td>
+                        <td>9,773.9</td>
+                        <td>5,488.8</td>
+                        <td class="positive">+78.1%</td>
+                    </tr>
+                    <tr>
+                        <td>现金及现金等价物</td>
+                        <td>44,770.2</td>
+                        <td>31,721.1</td>
+                        <td class="positive">+41.1%</td>
+                    </tr>
+                    <tr>
+                        <td colspan="4"><strong>负债</strong></td>
+                    </tr>
+                    <tr>
+                        <td>银行借款</td>
+                        <td>48,302.4</td>
+                        <td>43,855.0</td>
+                        <td class="positive">+10.1%</td>
+                    </tr>
+                    <tr>
+                        <td>贸易应付账款及应付票据</td>
+                        <td>14,930.5</td>
+                        <td>11,648.3</td>
+                        <td class="positive">+28.2%</td>
+                    </tr>
+                    <tr>
+                        <td colspan="4"><strong>权益</strong></td>
+                    </tr>
+                    <tr class="highlight">
+                        <td>本公司拥有人应占权益</td>
+                        <td>107,799.9</td>
+                        <td>92,244.7</td>
+                        <td class="positive">+16.9%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2 class="card-title">业务亮点</h2>
+        <ul style="margin-top: 0; padding-left: 20px;">
+            <li>2024年铝合金产品销量达到约583.7万吨，较去年同期约574.8万吨增加约1.5%</li>
+            <li>铝合金产品平均销售价格较去年同期上升约6.6%至约人民币17,550元/吨</li>
+            <li>氧化铝产品销量约1,092.1万吨，较去年同期增加约5.3%</li>
+            <li>氧化铝产品平均销售价格较去年同期上升约33.6%至约人民币3,420元/吨</li>
+            <li>铝合金加工产品销量约76.6万吨，较去年同期增加约32.1%</li>
+            <li>铝合金加工产品平均销售价格较去年同期上升约2.5%至约人民币20,324元/吨</li>
+            <li>董事会建议派发2024年度末期股息每股102港仙，连同2024年度中期已派发的股息每股59港仙，2024年度累计派息每股161港仙</li>
+        </ul>
+    </div>
+
+    <div class="footer">
+        <p>中国宏桥集团有限公司 © 2025 版权所有</p>
+        <p>数据来源：中国宏桥2024年年度报告 | 最后更新：2025年3月</p>
+    </div>
+
+    <script>
+        // 标签页切换功能
+        function openTab(evt, tabName) {
+            var i, tabcontent, tabbuttons;
+            
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active");
+            }
+            
+            tabbuttons = document.getElementsByClassName("tab-button");
+            for (i = 0; i < tabbuttons.length; i++) {
+                tabbuttons[i].classList.remove("active");
+            }
+            
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+        
+        // 展开/收起功能
+        function toggleCollapsible(id) {
+            const collapsible = document.getElementById(id);
+            const button = collapsible.previousElementSibling;
+            
+            if (collapsible.style.maxHeight) {
+                collapsible.style.maxHeight = null;
+                button.classList.remove("active");
+            } else {
+                collapsible.style.maxHeight = collapsible.scrollHeight + "px";
+                button.classList.add("active");
+            }
+        }
+        
+        // 收入构成图表
+        const revenueCtx = document.getElementById('revenueChart').getContext('2d');
+        const revenueChart = new Chart(revenueCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['铝合金产品', '氧化铝', '铝合金加工产品', '蒸汽'],
+                datasets: [{
+                    data: [102433.8, 37351.7, 15571.0, 812.2],
+                    backgroundColor: [
+                        '#3498db',
+                        '#2980b9',
+                        '#1a5276',
+                        '#7f8c8d'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                const label = context.label || '';
+                                const value = context.raw;
+                                const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                const percentage = Math.round((value / total) * 100);
+                                return `${label}: ¥${value.toLocaleString()}百万 (${percentage}%)`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+        
+        // 资产负债表图表
+        const balanceSheetCtx = document.getElementById('balanceSheetChart').getContext('2d');
+        const balanceSheetChart = new Chart(balanceSheetCtx, {
+            type: 'bar',
+            data: {
+                labels: ['物业、厂房及设备', '存货', '贸易应收账款', '现金及现金等价物', '银行借款', '贸易应付账款'],
+                datasets: [
+                    {
+                        label: '2024年',
+                        data: [75393.1, 37344.0, 9773.9, 44770.2, 48302.4, 14930.5],
+                        backgroundColor: '#3498db',
+                    },
+                    {
+                        label: '2023年',
+                        data: [70200.2, 33958.5, 5488.8, 31721.1, 43855.0, 11648.3],
+                        backgroundColor: '#bdc3c7',
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        grid: {
+                            display: false
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) {
+                                return '¥' + (value / 1000).toLocaleString() + '亿';
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                const label = context.dataset.label || '';
+                                const value = context.raw;
+                                return `${label}: ¥${value.toLocaleString()}百万`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+        
+        // 默认展开第一个可折叠内容
+        document.addEventListener('DOMContentLoaded', function() {
+            const firstCollapsible = document.querySelector('.collapsible');
+            if (firstCollapsible) {
+                firstCollapsible.style.maxHeight = firstCollapsible.scrollHeight + "px";
+                const button = firstCollapsible.previousElementSibling;
+                if (button) {
+                    button.classList.add("active");
+                }
+            }
+        });
+    </script>
+</body>
+</html>

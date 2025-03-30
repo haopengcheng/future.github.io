@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>布鲁可集团2024年财报 - 潮玩积木世界</title>
+    <style>
+        :root {
+            --primary: #FF5E5B;
+            --secondary: #00CECB;
+            --accent: #FFED66;
+            --dark: #2D3047;
+            --light: #F7F7FF;
+        }
+        
+        body {
+            font-family: 'Arial Rounded MT Bold', 'Arial', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="30" height="30" x="10" y="10" fill="white" fill-opacity="0.1" rx="5"/><rect width="30" height="30" x="60" y="10" fill="white" fill-opacity="0.1" rx="5"/><rect width="30" height="30" x="10" y="60" fill="white" fill-opacity="0.1" rx="5"/><rect width="30" height="30" x="60" y="60" fill="white" fill-opacity="0.1" rx="5"/></svg>');
+            opacity: 0.3;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin: 0;
+            position: relative;
+            text-shadow: 3px 3px 0 rgba(0,0,0,0.1);
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            border-bottom: 4px solid var(--accent);
+            display: inline-block;
+            padding-bottom: 5px;
+            margin-top: 40px;
+        }
+        
+        h3 {
+            font-size: 1.8rem;
+            color: var(--secondary);
+            margin-top: 30px;
+        }
+        
+        .highlight-box {
+            background-color: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            border-left: 8px solid var(--accent);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .highlight-box::after {
+            content: "";
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 150px;
+            height: 150px;
+            background-color: var(--accent);
+            opacity: 0.1;
+            border-radius: 50%;
+        }
+        
+        /* 三列布局样式 */
+        .triple-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin: 40px 0;
+        }
+        
+        .column {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .column:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .column::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+        }
+        
+        .column-title {
+            font-size: 1.8rem;
+            color: var(--dark);
+            margin-top: 0;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .stat-item {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed rgba(45, 48, 71, 0.1);
+        }
+        
+        .stat-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin: 5px 0;
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+            color: var(--dark);
+            opacity: 0.8;
+        }
+        
+        .growth {
+            display: inline-block;
+            background-color: var(--accent);
+            color: var(--dark);
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-top: 5px;
+            font-size: 0.9rem;
+        }
+        
+        .negative {
+            background-color: #FFD6D5;
+            color: #D32F2F;
+        }
+        
+        .chart-container {
+            height: 250px;
+            margin: 30px 0;
+            position: relative;
+        }
+        
+        .bar-chart {
+            display: flex;
+            height: 100%;
+            align-items: flex-end;
+            gap: 30px;
+            padding-top: 20px;
+        }
+        
+        .bar {
+            flex: 1;
+            background: linear-gradient(to top, var(--primary), var(--secondary));
+            border-radius: 8px 8px 0 0;
+            position: relative;
+            min-width: 60px;
+            transition: height 1s ease-out;
+        }
+        
+        .bar::after {
+            content: attr(data-value);
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-weight: bold;
+            color: var(--dark);
+        }
+        
+        .bar-label {
+            position: absolute;
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-weight: bold;
+            color: var(--dark);
+        }
+        
+        .product-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .product-image {
+            height: 180px;
+            background-color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+        }
+        
+        .product-content {
+            padding: 20px;
+        }
+        
+        .product-title {
+            font-size: 1.5rem;
+            margin: 0 0 10px 0;
+            color: var(--primary);
+        }
+        
+        .product-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+        
+        .product-stat {
+            text-align: center;
+        }
+        
+        .product-stat-value {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--secondary);
+        }
+        
+        .product-stat-label {
+            font-size: 0.9rem;
+            color: var(--dark);
+            opacity: 0.7;
+        }
+        
+        .brick {
+            position: absolute;
+            width: 40px;
+            height: 20px;
+            background-color: var(--accent);
+            opacity: 0.3;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+            background-color: var(--dark);
+            color: white;
+            border-radius: 20px 20px 0 0;
+        }
+        
+        @media (max-width: 1024px) {
+            .triple-columns {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .triple-columns {
+                grid-template-columns: 1fr;
+            }
+            
+            .product-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>布鲁可集团</h1>
+            <p style="font-size: 1.5rem; margin-top: 10px;">2024年度财报 · 潮玩积木世界</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <section>
+            <h2>年度关键指标</h2>
+            <div class="highlight-box">
+                <p>2024年是布鲁可集团突破性的一年，我们成功在香港联合交易所主板上市，并实现了业务的快速增长。作为中国拼搭角色类玩具的领导者，我们凭借500多项专利组合和强大的IP开发能力，为消费者带来了更多物超所值的潮玩体验。</p>
+            </div>
+            
+            <!-- 三列布局关键指标 -->
+            <div class="triple-columns">
+                <!-- 第一列：财务表现 -->
+                <div class="column">
+                    <h3 class="column-title">💰 财务表现</h3>
+                    <div class="stat-item">
+                        <div class="stat-value">22.4亿</div>
+                        <div class="stat-label">总收入</div>
+                        <span class="growth">+155.6%</span>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">11.8亿</div>
+                        <div class="stat-label">毛利</div>
+                        <span class="growth">+184.1%</span>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">5.8亿</div>
+                        <div class="stat-label">经调整年度利润</div>
+                        <span class="growth">+702.1%</span>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">26.1%</div>
+                        <div class="stat-label">经调整净利润率</div>
+                        <span class="growth">+17.8个百分点</span>
+                    </div>
+                </div>
+                
+                <!-- 第二列：产品表现 -->
+                <div class="column">
+                    <h3 class="column-title">🧩 产品表现</h3>
+                    <div class="stat-item">
+                        <div class="stat-value">22.01亿</div>
+                        <div class="stat-label">拼搭角色类玩具收入</div>
+                        <span class="growth">+186.2%</span>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">0.39亿</div>
+                        <div class="stat-label">积木玩具收入</div>
+                        <span class="growth negative">-62.9%</span>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">52.9%</div>
+                        <div class="stat-label">拼搭玩具毛利率</div>
+                        <span class="growth">+4.5个百分点</span>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">682</div>
+                        <div class="stat-label">SKU数量</div>
+                    </div>
+                </div>
+                
+                <!-- 第三列：运营指标 -->
+                <div class="column">
+                    <h3 class="column-title">📊 运营指标</h3>
+                    <div class="stat-item">
+                        <div class="stat-value">50+</div>
+                        <div class="stat-label">授权IP数量</div>
+                        <span class="growth">+85.2%</span>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">472</div>
+                        <div class="stat-label">研发团队成员</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">92.1%</div>
+                        <div class="stat-label">线下经销占比</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">+518.2%</div>
+                        <div class="stat-label">海外销售增长</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section>
+            <h2>收入增长</h2>
+            <div class="chart-container">
+                <div class="bar-chart">
+                    <div class="bar" style="height: 30%;" data-value="8.77亿">
+                        <div class="bar-label">2023</div>
+                    </div>
+                    <div class="bar" style="height: 100%;" data-value="22.41亿">
+                        <div class="bar-label">2024</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section>
+            <h2>产品分析</h2>
+            <div class="product-cards">
+                <div class="product-card">
+                    <div class="product-image" style="background-color: #FF5E5B;">
+                        🤖
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">拼搭角色类玩具</h3>
+                        <p>我们的核心产品线，结合了角色玩具和拼搭机制的优点，通过布鲁可体系实现标准化生产与个性化体验的完美结合。</p>
+                        <div class="product-stats">
+                            <div class="product-stat">
+                                <div class="product-stat-value">98.2%</div>
+                                <div class="product-stat-label">收入占比</div>
+                            </div>
+                            <div class="product-stat">
+                                <div class="product-stat-value">52.9%</div>
+                                <div class="product-stat-label">毛利率</div>
+                            </div>
+                            <div class="product-stat">
+                                <div class="product-stat-value">+212.5%</div>
+                                <div class="product-stat-label">毛利增长</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image" style="background-color: #00CECB;">
+                        🧩
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">积木玩具</h3>
+                        <p>传统的大颗粒积木产品，随着公司战略重心转向拼搭角色类玩具，该业务收入占比有所下降。</p>
+                        <div class="product-stats">
+                            <div class="product-stat">
+                                <div class="product-stat-value">1.8%</div>
+                                <div class="product-stat-label">收入占比</div>
+                            </div>
+                            <div class="product-stat">
+                                <div class="product-stat-value">37.0%</div>
+                                <div class="product-stat-label">毛利率</div>
+                            </div>
+                            <div class="product-stat">
+                                <div class="product-stat-value negative">-64.6%</div>
+                                <div class="product-stat-label">毛利增长</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section>
+            <h2>IP表现</h2>
+            <div class="triple-columns">
+                <div class="column">
+                    <h3 class="column-title">🦸 奥特曼系列</h3>
+                    <div class="stat-value">10.96亿</div>
+                    <div class="stat-label">收入贡献</div>
+                    <div class="stat-item" style="text-align: center; margin-top: 20px;">
+                        <div style="font-size: 3rem;">🥇</div>
+                        <div class="stat-label">最畅销IP</div>
+                    </div>
+                </div>
+                
+                <div class="column">
+                    <h3 class="column-title">🚗 变形金刚系列</h3>
+                    <div class="stat-value">4.54亿</div>
+                    <div class="stat-label">收入贡献</div>
+                    <div class="stat-item" style="text-align: center; margin-top: 20px;">
+                        <div style="font-size: 3rem;">🥈</div>
+                        <div class="stat-label">次畅销IP</div>
+                    </div>
+                </div>
+                
+                <div class="column">
+                    <h3 class="column-title">🦸 英雄无限系列</h3>
+                    <div class="stat-value">3.10亿</div>
+                    <div class="stat-label">收入贡献</div>
+                    <div class="stat-item" style="text-align: center; margin-top: 20px;">
+                        <div style="font-size: 3rem;">🥉</div>
+                        <div class="stat-label">自主IP代表</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section>
+            <h2>未来展望</h2>
+            <div class="highlight-box">
+                <p>展望2025年，我们将继续提升研发能力，丰富IP组合，扩大销售网络，特别是在美国、欧洲和东南亚市场。我们计划将全球发售所得款项用于：</p>
+                <div class="triple-columns" style="margin-top: 20px;">
+                    <div class="column">
+                        <h3 class="column-title">🔧 研发与生产</h3>
+                        <div class="stat-item">
+                            <div class="stat-value">25%</div>
+                            <div class="stat-label">增强研发能力</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">25%</div>
+                            <div class="stat-label">投资生产资源</div>
+                        </div>
+                    </div>
+                    
+                    <div class="column">
+                        <h3 class="column-title">🎨 IP与营销</h3>
+                        <div class="stat-item">
+                            <div class="stat-value">20%</div>
+                            <div class="stat-label">丰富IP矩阵</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">20%</div>
+                            <div class="stat-label">销售营销活动</div>
+                        </div>
+                    </div>
+                    
+                    <div class="column">
+                        <h3 class="column-title">💼 其他用途</h3>
+                        <div class="stat-item">
+                            <div class="stat-value">10%</div>
+                            <div class="stat-label">营运资金</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">1,790.4M</div>
+                            <div class="stat-label">全球发售总额</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>布鲁可集团有限公司 | 股份代号：0325 | 2025年3月</p>
+            <p>本展示基于布鲁可集团2024年年度业绩公告制作</p>
+        </div>
+    </footer>
+    
+    <script>
+        // 添加一些动态积木元素增强潮玩感
+        document.addEventListener('DOMContentLoaded', function() {
+            const colors = ['#FF5E5B', '#00CECB', '#FFED66', '#2D3047'];
+            const container = document.querySelector('.container');
+            
+            for (let i = 0; i < 20; i++) {
+                const brick = document.createElement('div');
+                brick.className = 'brick';
+                brick.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                brick.style.left = Math.random() * 100 + '%';
+                brick.style.top = Math.random() * 100 + '%';
+                brick.style.transform = 'rotate(' + (Math.random() * 60 - 30) + 'deg)';
+                brick.style.opacity = Math.random() * 0.3 + 0.1;
+                container.appendChild(brick);
+            }
+            
+            // 简单的动画效果
+            const bars = document.querySelectorAll('.bar');
+            bars.forEach(bar => {
+                const targetHeight = bar.style.height;
+                bar.style.height = '0%';
+                setTimeout(() => {
+                    bar.style.height = targetHeight;
+                }, 100);
+            });
+            
+            // 列卡片悬停动画
+            const columns = document.querySelectorAll('.column');
+            columns.forEach(column => {
+                column.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px)';
+                    this.style.boxShadow = '0 15px 30px rgba(0,0,0,0.15)';
+                });
+                
+                column.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(-5px)';
+                    this.style.boxShadow = '0 10px 25px rgba(0,0,0,0.1)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
