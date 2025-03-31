@@ -3,276 +3,459 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>科技感目录导航</title>
+    <title>印钞机资料门户</title>
     <style>
         :root {
-            --primary-color: #00f7ff;
-            --secondary-color: #0066ff;
-            --bg-dark: #0a0a1a;
-            --bg-light: #1a1a2e;
-            --text-color: #e0e0ff;
-            --glow-effect: 0 0 10px var(--primary-color);
+            --primary-color: #d4af37; /* 金色 */
+            --secondary-color: #1e3a8a; /* 深蓝色 */
+            --accent-color: #b91c1c; /* 深红色 */
+            --bg-light: #f8f9fa;
+            --bg-dark: #111827;
+            --text-dark: #1f2937;
+            --text-light: #f3f4f6;
+            --border-radius: 6px;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Arial, sans-serif;
+            font-family: 'Georgia', 'Times New Roman', serif;
         }
 
         body {
-            background-color: var(--bg-dark);
-            color: var(--text-color);
+            background-color: var(--bg-light);
+            color: var(--text-dark);
             line-height: 1.6;
-            padding: 20px;
             min-height: 100vh;
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(0, 247, 255, 0.1) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(0, 102, 255, 0.1) 0%, transparent 20%);
         }
 
         .container {
-            max-width: 1200px;
+            display: flex;
+            max-width: 1400px;
             margin: 0 auto;
+            min-height: 100vh;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
         }
 
-        header {
-            text-align: center;
-            margin-bottom: 40px;
+        /* 左侧目录区域 */
+        .sidebar {
+            width: 280px;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            padding: 30px 20px;
             position: relative;
+            overflow-y: auto;
         }
 
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: var(--glow-effect);
+        .sidebar::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 1px;
+            height: 100%;
+            background: linear-gradient(to bottom, 
+                transparent, 
+                rgba(212, 175, 55, 0.5), 
+                transparent);
         }
 
-        .subtitle {
-            color: rgba(224, 224, 255, 0.7);
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .logo h1 {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            letter-spacing: 1px;
+        }
+
+        .logo p {
+            font-size: 0.9rem;
+            color: rgba(243, 244, 246, 0.7);
+            margin-top: 5px;
+        }
+
+        /* 一级目录 */
+        .main-category {
+            margin-bottom: 25px;
+        }
+
+        .main-category-title {
             font-size: 1.1rem;
+            color: var(--primary-color);
+            padding: 8px 12px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-left: 3px solid transparent;
+            transition: all 0.3s;
         }
 
-        .directory {
+        .main-category-title:hover, 
+        .main-category.active .main-category-title {
+            border-left-color: var(--primary-color);
+            background-color: rgba(30, 58, 138, 0.3);
+        }
+
+        .main-category-title::after {
+            content: "›";
+            font-size: 1.2rem;
+            transition: transform 0.3s;
+        }
+
+        .main-category.active .main-category-title::after {
+            transform: rotate(90deg);
+        }
+
+        /* 二级目录 */
+        .subcategories {
+            padding-left: 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .main-category.active .subcategories {
+            max-height: 500px;
+        }
+
+        .subcategory {
+            padding: 8px 0;
+        }
+
+        .subcategory-title {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: var(--border-radius);
+            transition: all 0.3s;
+            display: block;
+        }
+
+        .subcategory-title:hover,
+        .subcategory.active .subcategory-title {
+            background-color: rgba(212, 175, 55, 0.1);
+            color: var(--primary-color);
+        }
+
+        /* 右侧内容区域 */
+        .content {
+            flex: 1;
+            padding: 40px;
+            background-color: white;
+            overflow-y: auto;
+        }
+
+        .content-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .content-title {
+            font-size: 1.8rem;
+            color: var(--secondary-color);
+            font-weight: normal;
+        }
+
+        .breadcrumb {
+            display: flex;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+        }
+
+        .breadcrumb span {
+            margin: 0 5px;
+            color: rgba(0, 0, 0, 0.5);
+        }
+
+        /* 链接列表 */
+        .links-container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 20px;
         }
 
-        .category {
-            background: rgba(26, 26, 46, 0.7);
-            border: 1px solid rgba(0, 247, 255, 0.2);
-            border-radius: 8px;
+        .link-card {
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: var(--border-radius);
             padding: 20px;
-            transition: transform 0.3s, box-shadow 0.3s;
-            backdrop-filter: blur(5px);
+            transition: all 0.3s;
+            background-color: white;
+            position: relative;
+            overflow: hidden;
         }
 
-        .category:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0, 247, 255, 0.3);
+        .link-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             border-color: var(--primary-color);
         }
 
-        .category-title {
-            font-size: 1.3rem;
-            margin-bottom: 15px;
-            color: var(--primary-color);
-            display: flex;
-            align-items: center;
+        .link-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background-color: var(--primary-color);
         }
 
-        .category-title::before {
-            content: "▶";
-            margin-right: 10px;
-            font-size: 0.8rem;
-            color: var(--secondary-color);
-        }
-
-        .subcategory {
-            margin-left: 20px;
-            margin-bottom: 15px;
-        }
-
-        .subcategory-title {
+        .link-title {
             font-size: 1.1rem;
             color: var(--secondary-color);
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             display: flex;
             align-items: center;
         }
 
-        .subcategory-title::before {
-            content: "▷";
-            margin-right: 8px;
-            font-size: 0.7rem;
-        }
-
-        .items {
-            margin-left: 20px;
-        }
-
-        .item {
-            margin-bottom: 6px;
-        }
-
-        .item a {
-            color: var(--text-color);
-            text-decoration: none;
-            transition: color 0.3s;
-            display: flex;
-            align-items: center;
-        }
-
-        .item a::before {
+        .link-title::before {
             content: "•";
-            margin-right: 8px;
             color: var(--primary-color);
-            font-size: 1.2rem;
+            font-size: 1.5rem;
+            margin-right: 10px;
         }
 
-        .item a:hover {
-            color: var(--primary-color);
-            text-shadow: var(--glow-effect);
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 50px;
-            color: rgba(224, 224, 255, 0.5);
+        .link-desc {
             font-size: 0.9rem;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .link-url {
+            display: inline-block;
+            color: var(--accent-color);
+            font-size: 0.85rem;
+            text-decoration: none;
+            border-bottom: 1px dashed var(--accent-color);
+            transition: all 0.3s;
+        }
+
+        .link-url:hover {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
         }
 
         /* 响应式设计 */
-        @media (max-width: 768px) {
-            .directory {
+        @media (max-width: 992px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                padding: 20px;
+            }
+            
+            .content {
+                padding: 30px;
+            }
+            
+            .links-container {
                 grid-template-columns: 1fr;
-            }
-            
-            h1 {
-                font-size: 2rem;
-            }
-            
-            .category {
-                padding: 15px;
             }
         }
 
-        @media (max-width: 480px) {
-            body {
-                padding: 10px;
+        @media (max-width: 576px) {
+            .content {
+                padding: 20px;
             }
             
-            h1 {
-                font-size: 1.8rem;
+            .content-header {
+                flex-direction: column;
+                align-items: flex-start;
             }
             
-            .subcategory, .items {
-                margin-left: 10px;
+            .breadcrumb {
+                margin-top: 10px;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>科技资源导航</h1>
-            <p class="subtitle">探索前沿技术 · 发现创新工具</p>
-        </header>
-        
-        <div class="directory">
-            <!-- 第一级目录 -->
-            <div class="category">
-                <h2 class="category-title">前端开发</h2>
-                
-                <!-- 第二级目录 -->
-                <div class="subcategory">
-                    <h3 class="subcategory-title">框架</h3>
-                    
-                    <!-- 第三级目录 -->
-                    <div class="items">
-                        <div class="item"><a href="frameworks/react.html">React</a></div>
-                        <div class="item"><a href="frameworks/vue.html">Vue.js</a></div>
-                        <div class="item"><a href="frameworks/angular.html">Angular</a></div>
+        <!-- 左侧目录 -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h1>投资标的</h1>
+                <p>印钞机</p>
+            </div>
+            
+            <!-- 一级目录 -->
+            <div class="main-category active">
+                <div class="main-category-title">消费板块</div>
+                <div class="subcategories">
+                    <!-- 二级目录 -->
+                    <div class="subcategory active">
+                        <div class="subcategory-title">巨子生物</div>
                     </div>
-                </div>
-                
-                <div class="subcategory">
-                    <h3 class="subcategory-title">工具</h3>
-                    <div class="items">
-                        <div class="item"><a href="tools/webpack.html">Webpack</a></div>
-                        <div class="item"><a href="tools/vite.html">Vite</a></div>
+                    <div class="subcategory">
+                        <div class="subcategory-title">布鲁可</div>
+                    </div>
+                    <div class="subcategory">
+                        <div class="subcategory-title">东鹏特饮</div>
                     </div>
                 </div>
             </div>
             
-            <!-- 另一个第一级目录 -->
-            <div class="category">
-                <h2 class="category-title">人工智能</h2>
-                
-                <div class="subcategory">
-                    <h3 class="subcategory-title">机器学习</h3>
-                    <div class="items">
-                        <div class="item"><a href="ai/tensorflow.html">TensorFlow</a></div>
-                        <div class="item"><a href="ai/pytorch.html">PyTorch</a></div>
+            <div class="main-category">
+                <div class="main-category-title">资产管理</div>
+                <div class="subcategories">
+                    <div class="subcategory">
+                        <div class="subcategory-title">公募基金</div>
                     </div>
-                </div>
-                
-                <div class="subcategory">
-                    <h3 class="subcategory-title">自然语言处理</h3>
-                    <div class="items">
-                        <div class="item"><a href="ai/bert.html">BERT</a></div>
-                        <div class="item"><a href="ai/gpt.html">GPT系列</a></div>
+                    <div class="subcategory">
+                        <div class="subcategory-title">私募股权</div>
+                    </div>
+                    <div class="subcategory">
+                        <div class="subcategory-title">财富管理</div>
                     </div>
                 </div>
             </div>
             
-            <!-- 更多第一级目录 -->
-            <div class="category">
-                <h2 class="category-title">云计算</h2>
-                
-                <div class="subcategory">
-                    <h3 class="subcategory-title">平台</h3>
-                    <div class="items">
-                        <div class="item"><a href="cloud/aws.html">AWS</a></div>
-                        <div class="item"><a href="cloud/azure.html">Azure</a></div>
+            <div class="main-category">
+                <div class="main-category-title">金融市场</div>
+                <div class="subcategories">
+                    <div class="subcategory">
+                        <div class="subcategory-title">股票市场</div>
                     </div>
-                </div>
-                
-                <div class="subcategory">
-                    <h3 class="subcategory-title">容器技术</h3>
-                    <div class="items">
-                        <div class="item"><a href="cloud/docker.html">Docker</a></div>
-                        <div class="item"><a href="cloud/kubernetes.html">Kubernetes</a></div>
+                    <div class="subcategory">
+                        <div class="subcategory-title">外汇市场</div>
+                    </div>
+                    <div class="subcategory">
+                        <div class="subcategory-title">衍生品市场</div>
                     </div>
                 </div>
             </div>
-        </div>
+            
+            <div class="main-category">
+                <div class="main-category-title">风险管理</div>
+                <div class="subcategories">
+                    <div class="subcategory">
+                        <div class="subcategory-title">信用风险</div>
+                    </div>
+                    <div class="subcategory">
+                        <div class="subcategory-title">市场风险</div>
+                    </div>
+                    <div class="subcategory">
+                        <div class="subcategory-title">操作风险</div>
+                    </div>
+                </div>
+            </div>
+        </aside>
         
-        <footer>
-            <p>© 2023 科技资源导航 | 更新于 <span id="update-date">2023-11-15</span></p>
-        </footer>
+        <!-- 右侧内容 -->
+        <main class="content">
+            <div class="content-header">
+                <h2 class="content-title">并购重组</h2>
+                <div class="breadcrumb">
+                    <a href="#">首页</a>
+                    <span>/</span>
+                    <a href="#">投资银行</a>
+                    <span>/</span>
+                    <a href="#">并购重组</a>
+                </div>
+            </div>
+            
+            <div class="links-container">
+                <!-- 链接卡片 -->
+                <div class="link-card">
+                    <h3 class="link-title">巨子生物</h3>
+                    <p class="link-desc">全面解析企业并购的战略规划、目标筛选和估值方法，帮助您制定最优并购方案。</p>
+                    <a href="/巨子生物2024年报.html" class="link-url">查看详情 →</a>
+                </div>
+                
+                <div class="link-card">
+                    <h3 class="link-title">并购尽职调查</h3>
+                    <p class="link-desc">专业指导如何进行财务、法律和商业尽职调查，规避并购交易中的潜在风险。</p>
+                    <a href="mergers/due-diligence.html" class="link-url">查看详情 →</a>
+                </div>
+                
+                <div class="link-card">
+                    <h3 class="link-title">并购融资方案</h3>
+                    <p class="link-desc">详细介绍杠杆收购、股权融资和债务融资等多种并购融资方式及其适用场景。</p>
+                    <a href="mergers/financing.html" class="link-url">查看详情 →</a>
+                </div>
+                
+                <div class="link-card">
+                    <h3 class="link-title">并购后整合</h3>
+                    <p class="link-desc">提供并购后组织架构整合、文化融合和业务协同的实用指南，确保并购成功。</p>
+                    <a href="mergers/integration.html" class="link-url">查看详情 →</a>
+                </div>
+                
+                <div class="link-card">
+                    <h3 class="link-title">跨境并购指南</h3>
+                    <p class="link-desc">解析跨境并购的特殊考量因素，包括外汇管制、税务筹划和地缘政治风险。</p>
+                    <a href="mergers/cross-border.html" class="link-url">查看详情 →</a>
+                </div>
+                
+                <div class="link-card">
+                    <h3 class="link-title">反垄断审查</h3>
+                    <p class="link-desc">指导如何应对各国反垄断审查，包括申报流程、市场界定和救济措施。</p>
+                    <a href="mergers/antitrust.html" class="link-url">查看详情 →</a>
+                </div>
+            </div>
+        </main>
     </div>
 
     <script>
-        // 自动更新日期
-        document.getElementById('update-date').textContent = new Date().toISOString().split('T')[0];
-        
-        // 为目录项添加点击动画
-        document.querySelectorAll('.item a').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                this.style.transform = 'scale(0.95)';
-                setTimeout(() => {
-                    window.location.href = this.getAttribute('href');
-                }, 200);
+        // 目录交互功能
+        document.querySelectorAll('.main-category-title').forEach(title => {
+            title.addEventListener('click', function() {
+                const parent = this.parentElement;
+                parent.classList.toggle('active');
+                
+                // 关闭其他展开的一级目录
+                document.querySelectorAll('.main-category').forEach(category => {
+                    if (category !== parent && category.classList.contains('active')) {
+                        category.classList.remove('active');
+                    }
+                });
             });
         });
+
+        document.querySelectorAll('.subcategory-title').forEach(title => {
+            title.addEventListener('click', function() {
+                const parent = this.parentElement;
+                
+                // 更新面包屑导航
+                const breadcrumb = document.querySelector('.breadcrumb');
+                breadcrumb.innerHTML = `
+                    <a href="#">首页</a>
+                    <span>/</span>
+                    <a href="#">${this.closest('.main-category').querySelector('.main-category-title').textContent}</a>
+                    <span>/</span>
+                    <a href="#">${this.textContent}</a>
+                `;
+                
+                // 更新内容标题
+                document.querySelector('.content-title').textContent = this.textContent;
+                
+                // 设置当前选中状态
+                document.querySelectorAll('.subcategory').forEach(item => {
+                    item.classList.remove('active');
+                });
+                parent.classList.add('active');
+                
+                // 这里可以添加AJAX加载对应内容的功能
+                // loadContent(this.dataset.categoryId);
+            });
+        });
+
+        // 默认加载第一个子分类的内容
+        document.querySelector('.subcategory.active .subcategory-title').click();
     </script>
 </body>
 </html>
