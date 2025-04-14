@@ -1,105 +1,191 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
-    <title>紫金矿业2025Q1财报分析</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>紫金矿业 2025年第一季度财报摘要</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body {font-family: Arial, sans-serif; margin: 20px;}
-        table {border-collapse: collapse; width: 100%; margin-bottom: 20px;}
-        th, td {border: 1px solid #ddd; padding: 8px; text-align: left;}
-        th {background-color: #f2f2f2;}
-        .highlight {background-color: #e6f3ff;}
-        .positive {color: green; font-weight: bold;}
-        .negative {color: red; font-weight: bold;}
+        /* 应用Inter字体 */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* 浅灰色背景 */
+        }
+        /* 自定义卡片悬停效果 */
+        .report-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .report-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        /* 定义金色和铜色 */
+        .text-gold { color: #D4AF37; }
+        .text-copper { color: #B87333; }
+        .text-zinc { color: #939598; }
+        .text-silver { color: #C0C0C0; }
+        .bg-gradient-metal {
+             /* 金属质感渐变背景 */
+            background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+        }
+         /* 增加/减少箭头样式 */
+        .arrow-up { color: #10b981; } /* Tailwind green-600 */
+        .arrow-down { color: #ef4444; } /* Tailwind red-500 */
+        .percentage-change { font-size: 0.875rem; /* text-sm */ }
     </style>
 </head>
-<body>
+<body class="p-4 md:p-8">
+    <div class="max-w-6xl mx-auto">
 
-<h2>紫金矿业2025年第一季度核心财务指标</h2>
+        <header class="mb-8 text-center">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-2">紫金矿业集团股份有限公司</h1>
+            <h2 class="text-xl md:text-2xl font-semibold text-gray-700">2025年第一季度财务报告摘要</h2>
+            <p class="text-sm text-gray-500">（数据来源：公司2025年第一季度报告，货币：人民币）</p>
+        </header>
 
-<table>
-    <tr>
-        <th>指标</th>
-        <th>2025Q1</th>
-        <th>2024Q1</th>
-        <th>同比变动</th>
-    </tr>
-    <tr>
-        <td>营业收入（亿元）</td>
-        <td>789.28</td>
-        <td>747.77</td>
-        <td class="positive">+5.55%</td>
-    </tr>
-    <tr class="highlight">
-        <td>归母净利润（亿元）</td>
-        <td>101.67</td>
-        <td>62.61</td>
-        <td class="positive">+62.39%</td>
-    </tr>
-    <tr>
-        <td>基本每股收益（元）</td>
-        <td>0.383</td>
-        <td>0.238</td>
-        <td class="positive">+60.92%</td>
-    </tr>
-    <tr>
-        <td>经营活动现金流净额（亿元）</td>
-        <td>125.28</td>
-        <td>81.72</td>
-        <td class="positive">+53.31%</td>
-    </tr>
-    <tr>
-        <td>矿山毛利率</td>
-        <td>59.94%</td>
-        <td>54.50%</td>
-        <td class="positive">+5.44个百分点</td>
-    </tr>
-</table>
+        <section class="mb-8">
+            <h3 class="text-xl font-semibold mb-4 text-gray-800 border-l-4 border-yellow-500 pl-2">核心财务指标 (对比2024年Q1)</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="report-card bg-white p-4 rounded-lg shadow">
+                    <h4 class="text-md font-medium text-gray-600">营业收入</h4>
+                    <p class="text-2xl font-bold text-gray-900">789.28 亿元</p>
+                    <p class="percentage-change text-green-600 flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clip-rule="evenodd" /></svg>
+                        同比增长 5.55%
+                    </p>
+                </div>
+                 <div class="report-card bg-white p-4 rounded-lg shadow">
+                    <h4 class="text-md font-medium text-gray-600">归属于上市公司股东的净利润</h4>
+                    <p class="text-2xl font-bold text-gray-900">101.67 亿元</p>
+                     <p class="percentage-change text-green-600 flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clip-rule="evenodd" /></svg>
+                        同比增长 62.39%
+                    </p>
+                </div>
+                <div class="report-card bg-white p-4 rounded-lg shadow">
+                    <h4 class="text-md font-medium text-gray-600">经营活动现金流量净额</h4>
+                    <p class="text-2xl font-bold text-gray-900">125.28 亿元</p>
+                    <p class="percentage-change text-green-600 flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clip-rule="evenodd" /></svg>
+                        同比增长 53.31%
+                    </p>
+                </div>
+                 <div class="report-card bg-white p-4 rounded-lg shadow">
+                    <h4 class="text-md font-medium text-gray-600">利润总额</h4>
+                    <p class="text-2xl font-bold text-gray-900">146.88 亿元</p>
+                     <p class="percentage-change text-green-600 flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clip-rule="evenodd" /></svg>
+                        同比增长 66.37%
+                    </p>
+                </div>
+                 <div class="report-card bg-white p-4 rounded-lg shadow">
+                    <h4 class="text-md font-medium text-gray-600">基本每股收益</h4>
+                    <p class="text-2xl font-bold text-gray-900">0.383 元/股</p>
+                     <p class="percentage-change text-green-600 flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clip-rule="evenodd" /></svg>
+                        同比增长 60.92%
+                    </p>
+                </div>
+                 <div class="report-card bg-white p-4 rounded-lg shadow">
+                    <h4 class="text-md font-medium text-gray-600">加权平均净资产收益率</h4>
+                    <p class="text-2xl font-bold text-gray-900">7.12%</p>
+                    <p class="percentage-change text-green-600 flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clip-rule="evenodd" /></svg>
+                        增加 1.54 个百分点
+                    </p>
+                </div>
+            </div>
+        </section>
 
-<h3>核心业务增长亮点</h3>
-<ul>
-    <li>📈 <strong>量价齐升</strong>：矿产金产量同比增长13%，矿产铜增长9%，金价同比上涨40%（641.51元/克 vs 457.99元/克）</li>
-    <li>🏭 <strong>成本管控</strong>：矿山企业单位成本涨幅（金+12.6%，铜+7.6%）低于价格涨幅，毛利率显著提升</li>
-    <li>🌍 <strong>产能释放</strong>：卡莫阿铜矿权益产量增长52%，波格拉金矿恢复生产贡献增量</li>
-    <li>💵 <strong>现金流强劲</strong>：经营现金流净额达125亿，同比增长53%，创单季度历史新高</li>
-</ul>
+        <section class="mb-8">
+            <h3 class="text-xl font-semibold mb-4 text-gray-800 border-l-4 border-blue-500 pl-2">主要产品板块表现 (2025 Q1 毛利率)</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                 <div class="report-card bg-white p-4 rounded-lg shadow flex items-center space-x-4">
+                    <div class="text-3xl text-gold">Au</div>
+                    <div>
+                        <h4 class="text-md font-medium text-gray-600">矿山产金</h4>
+                        <p class="text-xl font-bold text-gray-900">60.86%</p>
+                        <p class="percentage-change text-gray-500">2024 Q1: 51.32%</p>
+                    </div>
+                </div>
+                 <div class="report-card bg-white p-4 rounded-lg shadow flex items-center space-x-4">
+                     <div class="text-3xl text-copper">Cu</div>
+                     <div>
+                        <h4 class="text-md font-medium text-gray-600">矿山产铜</h4>
+                        <p class="text-xl font-bold text-gray-900">61.14%</p>
+                        <p class="percentage-change text-gray-500">2024 Q1: 57.84%</p>
+                    </div>
+                </div>
+                <div class="report-card bg-white p-4 rounded-lg shadow flex items-center space-x-4">
+                     <div class="text-3xl text-zinc">Zn</div>
+                     <div>
+                        <h4 class="text-md font-medium text-gray-600">矿山产锌</h4>
+                        <p class="text-xl font-bold text-gray-900">31.71%</p>
+                        <p class="percentage-change text-gray-500">2024 Q1: 28.89%</p>
+                     </div>
+                </div>
+                 <div class="report-card bg-white p-4 rounded-lg shadow flex items-center space-x-4">
+                     <div class="text-3xl text-silver">Ag</div>
+                     <div>
+                        <h4 class="text-md font-medium text-gray-600">矿山产银</h4>
+                        <p class="text-xl font-bold text-gray-900">63.68%</p>
+                        <p class="percentage-change text-gray-500">2024 Q1: 51.65%</p>
+                     </div>
+                </div>
+                 <div class="report-card bg-white p-4 rounded-lg shadow flex items-center space-x-4">
+                     <div class="text-3xl text-copper opacity-70">Cu</div>
+                     <div>
+                        <h4 class="text-md font-medium text-gray-600">冶炼产铜</h4>
+                        <p class="text-xl font-bold text-gray-900">1.03%</p>
+                        <p class="percentage-change text-gray-500">2024 Q1: 2.67%</p>
+                     </div>
+                </div>
+                 <div class="report-card bg-white p-4 rounded-lg shadow flex items-center space-x-4">
+                     <div class="text-3xl text-zinc opacity-70">Zn</div>
+                     <div>
+                        <h4 class="text-md font-medium text-gray-600">冶炼产锌</h4>
+                        <p class="text-xl font-bold text-red-600">-1.39%</p>
+                        <p class="percentage-change text-gray-500">2024 Q1: 5.61%</p>
+                     </div>
+                </div>
+            </div>
+             <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="report-card bg-gradient-metal text-white p-4 rounded-lg shadow">
+                    <h4 class="text-md font-medium">矿山企业综合毛利率</h4>
+                    <p class="text-2xl font-bold">59.94%</p>
+                    <p class="percentage-change opacity-80">2024 Q1: 54.50%</p>
+                </div>
+                 <div class="report-card bg-gray-700 text-white p-4 rounded-lg shadow">
+                    <h4 class="text-md font-medium">公司综合毛利率</h4>
+                    <p class="text-2xl font-bold">22.89%</p>
+                    <p class="percentage-change opacity-80">2024 Q1: 16.61%</p>
+                </div>
+            </div>
+             <p class="mt-4 text-sm text-gray-600">*注：毛利率数据反映了各板块的盈利能力。矿山板块（金、铜、银）表现强劲，冶炼板块利润率较低，其中冶炼锌出现亏损。</p>
+             <p class="mt-2 text-sm text-gray-600">*产量变动：矿产金同比增长13%，矿产铜同比增长9%，矿产锌同比下降10%。</p>
+        </section>
 
-<h3>关键财务分析</h3>
-<table>
-    <tr>
-        <th>业务板块</th>
-        <th>毛利率变化</th>
-        <th>主要驱动因素</th>
-    </tr>
-    <tr>
-        <td>矿产金</td>
-        <td class="positive">+9.54%</td>
-        <td>金价上涨+高品位金精矿占比提升</td>
-    </tr>
-    <tr>
-        <td>矿产铜</td>
-        <td class="positive">+3.30%</td>
-        <td>刚果（金）低成本铜矿产能释放</td>
-    </tr>
-    <tr>
-        <td>矿产锌</td>
-        <td class="positive">+2.82%</td>
-        <td>锌价回升至15,018元/吨</td>
-    </tr>
-</table>
+        <section>
+            <h3 class="text-xl font-semibold mb-4 text-gray-800 border-l-4 border-green-500 pl-2">简要投资建议 (基于Q1报告)</h3>
+            <div class="report-card bg-white p-6 rounded-lg shadow">
+                <ul class="list-disc list-inside space-y-2 text-gray-700">
+                    <li><strong class="font-semibold">业绩强劲增长：</strong> 公司2025年第一季度展现了非常强劲的盈利能力，归母净利润同比大幅增长超60%，主要得益于主要矿产品（尤其是黄金和铜）产量增长及金属价格上涨。</li>
+                    <li><strong class="font-semibold">矿山板块是核心：</strong> 矿山业务，特别是金、铜、银板块，维持了非常高的毛利率水平，是公司利润的主要来源。矿山企业综合毛利率同比提升明显。</li>
+                    <li><strong class="font-semibold">成本控制关注点：</strong> 报告提及矿产品单位销售成本有所上升（因品位下降、运距增加、剥采比上升等）。虽然目前被价格上涨所覆盖，但成本控制仍是未来盈利能力的关键因素。</li>
+                    <li><strong class="font-semibold">板块分化：</strong> 冶炼板块利润率较低，特别是冶炼锌在本季度出现负毛利。矿产锌产量同比有所下降，需关注其后续发展。</li>
+                    <li><strong class="font-semibold">风险提示：</strong> 投资决策需考虑宏观经济、金属价格波动、地缘政治、安全环保及生产运营等多方面风险。本季度强劲表现能否持续，需结合未来市场环境和公司运营情况判断。</li>
+                </ul>
+                <p class="mt-4 text-sm text-red-700 font-medium">*免责声明：以上内容仅基于本季度财务报告摘要信息，不构成任何具体的投资建议。投资者应自行进行深入研究或咨询专业顾问。</p>
+            </div>
+        </section>
 
-<h3>风险关注点</h3>
-<ul>
-    <li>⚠️ 资源税改革可能增加成本</li>
-    <li>⚠️ 海外项目地缘政治风险</li>
-    <li>⚠️ Q1存货增加至356.95亿元（同比+7%）</li>
-</ul>
+        <footer class="mt-12 text-center text-sm text-gray-500">
+            <p>&copy; 2025 财报摘要信息。所有数据来源于紫金矿业集团股份有限公司发布的公开报告。</p>
+        </footer>
 
-<h3>结论</h3>
-<p>紫金矿业展现出<strong>超预期的成长动能</strong>，主要得益于：<br>
-1）全球贵金属牛市红利捕获能力<br>
-2）世界级矿山项目的持续产能释放<br>
-3）卓越的矿业周期运营能力<br>
-维持"成长型矿业巨头"定位，建议重点关注铜金价格走势与西藏巨龙铜矿二期进展。</p>
-
+    </div>
 </body>
 </html>
