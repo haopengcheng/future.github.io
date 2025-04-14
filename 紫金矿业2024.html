@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>紫金矿业集团 2024 年度财务报告摘要</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif; /* 应用 Inter 字体 */
+            background-color: #f4f4f5; /* 浅灰色背景 */
+        }
+        /* 自定义卡片悬停效果 */
+        .report-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .report-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        /* 标题渐变效果 */
+        .gradient-text {
+            background: linear-gradient(to right, #a16207, #ca8a04, #854d0e); /* 金色渐变 */
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+         /* 进度条动画 */
+        @keyframes progress-grow {
+            from { width: 0%; }
+        }
+        .progress-bar-animated {
+            animation: progress-grow 1.5s ease-out forwards;
+        }
+        /* 简单的图标样式 */
+        .icon {
+            display: inline-block;
+            width: 1em;
+            height: 1em;
+            margin-right: 0.5em;
+            vertical-align: middle;
+        }
+        .icon-revenue { background-color: #22c55e; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z'/%3E%3C/svg%3E") no-repeat center / contain; } /* 示例：绿色圆圈 */
+        .icon-profit { background-color: #f59e0b; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm1-9h-2v5h2v-5zm0-2h-2v-2h2v2z'/%3E%3C/svg%3E") no-repeat center / contain; } /* 示例：橙色星星 */
+        .icon-assets { background-color: #3b82f6; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'%3E%3Cpath d='M4 10v7h3v-7H4zm6 0v7h3v-7h-3zM2 22h19v-3H2v3zm14-12v7h3v-7h-3zm-4.5-9L2 6v2h19V6l-9.5-5z'/%3E%3C/svg%3E") no-repeat center / contain; } /* 示例：蓝色建筑 */
+        .icon-segment { background-color: #6b7280; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'%3E%3Cpath d='M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z'/%3E%3C/svg%3E") no-repeat center / contain; } /* 示例：灰色方块 */
+        .icon-advice { background-color: #10b981; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'%3E%3Cpath d='M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z'/%3E%3C/svg%3E") no-repeat center / contain; } /* 示例：绿色盾牌 */
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <header class="text-center mb-8 md:mb-12">
+        <h1 class="text-3xl md:text-4xl font-bold gradient-text mb-2">紫金矿业集团股份有限公司</h1>
+        <h2 class="text-xl md:text-2xl text-gray-700">2024 年度财务报告摘要</h2>
+    </header>
+
+    <main class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <div class="report-card bg-white p-6 rounded-lg shadow-md lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <h3 class="text-xl font-semibold text-gray-800 col-span-full mb-4">年度核心财务指标</h3>
+            <div class="border-l-4 border-green-500 pl-4">
+                <p class="text-sm text-gray-500">营业收入</p>
+                <p class="text-2xl font-bold text-green-700">3,036.40 亿元</p>
+                <p class="text-sm text-gray-600">同比增长 <span class="font-semibold text-green-600">+3.49%</span></p>
+            </div>
+            <div class="border-l-4 border-amber-500 pl-4">
+                <p class="text-sm text-gray-500">归母净利润</p>
+                <p class="text-2xl font-bold text-amber-700">320.51 亿元</p>
+                <p class="text-sm text-gray-600">同比增长 <span class="font-semibold text-amber-600">+51.76%</span></p>
+            </div>
+            <div class="border-l-4 border-yellow-500 pl-4">
+                <p class="text-sm text-gray-500">利润总额</p>
+                <p class="text-2xl font-bold text-yellow-700">480.78 亿元</p>
+                <p class="text-sm text-gray-600">同比增长 <span class="font-semibold text-yellow-600">+53.66%</span></p>
+            </div>
+             <div class="border-l-4 border-blue-500 pl-4">
+                <p class="text-sm text-gray-500">总资产</p>
+                <p class="text-2xl font-bold text-blue-700">3,966.11 亿元</p>
+                <p class="text-sm text-gray-600">较年初增长 <span class="font-semibold text-blue-600">+15.63%</span></p>
+            </div>
+             <div class="border-l-4 border-indigo-500 pl-4">
+                <p class="text-sm text-gray-500">归母净资产</p>
+                <p class="text-2xl font-bold text-indigo-700">1,397.86 亿元</p>
+                <p class="text-sm text-gray-600">较年初增长 <span class="font-semibold text-indigo-600">+30.03%</span></p>
+            </div>
+             <div class="border-l-4 border-purple-500 pl-4">
+                <p class="text-sm text-gray-500">年度分红预案</p>
+                <p class="text-lg font-bold text-purple-700">每10股派 <span class="text-2xl">2.8</span> 元</p>
+                <p class="text-sm text-gray-600">(含税，尚需股东会批准)</p>
+            </div>
+        </div>
+
+        <div class="report-card bg-white p-6 rounded-lg shadow-md md:col-span-2">
+            <h3 class="text-xl font-semibold text-gray-800 mb-4"><span class="icon icon-segment"></span>业务板块对外销售收入 (2024)</h3>
+            <div class="space-y-4">
+                <div>
+                    <div class="flex justify-between mb-1">
+                        <span class="text-base font-medium text-yellow-700">冶炼产品</span>
+                        <span class="text-sm font-medium text-yellow-700">1,811.42 亿元 (59.7%)</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                        <div class="bg-gradient-to-r from-yellow-400 to-amber-600 h-2.5 rounded-full progress-bar-animated" style="width: 59.7%;"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex justify-between mb-1">
+                        <span class="text-base font-medium text-orange-700">矿产品</span>
+                        <span class="text-sm font-medium text-orange-700">740.89 亿元 (24.4%)</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                        <div class="bg-gradient-to-r from-orange-400 to-red-600 h-2.5 rounded-full progress-bar-animated" style="width: 24.4%;"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex justify-between mb-1">
+                        <span class="text-base font-medium text-sky-700">贸易</span>
+                        <span class="text-sm font-medium text-sky-700">293.86 亿元 (9.7%)</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                        <div class="bg-gradient-to-r from-sky-400 to-blue-600 h-2.5 rounded-full progress-bar-animated" style="width: 9.7%;"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex justify-between mb-1">
+                        <span class="text-base font-medium text-gray-700">其他</span>
+                        <span class="text-sm font-medium text-gray-700">190.22 亿元 (6.2%)</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                        <div class="bg-gradient-to-r from-gray-400 to-gray-600 h-2.5 rounded-full progress-bar-animated" style="width: 6.2%;"></div>
+                    </div>
+                </div>
+            </div>
+             <p class="text-xs text-gray-500 mt-4">*百分比根据各板块对外销售收入占总对外销售收入计算。</p>
+        </div>
+
+        <div class="report-card bg-gradient-to-br from-yellow-50 via-amber-50 to-orange-50 p-6 rounded-lg shadow-md">
+            <h3 class="text-xl font-semibold text-amber-800 mb-4"><span class="icon icon-advice"></span>投资建议</h3>
+            <div class="text-gray-700 space-y-3 text-sm">
+                <p>紫金矿业在2024年展现了强劲的增长势头，营收和利润均实现显著增长，核心财务指标稳健向好。</p>
+                <p><strong>优势：</strong> 公司拥有世界级的铜、金、锂等矿产资源储备，成本控制有效，增长潜力巨大，分红预案积极回报股东。</p>
+                <p><strong>风险：</strong> 需关注全球宏观经济波动、金属价格周期性变化、地缘政治风险以及矿业开发相关的环境与安全风险。</p>
+                <p><strong>建议：</strong> 整体表现积极，显示出良好的基本面和成长性。对于能够承受市场波动的长期投资者而言，紫金矿业具备一定的投资价值。建议投资者结合自身的风险偏好，在充分了解行业风险的基础上进行决策，并持续关注公司运营、行业动态及宏观经济环境的变化。投资有风险，入市需谨慎。</p>
+            </div>
+        </div>
+
+         <div class="report-card bg-white p-6 rounded-lg shadow-md lg:col-span-3">
+            <h3 class="text-xl font-semibold text-gray-800 mb-4">董事长致辞摘要 (陈景河)</h3>
+            <blockquote class="border-l-4 border-yellow-600 pl-4 italic text-gray-600 space-y-2 text-sm">
+                <p>"2024年翻开了紫金矿业30周年后再出发的新篇章... 铜、金等主要矿产资源量、产量和利润等经营指标再创历史新高... 全年实现归母净利润人民币321亿元，同比大增约52%..."</p>
+                <p>"我们将按‘奋发有为、改革创新、高度适配、控制风险’总原则... 全面加速向‘绿色高技术一流国际矿业集团’战略目标进发..."</p>
+                <p>"公司审时度勢在矿业市场比较低迷时超前收购控制了以铜为主的世界级矿产资源... 公司自主找矿勘探成果丰硕..."</p>
+                <p>"坚持巩固全球项目优势... 建成既符合国际准则、又具有紫金特色的高适配全球化运营管理体系... 全力系统解决国际化人才问题是重中之重工作..."</p>
+                <p>"秉持‘开发矿业，造福社会’宗旨... 构建负责任ESG体系成为优秀矿企的必修课... 让更多的人因紫金的存在及发展受益。"</p>
+                 <p>"紫金矿业基本面良好... 拥有雄厚世界级矿产资源... 具有强劲发展成长潜力... 紫金‘全球矿业梦’阔步向前！"</p>
+            </blockquote>
+             <p class="text-right text-xs text-gray-500 mt-3">- 摘自 2024 年度报告</p>
+        </div>
+
+    </main>
+
+    <footer class="text-center mt-8 md:mt-12 text-xs text-gray-500">
+        <p>免责声明：本摘要信息来源于紫金矿业集团股份有限公司2024年度报告，仅供参考，不构成任何投资建议。请查阅完整年度报告以获取详细信息。</p>
+        <p>数据截止日期：2024年12月31日</p>
+    </footer>
+
+</body>
+</html>
