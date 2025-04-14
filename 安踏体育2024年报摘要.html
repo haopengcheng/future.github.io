@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>安踏体育2024年财报亮点</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif; /* 使用Inter字体 */
+            background-color: #f0f4f8; /* 淡蓝色背景 */
+        }
+        /* 卡片悬停效果 */
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        /* 标题样式 */
+        .section-title {
+            color: #1a202c; /* 深灰色 */
+            border-bottom: 2px solid #e53e3e; /* 红色下划线，呼应安踏品牌色 */
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        /* 指标数值样式 */
+        .metric-value {
+            color: #e53e3e; /* 红色，突出显示 */
+        }
+        /* 百分比变化样式 */
+        .percentage-increase {
+            color: #38a169; /* 绿色表示增长 */
+        }
+        .percentage-decrease {
+            color: #e53e3e; /* 红色表示下降 */
+        }
+        /* 图表容器 */
+        .chart-container {
+            position: relative;
+            height: 300px; /* 调整图表高度 */
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="p-6 md:p-10">
+    <div class="max-w-6xl mx-auto bg-white rounded-lg shadow-xl p-6 md:p-8">
+
+        <header class="mb-8 text-center">
+            <img src="https://placehold.co/150x50/e53e3e/ffffff?text=ANTA+Logo" alt="安踏Logo占位符" class="mx-auto mb-4 h-12">
+            <h1 class="text-3xl font-bold text-gray-800">安踏体育用品有限公司</h1>
+            <h2 class="text-xl font-semibold text-red-600">2024年度财务报告亮点</h2>
+        </header>
+
+        <section class="mb-10">
+            <h3 class="text-2xl font-semibold section-title">关键财务指标</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-gray-100 p-6 rounded-lg shadow-md card-hover">
+                    <h4 class="text-lg font-medium text-gray-700 mb-2">总营收</h4>
+                    <p class="text-3xl font-bold metric-value">¥708.3亿</p>
+                    <p class="text-sm text-gray-600 mt-1">
+                        同比增长 <span class="font-semibold percentage-increase">+13.6%</span> (2023: ¥623.6亿)
+                    </p>
+                </div>
+                <div class="bg-gray-100 p-6 rounded-lg shadow-md card-hover">
+                    <h4 class="text-lg font-medium text-gray-700 mb-2">股东应占溢利</h4>
+                    <p class="text-3xl font-bold metric-value">¥156.0亿</p>
+                     <p class="text-sm text-gray-600 mt-1">
+                        同比增长 <span class="font-semibold percentage-increase">+52.4%</span> (2023: ¥102.4亿)
+                    </p>
+                    <p class="text-xs text-gray-500 mt-1">（含Amer Sports上市及配售摊薄利得）</p>
+                </div>
+                 <div class="bg-gray-100 p-6 rounded-lg shadow-md card-hover">
+                    <h4 class="text-lg font-medium text-gray-700 mb-2">每股基本盈利</h4>
+                    <p class="text-3xl font-bold metric-value">¥5.55</p>
+                    <p class="text-sm text-gray-600 mt-1">
+                        同比增长 <span class="font-semibold percentage-increase">+50.4%</span> (2023: ¥3.69)
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-10">
+            <h3 class="text-2xl font-semibold section-title">按分部划分的表现 (2024)</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <h4 class="text-xl font-medium text-gray-700 mb-4 text-center">营收分布</h4>
+                    <div class="chart-container">
+                        <canvas id="revenueChart"></canvas>
+                    </div>
+                    <div class="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
+                        <div class="bg-blue-100 p-3 rounded-md text-center card-hover">
+                            <p class="font-semibold text-blue-800">安踏</p>
+                            <p class="text-blue-700">¥335.2亿</p>
+                            <p class="percentage-increase">+10.6%</p>
+                        </div>
+                        <div class="bg-red-100 p-3 rounded-md text-center card-hover">
+                            <p class="font-semibold text-red-800">FILA</p>
+                            <p class="text-red-700">¥266.3亿</p>
+                            <p class="percentage-increase">+6.1%</p>
+                        </div>
+                        <div class="bg-green-100 p-3 rounded-md text-center card-hover">
+                            <p class="font-semibold text-green-800">所有其他品牌</p>
+                            <p class="text-green-700">¥106.8亿</p>
+                            <p class="percentage-increase">+53.7%</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-xl font-medium text-gray-700 mb-4 text-center">经营溢利分布*</h4>
+                    <div class="chart-container">
+                        <canvas id="profitChart"></canvas>
+                    </div>
+                     <div class="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
+                        <div class="bg-blue-100 p-3 rounded-md text-center card-hover">
+                            <p class="font-semibold text-blue-800">安踏</p>
+                            <p class="text-blue-700">¥70.4亿</p>
+                            <p class="percentage-increase">+4.5%</p>
+                        </div>
+                        <div class="bg-red-100 p-3 rounded-md text-center card-hover">
+                            <p class="font-semibold text-red-800">FILA</p>
+                            <p class="text-red-700">¥67.4亿</p>
+                            <p class="percentage-decrease">-2.6%</p>
+                        </div>
+                        <div class="bg-green-100 p-3 rounded-md text-center card-hover">
+                            <p class="font-semibold text-green-800">所有其他品牌</p>
+                            <p class="text-green-700">¥30.5亿</p>
+                            <p class="percentage-increase">+61.7%</p>
+                        </div>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-2 text-center">*不包括总部及未分配项目支出</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h3 class="text-2xl font-semibold section-title">其他财务亮点 (2024)</h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="bg-gray-100 p-4 rounded-lg shadow-md text-center card-hover">
+                    <h4 class="text-md font-medium text-gray-700 mb-1">毛利</h4>
+                    <p class="text-xl font-bold text-gray-800">¥440.3亿</p>
+                    <p class="text-sm percentage-increase">+12.8%</p>
+                </div>
+                <div class="bg-gray-100 p-4 rounded-lg shadow-md text-center card-hover">
+                    <h4 class="text-md font-medium text-gray-700 mb-1">经营溢利</h4>
+                    <p class="text-xl font-bold text-gray-800">¥166.0亿</p>
+                     <p class="text-sm percentage-increase">+8.0%</p>
+                </div>
+                <div class="bg-gray-100 p-4 rounded-lg shadow-md text-center card-hover">
+                    <h4 class="text-md font-medium text-gray-700 mb-1">毛利率</h4>
+                    <p class="text-xl font-bold text-gray-800">62.2%</p>
+                    <p class="text-sm percentage-decrease">-0.4pp</p>
+                </div>
+                 <div class="bg-gray-100 p-4 rounded-lg shadow-md text-center card-hover">
+                    <h4 class="text-md font-medium text-gray-700 mb-1">经营溢利率</h4>
+                    <p class="text-xl font-bold text-gray-800">23.4%</p>
+                    <p class="text-sm percentage-decrease">-1.2pp</p>
+                </div>
+            </div>
+        </section>
+
+        <footer class="mt-12 pt-6 border-t border-gray-300 text-center text-sm text-gray-500">
+            <p>数据来源：安踏体育用品有限公司2024年度报告。金额单位：人民币。</p>
+            <p>本页面仅展示部分财务亮点，完整信息请参阅官方年度报告。</p>
+        </footer>
+
+    </div>
+
+    <script>
+        // 营收分布饼图
+        const revenueCtx = document.getElementById('revenueChart').getContext('2d');
+        const revenueChart = new Chart(revenueCtx, {
+            type: 'doughnut', // 使用圆环图
+            data: {
+                labels: ['安踏', 'FILA', '所有其他品牌'],
+                datasets: [{
+                    label: '营收 (人民币亿元)',
+                    data: [335.22, 266.26, 106.78], // 对应营收数据
+                    backgroundColor: [
+                        'rgba(59, 130, 246, 0.7)', // 蓝色 (安踏)
+                        'rgba(239, 68, 68, 0.7)',  // 红色 (FILA)
+                        'rgba(16, 185, 129, 0.7)' // 绿色 (其他)
+                    ],
+                    borderColor: [
+                        'rgba(59, 130, 246, 1)',
+                        'rgba(239, 68, 68, 1)',
+                        'rgba(16, 185, 129, 1)'
+                    ],
+                    borderWidth: 1,
+                    hoverOffset: 8 // 悬停时扇区突出效果
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom', // 图例放底部
+                        labels: {
+                            padding: 15,
+                            boxWidth: 12,
+                            font: {
+                                size: 12
+                            }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed !== null) {
+                                    label += '¥' + context.parsed.toFixed(1) + '亿';
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                },
+                animation: {
+                    animateScale: true, // 开启动画效果
+                    animateRotate: true
+                }
+            }
+        });
+
+        // 经营溢利分布饼图
+        const profitCtx = document.getElementById('profitChart').getContext('2d');
+        const profitChart = new Chart(profitCtx, {
+            type: 'doughnut', // 使用圆环图
+            data: {
+                labels: ['安踏', 'FILA', '所有其他品牌'],
+                datasets: [{
+                    label: '经营溢利 (人民币亿元)',
+                    data: [70.35, 67.38, 30.50], // 对应经营溢利数据
+                    backgroundColor: [
+                        'rgba(59, 130, 246, 0.7)', // 蓝色 (安踏)
+                        'rgba(239, 68, 68, 0.7)',  // 红色 (FILA)
+                        'rgba(16, 185, 129, 0.7)' // 绿色 (其他)
+                    ],
+                     borderColor: [
+                        'rgba(59, 130, 246, 1)',
+                        'rgba(239, 68, 68, 1)',
+                        'rgba(16, 185, 129, 1)'
+                    ],
+                    borderWidth: 1,
+                     hoverOffset: 8 // 悬停时扇区突出效果
+                }]
+            },
+             options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom', // 图例放底部
+                         labels: {
+                            padding: 15,
+                            boxWidth: 12,
+                            font: {
+                                size: 12
+                            }
+                        }
+                    },
+                     tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed !== null) {
+                                    label += '¥' + context.parsed.toFixed(1) + '亿';
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                },
+                 animation: {
+                    animateScale: true, // 开启动画效果
+                    animateRotate: true
+                }
+            }
+        });
+    </script>
+</body>
+</html>
