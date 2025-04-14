@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>和铂医药 (HBM Holdings) 2024年度财务报告亮点</title>
+    <style>
+        /* --- 全局与基础样式 --- */
+        body {
+            font-family: 'Microsoft YaHei', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7f9; /* 淡蓝灰色背景 */
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 15px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            border-radius: 8px;
+        }
+
+        h1, h2, h3 {
+            color: #005a8c; /* 深蓝色标题 */
+            margin-top: 0;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2em;
+            border-bottom: 2px solid #007bff; /* 主题蓝色下划线 */
+            padding-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+         h3 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+             color: #007bff;
+        }
+
+        /* --- 紧凑布局与卡片设计 --- */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* 响应式网格 */
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* 互动效果：变换与阴影 */
+            border-left: 5px solid #007bff; /* 左侧蓝色边框 */
+        }
+
+        .card:hover {
+            transform: translateY(-5px); /* 悬停时轻微上移 */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+        }
+
+        .card h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: #005a8c;
+            font-size: 1.1em;
+        }
+
+        .metric {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #007bff; /* 主题蓝色 */
+            display: block;
+            margin-bottom: 5px;
+        }
+         .metric-small {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #007bff; /* 主题蓝色 */
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .comparison {
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .positive {
+            color: #28a745; /* 绿色表示增长或正数 */
+        }
+
+        .negative {
+            color: #dc3545; /* 红色表示下降或负数 */
+        }
+
+        /* --- 营收细分 --- */
+        .revenue-breakdown {
+            background-color: #e9f5ff; /* 淡蓝色背景 */
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+
+        .revenue-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px dashed #cce4ff;
+        }
+         .revenue-item:last-child {
+             border-bottom: none;
+         }
+
+        .revenue-item span:first-child {
+            font-weight: bold;
+            color: #005a8c;
+        }
+         .revenue-item span:last-child {
+             font-weight: bold;
+         }
+
+        /* --- 分析与建议 --- */
+        .analysis-section {
+            margin-bottom: 30px;
+            padding: 15px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef); /* 轻微渐变背景 */
+            border-radius: 5px;
+        }
+        .analysis-section ul {
+            padding-left: 20px;
+            list-style: disc;
+        }
+         .analysis-section li {
+             margin-bottom: 8px;
+         }
+
+        /* --- 页脚 --- */
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 15px;
+            border-top: 1px solid #e0e0e0;
+            font-size: 0.85em;
+            color: #777;
+        }
+
+        /* --- 互动提示 (可选) --- */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            border-bottom: 1px dotted black; /* 提示有说明 */
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px 0;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%; /* Position the tooltip above the text */
+            left: 50%;
+            margin-left: -100px; /* Use half of the width to center the tooltip */
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>和铂医药 (HBM Holdings) 2024年度财务报告亮点</h1>
+
+        <section>
+            <h2>核心财务指标 (截至2024年12月31日止年度)</h2>
+            <div class="grid-container">
+                <div class="card">
+                    <h3><i class="fas fa-dollar-sign"></i> 总营收</h3>
+                    <span class="metric">3,810 万美元</span>
+                    <p class="comparison">较 2023年 (8,950 万美元) <span class="negative">减少 57.4%</span></p>
+                    <p class="comparison">主要因前期大额预付款减少，但经常性收入增长。</p>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-chart-line"></i> 年度溢利 (净利润)</h3>
+                    <span class="metric positive">274 万美元</span>
+                     <p class="comparison">较 2023年 (2,276 万美元) <span class="negative">减少 87.9%</span></p>
+                     <p class="comparison">尽管营收下降，仍维持盈利状态。</p>
+                </div>
+                 <div class="card">
+                    <h3><i class="fas fa-flask"></i> 研发开支</h3>
+                    <span class="metric">2,100 万美元</span>
+                     <p class="comparison">较 2023年 (4,508 万美元) <span class="negative">大幅减少 53.4%</span></p>
+                     <p class="comparison">体现了资源优化和成本控制策略。</p>
+                </div>
+                 <div class="card">
+                    <h3><i class="fas fa-hand-holding-usd"></i> 经常性收入*</h3>
+                    <span class="metric positive">1,691 万美元</span>
+                    <p class="comparison">较 2023年 (571 万美元) <span class="positive">显著增长 196.5%</span></p>
+                    <p class="comparison">*含里程碑付款及平台研究收入。</p>
+                </div>
+                 <div class="card">
+                    <h3><i class="fas fa-cash-register"></i> 现金及等价物</h3>
+                    <span class="metric-small">1.67 亿美元</span>
+                     <p class="comparison">较 2023年末 (1.40 亿美元) <span class="positive">增加</span></p>
+                     <p class="comparison">现金状况稳健。</p>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-balance-scale"></i> 总权益</h3>
+                     <span class="metric-small">1.24 亿美元</span>
+                     <p class="comparison">较 2023年末 (1.20 亿美元) <span class="positive">增加</span></p>
+                </div>
+            </div>
+        </section>
+
+        <section class="revenue-breakdown">
+            <h2>2024年营收构成分析</h2>
+             <div class="revenue-item">
+                <span>分子许可费 - 预付款</span>
+                 <span>2,119 万美元</span>
+            </div>
+             <div class="revenue-item">
+                <span>分子许可费 - 里程碑付款</span>
+                 <span>857 万美元</span>
+            </div>
+             <div class="revenue-item">
+                <span>平台研究收入 - 研究服务费</span>
+                 <span>695 万美元</span>
+            </div>
+            <div class="revenue-item">
+                <span>平台研究收入 - 技术许可费</span>
+                 <span>139 万美元</span>
+            </div>
+             <div class="revenue-item">
+                <span><strong>总计</strong></span>
+                 <span><strong>3,810 万美元</strong></span>
+            </div>
+             <p style="font-size: 0.9em; color: #555; margin-top: 15px;">注：经常性收入（里程碑付款 + 平台研究收入）达1,691万美元，同比增长近200%，显示业务可持续性增强。</p>
+        </section>
+
+        <section>
+            <h2>主要业务进展与亮点 (2024年及期后)</h2>
+             <div class="grid-container">
+                 <div class="card">
+                    <h3>Harbour Therapeutics 进展</h3>
+                    <ul>
+                        <li>巴托利单抗(gMG) BLA获NMPA受理。</li>
+                        <li>HBM9378 COPD IND申请获NMPA批准。</li>
+                        <li>普鲁苏拜单抗(CRC)联合PD-1试验完成入组。</li>
+                        <li>HBM1020 (B7H7) I期数据积极，在ESMO公布。</li>
+                    </ul>
+                </div>
+                 <div class="card">
+                     <h3>Nona Biosciences 平台与合作</h3>
+                    <ul>
+                        <li>与阿斯利康达成重大全球许可与选择权协议（高达$575M里程碑+特许费）。</li>
+                        <li>与辉瑞合作的HBM9033 (ADC) 进入I期临床。</li>
+                        <li>与Windward Bio就HBM9378达成全球授权（高达$970M预付款及里程碑）。</li>
+                        <li>与Candid、Boostimmune、Umoja等多家公司达成平台技术合作。</li>
+                        <li>孵化企业HBMAT达成对外授权。</li>
+                    </ul>
+                </div>
+                 <div class="card">
+                     <h3>期后重大事件 (2025年3月)</h3>
+                     <ul>
+                         <li>与阿斯利康达成深度战略合作及股权认购。</li>
+                         <li>阿斯利康认购约9.15%股份，总额约1.05亿美元。</li>
+                         <li>战略合作涵盖多个下一代抗体项目，潜在总额达44亿美元里程碑+特许费。</li>
+                     </ul>
+                 </div>
+            </div>
+        </section>
+
+        <section class="analysis-section">
+            <h2>财务分析摘要</h2>
+            <ul>
+                <li><strong>营收结构变化：</strong> 总收入虽因2023年高基数预付款而下降，但代表持续业务能力的经常性收入（里程碑、平台服务）同比增长近2倍，显示业务模式转型初见成效。</li>
+                <li><strong>盈利能力：</strong> 尽管收入下降，公司通过有效的成本控制（尤其是研发费用大幅降低53.4%）实现了年度盈利（274万美元），展现了良好的运营效率。</li>
+                <li><strong>成本控制：</strong> 研发及行政开支均显著下降，反映了公司聚焦核心项目、优化资源配置的策略。</li>
+                 <li><strong>现金流：</strong> 年末现金及等价物增加至1.67亿美元，流动性充裕。2025年初阿斯利康的注资将进一步增强财务实力。</li>
+                <li><strong>资产负债：</strong> 资产状况稳定，总负债有所下降，权益增加，财务结构健康。</li>
+            </ul>
+        </section>
+
+        <section class="analysis-section">
+            <h2>分析与投资展望 (非投资建议)</h2>
+            <p><strong>分析要点：</strong></p>
+            <ul>
+                <li>和铂医药正处于从依赖大额预付款向更可持续的经常性收入模式转型的关键时期。2024年经常性收入的大幅增长是积极信号。</li>
+                <li>公司核心技术平台（Harbour Mice®、HBICE®等）持续获得行业领先企业（辉瑞、阿斯利康等）的认可，对外授权和合作是重要的价值实现途径。</li>
+                 <li>管线方面，巴托利单抗的BLA受理是近期重要里程碑，其商业化潜力值得关注。其他临床及临床前项目也在稳步推进。</li>
+                 <li>成本控制有效，显示管理层的执行力。</li>
+                 <li>与阿斯利康的深度战略合作及股权投资是重大利好，不仅带来资金，更重要的是带来了长期合作和技术验证，极大提升了公司的发展潜力和确定性。</li>
+            </ul>
+            <p><strong>展望与潜在风险：</strong></p>
+            <ul>
+                <li><strong>潜力：</strong> 公司独特的技术平台和差异化的管线组合具有长期增长潜力。Nona Biosciences的平台服务模式有望持续贡献稳定收入。与大型药企的合作将加速产品开发和商业化进程。</li>
+                <li><strong>风险：</strong> 新药研发具有固有风险，临床试验结果和监管审批存在不确定性。收入可能因里程碑达成时间而波动。生物医药行业竞争激烈。</li>
+            </ul>
+             <p><strong>总体观点：</strong> 和铂医药展现了其技术平台的价值和业务转型的进展。虽然短期收入波动较大，但经常性收入的增长和与阿斯利康的里程碑式合作显著增强了公司的长期投资价值。投资者应关注其核心产品的临床与审批进展、平台合作的持续拓展以及成本效益的维持。</p>
+        </section>
+
+        <footer>
+            <p>免责声明：本页面信息基于和铂医药控股有限公司公布的截至2024年12月31日止年度业绩公告。所有数据单位均为千美元，除非另有说明。本内容仅供参考，不构成任何投资建议。投资者应自行进行独立研究和判断。 <a href="#" target="_blank">查看完整报告</a></p> <p>数据来源：和铂医药控股有限公司2024年度业绩公告 (2025年3月31日发布)</p>
+        </footer>
+    </div>
+
+    </body>
+</html>
+```
+
+這個版本保留了原始的佈局、樣式和數據，但將所有文本內容，包括標題、標籤、分析段落和頁腳信息，都轉換成了簡體中文。您可以將此代碼保存為 HTML 文件並在瀏覽器中打開

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>东鹏饮料2024年财报摘要与分析</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <style>
+        /* Custom Styles for Beverage Industry Feel */
+        body {
+            font-family: 'Inter', sans-serif; /* Using Inter font as specified */
+            background-color: #f7fafc; /* Light gray background */
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.75rem; /* Rounded corners */
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .highlight-value {
+            color: #2563eb; /* Blue color for key values */
+            font-weight: 600;
+        }
+        .growth-positive {
+            color: #16a34a; /* Green for positive growth */
+        }
+        .growth-negative {
+            color: #dc2626; /* Red for negative growth */
+        }
+        .section-title {
+            border-left: 4px solid #2563eb;
+            padding-left: 0.75rem;
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+        /* Style for chart containers to maintain aspect ratio */
+        .chart-container {
+            position: relative;
+            height: 300px; /* Adjust height as needed */
+            width: 100%;
+        }
+        canvas {
+            display: block;
+            box-sizing: border-box;
+            height: 300px; /* Match container height */
+            width: 100%;
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="p-4 md:p-8">
+
+    <header class="text-center mb-8">
+        <h1 class="text-3xl font-bold text-gray-800">东鹏饮料（集团）股份有限公司</h1>
+        <h2 class="text-xl text-gray-600">2024年年度财务报告摘要与分析</h2>
+    </header>
+
+    <section id="highlights" class="card">
+        <h3 class="section-title">关键财务指标</h3>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+            <div>
+                <p class="text-gray-500 text-sm">总营业收入</p>
+                <p class="text-2xl highlight-value">158.39 亿</p>
+                <p class="text-sm growth-positive">(+40.63%)</p>
+            </div>
+            <div>
+                <p class="text-gray-500 text-sm">归母净利润</p>
+                <p class="text-2xl highlight-value">33.27 亿</p>
+                <p class="text-sm growth-positive">(+63.09%)</p>
+            </div>
+            <div>
+                <p class="text-gray-500 text-sm">经营现金流净额</p>
+                <p class="text-2xl highlight-value">57.89 亿</p>
+                <p class="text-sm growth-positive">(+76.44%)</p>
+            </div>
+            <div>
+                <p class="text-gray-500 text-sm">加权净资产收益率</p>
+                <p class="text-2xl highlight-value">46.93%</p>
+                <p class="text-sm growth-positive">(+11.11 pct)</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="revenue-breakdown" class="grid md:grid-cols-2 gap-4">
+        <div class="card">
+            <h3 class="section-title">主营业务收入 - 按产品</h3>
+            <div class="chart-container">
+                <canvas id="productRevenueChart"></canvas>
+            </div>
+            <ul class="mt-4 text-sm text-gray-600 space-y-1">
+                <li>能量饮料: 133.04 亿 (占比 84.08%, <span class="growth-positive">+28.49%</span>)</li>
+                <li>电解质饮料: 14.95 亿 (占比 9.45%, <span class="growth-positive">+280.37%</span>)</li>
+                <li>其他饮料: 10.23 亿 (占比 6.47%, <span class="growth-positive">+103.19%</span>)</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h3 class="section-title">主营业务收入 - 按区域</h3>
+             <div class="chart-container">
+                <canvas id="regionRevenueChart"></canvas>
+            </div>
+             <ul class="mt-4 text-sm text-gray-600 space-y-1">
+                <li>广东区域: 43.60 亿 (占比 27.56%, <span class="growth-positive">+15.93%</span>)</li>
+                <li>华北区域: 18.56 亿 (占比 11.73%, <span class="growth-positive">+83.85%</span>)</li>
+                <li>西南区域: 17.25 亿 (占比 10.90%, <span class="growth-positive">+54.65%</span>)</li>
+                <li>华东区域: 22.01 亿 (占比 13.91%, <span class="growth-positive">+45.13%</span>)</li>
+                <li>华中区域: 20.75 亿 (占比 13.11%, <span class="growth-positive">+48.17%</span>)</li>
+                <li>线上渠道: 4.45 亿 (占比 2.82%, <span class="growth-positive">+116.95%</span>)</li>
+                <li>其他区域及渠道: 31.60 亿 (占比约 19.97%)</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="analysis" class="card">
+        <h3 class="section-title">经营情况分析</h3>
+        <div class="text-gray-700 space-y-3 text-sm">
+            <p><strong>业绩高速增长：</strong> 2024年，公司营收和净利润均实现强劲增长，主要得益于核心产品东鹏特饮的稳健表现以及“东鹏补水啦”等新品的爆发式增长。公司成功抓住消费复苏和健康化趋势。</p>
+            <p><strong>多品类战略显效：</strong> 公司不再局限于能量饮料，电解质饮料、无糖茶、咖啡等品类协同发展，成功拓展了新的消费场景（如运动、餐饮）和人群，为向综合性饮料集团迈进奠定基础。</p>
+            <p><strong>渠道深化与全国化拓展：</strong> 公司持续深耕线下渠道，活跃终端网点近400万家，并积极布局线上。全国化战略效果显著，特别是华北、西南区域增速迅猛，广东以外区域收入占比持续提升。</p>
+            <p><strong>品牌影响力提升：</strong> 通过与央视合作（巴黎奥运）、影视植入、跨界联名等方式，持续巩固“累了困了喝东鹏特饮”的心智，并成功推广新品的功能标签（如“东鹏补水啦”的“快速补充电解质”）。</p>
+            <p><strong>产能布局优化：</strong> 华东浙江、华中长沙基地投产，天津基地建设中，有效缩短运输半径，降低物流成本，保障全国市场供应。</p>
+            <p><strong>研发创新：</strong> 持续推出新品，满足差异化需求，并获得多项发明专利，构建技术壁垒。</p>
+        </div>
+    </section>
+
+    <section id="recommendation" class="card">
+        <h3 class="section-title">投资建议与风险提示</h3>
+        <div class="text-gray-700 space-y-3 text-sm">
+            <p><strong>投资建议：</strong> 东鹏饮料展现出强劲的增长势头和市场领导地位。其核心能量饮料业务稳固，第二增长曲线（电解质饮料）增长迅猛，多品类布局初见成效。全国化战略和产能扩张有序推进，品牌建设投入有效。公司盈利能力强劲，现金流充沛，并维持高比例分红（本次拟每10股派25元）。考虑到公司良好的基本面、清晰的增长路径和行业发展趋势（健康化、功能化），具备长期投资价值。建议投资者<strong class="highlight-value">积极关注</strong>，可考虑逢低布局或长期持有。未来需关注新品推广效果、市场竞争格局变化及成本控制情况。</p>
+            <p><strong>风险提示：</strong></p>
+            <ul class="list-disc list-inside space-y-1">
+                <li><strong>市场竞争加剧：</strong> 饮料行业竞争激烈，新进入者和现有对手可能带来价格战或市场份额压力。</li>
+                <li><strong>原材料价格波动：</strong> PET、白砂糖等主要原材料价格波动可能影响公司毛利率。</li>
+                <li><strong>新产品推广不及预期：</strong> 电解质饮料、茶饮料等新品虽表现良好，但未来市场接受度和持续增长存在不确定性。</li>
+                <li><strong>食品安全风险：</strong> 作为食品饮料企业，任何质量安全问题都可能对品牌声誉和销售产生重大负面影响。</li>
+                <li><strong>依赖核心产品：</strong> 虽然在多元化，但能量饮料仍占收入大头，对单一品类依赖风险仍存。</li>
+                 <li><strong>宏观经济与消费环境变化：</strong> 经济下行或消费习惯改变可能影响饮料整体需求。</li>
+            </ul>
+        </div>
+    </section>
+
+    <footer class="text-center mt-8 text-gray-500 text-xs">
+        <p>数据来源：东鹏饮料（集团）股份有限公司2024年年度报告。本摘要与分析仅供参考，不构成投资决策依据。</p>
+    </footer>
+
+    <script>
+        // Function to format numbers as 'X.XX 亿'
+        function formatCurrency(value) {
+            return (value / 100000000).toFixed(2) + ' 亿';
+        }
+
+        // Product Revenue Chart
+        const productCtx = document.getElementById('productRevenueChart').getContext('2d');
+        const productRevenueChart = new Chart(productCtx, {
+            type: 'pie', // Changed to pie chart
+            data: {
+                labels: ['能量饮料', '电解质饮料', '其他饮料'],
+                datasets: [{
+                    label: '营收占比 (%)',
+                    data: [84.08, 9.45, 6.47], // Percentages
+                    backgroundColor: [
+                        'rgba(59, 130, 246, 0.7)', // Blue
+                        'rgba(239, 68, 68, 0.7)',  // Red
+                        'rgba(245, 158, 11, 0.7)'  // Amber
+                    ],
+                    borderColor: [
+                        'rgba(59, 130, 246, 1)',
+                        'rgba(239, 68, 68, 1)',
+                        'rgba(245, 158, 11, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed !== null) {
+                                    // Add revenue value to tooltip
+                                    let revenueValue = 0;
+                                    if (context.label === '能量饮料') revenueValue = 133.04;
+                                    if (context.label === '电解质饮料') revenueValue = 14.95;
+                                    if (context.label === '其他饮料') revenueValue = 10.23;
+                                    label += context.parsed.toFixed(2) + '% (' + revenueValue.toFixed(2) + '亿)';
+                                }
+                                return label;
+                            }
+                        }
+                    },
+                    title: {
+                        display: false,
+                        text: '主营业务收入 - 按产品'
+                    }
+                }
+            }
+        });
+
+        // Region Revenue Chart
+        const regionCtx = document.getElementById('regionRevenueChart').getContext('2d');
+        const regionRevenueChart = new Chart(regionCtx, {
+            type: 'pie', // Changed to pie chart
+            data: {
+                labels: ['广东', '华东', '华中', '广西', '西南', '华北', '线上', '重客及其他'],
+                datasets: [{
+                    label: '营收占比 (%)',
+                    data: [27.56, 13.91, 13.11, 7.29, 10.90, 11.73, 2.82, 12.68], // Percentages
+                    backgroundColor: [
+                        'rgba(59, 130, 246, 0.7)', // Blue
+                        'rgba(16, 185, 129, 0.7)', // Emerald
+                        'rgba(245, 158, 11, 0.7)', // Amber
+                        'rgba(239, 68, 68, 0.7)',  // Red
+                        'rgba(139, 92, 246, 0.7)', // Violet
+                        'rgba(236, 72, 153, 0.7)', // Pink
+                        'rgba(96, 165, 250, 0.7)', // Light Blue
+                        'rgba(167, 139, 250, 0.7)' // Light Violet
+                    ],
+                     borderColor: [
+                        'rgba(59, 130, 246, 1)',
+                        'rgba(16, 185, 129, 1)',
+                        'rgba(245, 158, 11, 1)',
+                        'rgba(239, 68, 68, 1)',
+                        'rgba(139, 92, 246, 1)',
+                        'rgba(236, 72, 153, 1)',
+                        'rgba(96, 165, 250, 1)',
+                        'rgba(167, 139, 250, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                 maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                     tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed !== null) {
+                                     // Add revenue value to tooltip
+                                    let revenueValue = 0;
+                                    if (context.label === '广东') revenueValue = 43.60;
+                                    if (context.label === '华东') revenueValue = 22.01;
+                                    if (context.label === '华中') revenueValue = 20.75;
+                                    if (context.label === '广西') revenueValue = 11.54;
+                                    if (context.label === '西南') revenueValue = 17.25;
+                                    if (context.label === '华北') revenueValue = 18.56;
+                                    if (context.label === '线上') revenueValue = 4.45;
+                                    if (context.label === '重客及其他') revenueValue = 20.06;
+                                    label += context.parsed.toFixed(2) + '% (' + revenueValue.toFixed(2) + '亿)';
+                                }
+                                return label;
+                            }
+                        }
+                    },
+                    title: {
+                        display: false,
+                        text: '主营业务收入 - 按区域'
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
