@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>五矿资源 2024年度业绩摘要</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* 自定义样式，融入矿业/金属质感 */
+        body {
+            font-family: 'Inter', sans-serif; /* 使用Inter字体 */
+            background-color: #f4f4f5; /* 浅灰色背景 */
+        }
+        .card {
+            background-color: #ffffff;
+            border-radius: 0.75rem; /* 圆角 */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* 添加过渡效果 */
+            border-left: 5px solid #b45309; /* 左侧边框，铜色调 */
+        }
+        .card:hover {
+            transform: translateY(-5px); /* 悬停时轻微上移 */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .section-title {
+            color: #44403c; /* 石灰色 */
+            border-bottom: 2px solid #d97706; /* 琥珀色下划线 */
+            padding-bottom: 0.5rem;
+        }
+        .metric-value {
+            color: #b45309; /* 铜色调 */
+            font-weight: 600; /* 半粗体 */
+        }
+        .segment-bar-container {
+            display: flex;
+            align-items: flex-end;
+            height: 150px; /* 设置柱状图容器高度 */
+            gap: 0.5rem; /* 柱子间距 */
+            padding: 1rem 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .segment-bar {
+            flex-grow: 1;
+            background-color: #fbbf24; /* 琥珀色 */
+            border-radius: 0.25rem 0.25rem 0 0; /* 顶部圆角 */
+            text-align: center;
+            color: #44403c;
+            font-size: 0.75rem;
+            line-height: 1rem;
+            position: relative;
+            transition: background-color 0.3s ease;
+            cursor: pointer; /* 添加指针 */
+        }
+        .segment-bar:hover {
+             background-color: #f59e0b; /* 悬停时加深颜色 */
+        }
+        .segment-bar span {
+            position: absolute;
+            bottom: -20px; /* 标签位置 */
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            font-size: 0.7rem;
+        }
+         .segment-bar .value-label {
+            position: absolute;
+            top: -20px; /* 数值标签位置 */
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            font-size: 0.7rem;
+            font-weight: 500;
+        }
+        .positive-change {
+            color: #16a34a; /* 绿色 */
+        }
+        .negative-change {
+            color: #dc2626; /* 红色 */
+        }
+        .highlight-metric {
+             background: linear-gradient(to right, #fcd34d, #fbbf24); /* 金色渐变 */
+             color: #44403c;
+             padding: 0.5rem 1rem;
+             border-radius: 0.5rem;
+        }
+    </style>
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="p-4 md:p-8">
+
+    <div class="max-w-6xl mx-auto">
+
+        <header class="mb-8 text-center">
+            <img src="https://placehold.co/100x50/eab308/44403c?text=MMG" alt="MMG Logo Placeholder" class="mx-auto mb-4 h-12">
+            <h1 class="text-3xl font-bold text-gray-800">五矿资源有限公司 (MMG)</h1>
+            <h2 class="text-xl font-semibold text-gray-600">2024年度业绩摘要</h1>
+            <p class="text-sm text-gray-500">截至二零二四年十二月三十一日止年度</p>
+        </header>
+
+        <section class="mb-8">
+            <h3 class="text-2xl font-semibold mb-4 section-title">关键财务指标</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="card p-6">
+                    <h4 class="text-lg font-semibold text-gray-700 mb-2">总收入</h4>
+                    <p class="text-3xl metric-value">44.79 亿<span class="text-sm text-gray-500">美元</span></p>
+                    <p class="text-sm text-gray-600 mt-2">较2023年 <span class="positive-change font-medium">(+3%)</span></p>
+                </div>
+                <div class="card p-6">
+                    <h4 class="text-lg font-semibold text-gray-700 mb-2">EBITDA</h4>
+                    <p class="text-3xl metric-value">20.49 亿<span class="text-sm text-gray-500">美元</span></p>
+                    <p class="text-sm text-gray-600 mt-2">较2023年 <span class="positive-change font-medium">(+40%)</span></p>
+                    <p class="text-sm text-gray-500 mt-1">EBITDA 利润率: 46%</p>
+                </div>
+                <div class="card p-6">
+                    <h4 class="text-lg font-semibold text-gray-700 mb-2">税后净利润</h4>
+                    <p class="text-3xl metric-value">3.66 亿<span class="text-sm text-gray-500">美元</span></p>
+                     <p class="text-sm text-gray-600 mt-2">较2023年 <span class="positive-change font-medium">(+200%)</span></p>
+                    <p class="text-sm text-gray-500 mt-1">权益持有人应占: 1.62 亿美元 (+1699%)</p>
+                </div>
+            </div>
+             <div class="mt-6 text-center">
+                <span class="highlight-metric text-base font-medium">
+                    创纪录低杠杆率: 41%
+                </span>
+            </div>
+        </section>
+
+        <section class="mb-8">
+            <h3 class="text-2xl font-semibold mb-4 section-title">各业务板块表现 (2024年 EBITDA)</h3>
+             <p class="text-sm text-gray-600 mb-4">单位：百万美元 (悬停查看具体数值)</p>
+            <div class="card p-6">
+                <div class="segment-bar-container" id="segment-ebitda-chart">
+                    </div>
+            </div>
+             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4 text-sm">
+                 <div class="bg-gray-100 p-3 rounded-md"><strong>Las Bambas:</strong> EBITDA 15.94亿 (+14%), 受益于成本降低和价格上涨。</div>
+                 <div class="bg-gray-100 p-3 rounded-md"><strong>Kinsevere:</strong> EBITDA 0.68亿 (扭亏为盈), 受益于销量和价格增加。</div>
+                 <div class="bg-gray-100 p-3 rounded-md"><strong>Khoemacau:</strong> EBITDA 1.26亿 (收购后9个月贡献)。</div>
+                 <div class="bg-gray-100 p-3 rounded-md"><strong>Dugald River:</strong> EBITDA 1.69亿 (+401%), 受益于价格、销量和加工费降低。</div>
+                 <div class="bg-gray-100 p-3 rounded-md"><strong>Rosebery:</strong> EBITDA 1.23亿 (+58%), 受益于价格、销量和加工费降低。</div>
+             </div>
+        </section>
+
+        <section class="mb-8">
+            <h3 class="text-2xl font-semibold mb-4 section-title">业务摘要与展望</h3>
+            <div class="card p-6 space-y-3 text-gray-700">
+                <p><strong>业绩亮点:</strong> 2024年财务业绩显著增长，所有矿山盈利能力提升，成功整合Khoemacau矿山并实现当年盈利。资产负债表得到强化，杠杆率降至历史新低，为未来增长奠定基础。</p>
+                <p><strong>运营亮点:</strong> 铜产量同比增长15%，锌产量增长8%。Las Bambas产量增长7%，Kinsevere扩建项目完成主体建设，Khoemacau扩建可行性研究进行中，矿产资源量显著增加。</p>
+                <p><strong>2025年展望:</strong></p>
+                <ul class="list-disc list-inside ml-4 text-sm space-y-1">
+                    <li>继续关注业务改进和效率提升。</li>
+                    <li>Las Bambas 铜产量预计 36-40万吨。</li>
+                    <li>Kinsevere 电解铜产量预计 6.3-6.9万吨，成本预计下降。</li>
+                    <li>Khoemacau 铜产量预计 4.3-5.3万吨。</li>
+                    <li>Dugald River 锌产量预计 17-18.5万吨。</li>
+                    <li>Rosebery 锌产量预计 4.5-5.5万吨 (锌当量 11-12.5万吨)。</li>
+                    <li>总资本开支预计 12-13亿美元，主要用于Las Bambas、Khoemacau和Kinsevere。</li>
+                    <li>宣布收购英美资源集团巴西镍业，拓展镍业务（待完成）。</li>
+                </ul>
+                 <p><strong>战略重点:</strong> 致力于安全管理、审慎资本管理和高效运营，把握增长机遇，目标成为全球十大铜生产商之一，并专注于对低碳未来至关重要的金属。</p>
+            </div>
+        </section>
+
+        <section>
+            <h3 class="text-2xl font-semibold mb-4 section-title">投资建议 (基于本报告信息)</h3>
+            <div class="card p-6 bg-blue-50 border-l-blue-500 text-blue-800">
+                <p class="font-medium mb-2">综合分析:</p>
+                <p class="mb-2">五矿资源在2024年展现了强劲的财务和运营复苏，盈利能力大幅提升，资产负债表显著改善。公司拥有多个优质矿山资产，并在关键金属（铜、锌）领域有重要布局。Kinsevere和Khoemacau的扩建项目以及对巴西镍业的收购计划，显示了清晰的增长战略，特别是在能源转型所需的金属方面。</p>
+                <p class="font-medium mb-2">潜在机遇:</p>
+                <ul class="list-disc list-inside ml-4 text-sm space-y-1 mb-3">
+                    <li>全球对铜、锌、镍等基础金属的需求（尤其在新能源领域）预计将保持增长。</li>
+                    <li>扩建项目（Kinsevere, Khoemacau）有望在未来几年提升产量并降低成本。</li>
+                    <li>新收购的镍业务（若完成）将实现产品多元化，并进入新的地域市场。</li>
+                    <li>持续的成本控制和效率提升措施可能进一步改善盈利能力。</li>
+                    <li>与大股东中国五矿的紧密关系可能带来融资和市场方面的优势。</li>
+                </ul>
+                 <p class="font-medium mb-2">主要风险:</p>
+                 <ul class="list-disc list-inside ml-4 text-sm space-y-1">
+                    <li>大宗商品价格波动是矿业公司的固有风险。</li>
+                    <li>秘鲁（Las Bambas）的社会和政治环境可能影响运营稳定性。</li>
+                    <li>项目执行风险（扩建项目能否按时按预算完成并达产）。</li>
+                    <li>新收购业务的整合风险。</li>
+                    <li>全球宏观经济下行风险可能影响金属需求和价格。</li>
+                    <li>运营成本（如能源、劳动力）上升的压力。</li>
+                 </ul>
+                 <p class="mt-4 font-medium">建议:</p>
+                 <p>基于报告所呈现的积极业绩、明确的增长路径和改善的财务状况，五矿资源具有一定的投资潜力，特别是对于看好未来基础金属（尤其是铜和镍）需求的投资者。然而，投资者应充分认识并评估相关的市场风险、运营风险（特别是秘鲁的社区关系）和项目执行风险。建议投资者结合自身的风险承受能力、投资目标以及对宏观经济和商品市场的判断，做出审慎的投资决策。持续关注公司项目进展、成本控制情况以及秘鲁运营环境的变化至关重要。</p>
+                 <p class="text-xs italic mt-3">免责声明：本建议仅基于所提供的2024年度报告信息，不构成最终投资决策依据。投资有风险，入市需谨慎。</p>
+            </div>
+        </section>
+
+        <footer class="mt-12 pt-6 border-t border-gray-300 text-center text-sm text-gray-500">
+            <p>&copy; 2025 五矿资源有限公司 (MMG) | 报告摘要由AI生成，请以官方完整报告为准。</p>
+            <p>报告日期: 2025年3月4日</p>
+        </footer>
+
+    </div>
+
+    <script>
+        // JavaScript to generate segment EBITDA bars dynamically
+        const segmentData = [
+            { name: 'Las Bambas', ebitda: 1594.3, change: '+14%' },
+            { name: 'Kinsevere', ebitda: 67.8, change: '+312%' }, //扭亏为盈，变化率巨大
+            { name: 'Khoemacau', ebitda: 125.9, change: 'N/A' }, //新收购
+            { name: 'Dugald River', ebitda: 169.4, change: '+401%' },
+            { name: 'Rosebery', ebitda: 123.2, change: '+58%' }
+        ];
+
+        const chartContainer = document.getElementById('segment-ebitda-chart');
+        const maxEbitda = Math.max(...segmentData.map(s => s.ebitda)); // Find max EBITDA for scaling
+
+        segmentData.forEach(segment => {
+            const barHeightPercentage = (segment.ebitda / maxEbitda) * 100;
+            const bar = document.createElement('div');
+            bar.className = 'segment-bar';
+            bar.style.height = `${barHeightPercentage}%`;
+            bar.title = `${segment.name}: ${segment.ebitda} 百万美元 (变化: ${segment.change})`; // Tooltip
+
+            const valueLabel = document.createElement('div');
+            valueLabel.className = 'value-label';
+            valueLabel.textContent = `${segment.ebitda.toFixed(1)}`;
+            bar.appendChild(valueLabel);
+
+
+            const nameLabel = document.createElement('span');
+            nameLabel.textContent = segment.name;
+            bar.appendChild(nameLabel);
+
+
+            chartContainer.appendChild(bar);
+        });
+    </script>
+
+</body>
+</html>
