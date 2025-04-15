@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小米集团 2024 年度财务报告摘要</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* 自定义样式 */
+        body {
+            font-family: 'Inter', sans-serif; /* 使用 Inter 字体 */
+            background-color: #f7fafc; /* 浅灰色背景 */
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.75rem; /* 圆角 */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* 阴影 */
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* 过渡效果 */
+            overflow: hidden; /* 防止内容溢出 */
+        }
+        .card:hover {
+            transform: translateY(-5px); /* 悬停时轻微上移 */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .highlight-value {
+            color: #ff6900; /* 小米橙色 */
+            font-weight: 600; /* 加粗 */
+        }
+        .section-title {
+            border-left: 4px solid #ff6900; /* 左侧橙色边框 */
+            padding-left: 0.75rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem; /* 稍大字体 */
+            font-weight: 600;
+        }
+        .bar-container {
+            display: flex;
+            height: 1.5rem; /* 条形图高度 */
+            background-color: #e2e8f0; /* 浅灰色背景 */
+            border-radius: 0.375rem; /* 圆角 */
+            overflow: hidden; /* 隐藏溢出 */
+            margin-top: 0.5rem;
+        }
+        .bar-segment {
+            height: 100%;
+            transition: width 0.5s ease-in-out; /* 宽度变化动画 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem; /* 较小字体 */
+            color: white;
+            font-weight: 500;
+        }
+        /* 不同业务板块的颜色 */
+        .bg-smartphones { background-color: #4f46e5; } /* 靛蓝 */
+        .bg-iot { background-color: #10b981; } /* 翠绿 */
+        .bg-internet { background-color: #3b82f6; } /* 蓝色 */
+        .bg-ev { background-color: #f59e0b; } /* 琥珀色 */
+        .bg-other { background-color: #6b7280; } /* 灰色 */
+
+        /* 投资建议样式 */
+        .investment-advice {
+            background-color: #fffbeb; /* 淡黄色背景 */
+            border-left: 4px solid #f59e0b; /* 黄色边框 */
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-top: 2rem;
+        }
+        .disclaimer {
+            font-size: 0.75rem;
+            color: #6b7280; /* 灰色 */
+            margin-top: 0.75rem;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="p-6 md:p-10">
+    <div class="max-w-6xl mx-auto">
+        <h1 class="text-3xl font-bold text-center mb-8 text-gray-800">
+            <i class="fas fa-chart-line mr-2 text-orange-500"></i>小米集团 2024 年度财务报告摘要
+        </h1>
+
+        <section class="mb-10">
+            <h2 class="section-title">关键财务指标 (截至 2024 年 12 月 31 日止年度)</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="card p-5">
+                    <h3 class="text-lg font-semibold text-gray-700 mb-2"><i class="fas fa-coins mr-2 text-yellow-500"></i>总收入</h3>
+                    <p class="text-3xl highlight-value">¥3,659 亿</p>
+                    <p class="text-sm text-green-600 mt-1">同比增长 35.0%</p>
+                </div>
+                <div class="card p-5">
+                    <h3 class="text-lg font-semibold text-gray-700 mb-2"><i class="fas fa-piggy-bank mr-2 text-pink-500"></i>经调整净利润</h3>
+                    <p class="text-3xl highlight-value">¥272 亿</p>
+                    <p class="text-sm text-green-600 mt-1">同比增长 41.3%</p>
+                </div>
+                <div class="card p-5">
+                    <h3 class="text-lg font-semibold text-gray-700 mb-2"><i class="fas fa-percent mr-2 text-blue-500"></i>毛利</h3>
+                    <p class="text-3xl highlight-value">¥766 亿</p>
+                    <p class="text-sm text-gray-600 mt-1">毛利率 20.9%</p>
+                </div>
+                 <div class="card p-5">
+                    <h3 class="text-lg font-semibold text-gray-700 mb-2"><i class="fas fa-flask mr-2 text-purple-500"></i>研发投入</h3>
+                    <p class="text-3xl highlight-value">¥241 亿</p>
+                    <p class="text-sm text-green-600 mt-1">同比增长 25.9%</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-10">
+            <h2 class="section-title">业务板块表现</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="card p-6">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4"><i class="fas fa-mobile-alt mr-2 text-indigo-600"></i><i class="fas fa-wifi mr-2 text-teal-500"></i>手机 × AIoT</h3>
+                    <p class="text-gray-600 mb-1">总收入: <span class="font-medium text-gray-800">¥3,332 亿</span> (同比增长 22.9%)</p>
+                    <p class="text-gray-600 mb-4">毛利率: <span class="font-medium text-gray-800">21.2%</span></p>
+
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="text-md font-medium text-gray-700"><i class="fas fa-mobile-screen-button mr-1 text-indigo-500"></i>智能手机</span>
+                                <span class="text-sm text-gray-500">收入: ¥1,918 亿 (+21.8%) | 毛利率: 12.6%</span>
+                            </div>
+                            <div class="bar-container">
+                                <div class="bar-segment bg-smartphones" style="width: 57.6%;"></div> </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="text-md font-medium text-gray-700"><i class="fas fa-home mr-1 text-emerald-500"></i>IoT与生活消费产品</span>
+                                <span class="text-sm text-gray-500">收入: ¥1,041 亿 (+30.0%) | 毛利率: 20.3%</span>
+                            </div>
+                             <div class="bar-container">
+                                <div class="bar-segment bg-iot" style="width: 31.2%;"></div> </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="text-md font-medium text-gray-700"><i class="fas fa-globe mr-1 text-blue-500"></i>互联网服务</span>
+                                <span class="text-sm text-gray-500">收入: ¥341 亿 (+13.3%) | 毛利率: 76.6%</span>
+                            </div>
+                             <div class="bar-container">
+                                <div class="bar-segment bg-internet" style="width: 10.2%;"></div> </div>
+                        </div>
+                         <div>
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="text-md font-medium text-gray-700"><i class="fas fa-ellipsis-h mr-1 text-gray-500"></i>其他相关业务</span>
+                                <span class="text-sm text-gray-500">收入: ¥32 亿 (-3.6%)</span>
+                            </div>
+                             <div class="bar-container">
+                                <div class="bar-segment bg-other" style="width: 1.0%;"></div> </div>
+                        </div>
+                    </div>
+                     <div class="mt-6 border-t pt-4 space-y-2 text-sm text-gray-600">
+                        <p><i class="fas fa-shipping-fast mr-2 text-gray-500"></i>全球智能手机出货量: 1.685 亿台 (同比增长 15.7%)</p>
+                        <p><i class="fas fa-network-wired mr-2 text-gray-500"></i>AIoT 平台连接设备数: 9.046 亿台 (同比增长 22.3%)</p>
+                    </div>
+                </div>
+
+                <div class="card p-6">
+                     <h3 class="text-xl font-semibold text-gray-800 mb-4"><i class="fas fa-car mr-2 text-amber-600"></i>智能电动汽车等创新业务</h3>
+                    <p class="text-gray-600 mb-1">总收入: <span class="font-medium text-gray-800">¥328 亿</span></p>
+                    <p class="text-gray-600 mb-4">毛利率: <span class="font-medium text-gray-800">18.5%</span></p>
+
+                     <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="text-md font-medium text-gray-700"><i class="fas fa-car-side mr-1 text-amber-500"></i>智能电动汽车</span>
+                                <span class="text-sm text-gray-500">收入: ¥321 亿</span>
+                            </div>
+                            <div class="bar-container">
+                                <div class="bar-segment bg-ev" style="width: 97.9%;"></div> </div>
+                        </div>
+                         <div>
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="text-md font-medium text-gray-700"><i class="fas fa-tools mr-1 text-gray-500"></i>其他相关业务</span>
+                                <span class="text-sm text-gray-500">收入: ¥7 亿</span>
+                            </div>
+                             <div class="bar-container">
+                                <div class="bar-segment bg-other" style="width: 2.1%;"></div> </div>
+                        </div>
+                    </div>
+                     <div class="mt-6 border-t pt-4 space-y-2 text-sm text-gray-600">
+                        <p><i class="fas fa-road mr-2 text-gray-500"></i>Xiaomi SU7 系列首年交付量: 136,854 辆</p>
+                        <p><i class="fas fa-store mr-2 text-gray-500"></i>中国大陆汽车销售门店: 200 家 (覆盖 58 城)</p>
+                         <p class="text-red-600"><i class="fas fa-exclamation-triangle mr-2"></i>创新业务经调整净亏损: ¥62 亿</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+             <h2 class="section-title">简要投资建议 (基于财报信息)</h2>
+             <div class="investment-advice">
+                 <p class="text-gray-800 mb-3">小米集团在 2024 年展现出强劲的增长势头，总收入和经调整净利润均创历史新高，显示出其“稳健进取”策略的有效性以及“人车家全生态”战略的成功落地。</p>
+                 <ul class="list-disc list-inside space-y-2 text-gray-700">
+                    <li><strong class="text-green-700">增长亮点:</strong>
+                        <ul class="list-disc list-inside ml-4 mt-1">
+                            <li>智能电动汽车业务作为新的增长引擎，首年即贡献显著收入，显示出巨大的市场潜力。</li>
+                            <li>IoT 与生活消费品业务收入首次突破千亿，保持高速增长，毛利率显著提升，高端化战略初见成效。</li>
+                            <li>智能手机业务在全球保持前三地位，高端化战略持续推进，ASP 创历史新高。</li>
+                            <li>互联网服务收入和毛利率均创新高，用户规模持续扩大。</li>
+                        </ul>
+                    </li>
+                     <li><strong class="text-orange-700">关注要点:</strong>
+                        <ul class="list-disc list-inside ml-4 mt-1">
+                            <li>智能手机业务毛利率受核心零部件价格影响有所下降，需关注供应链成本控制。</li>
+                            <li>智能电动汽车等创新业务目前仍处于投入期，产生净亏损，未来盈利能力有待观察。</li>
+                            <li>全球化业务面临地缘政治、汇率波动及各地监管政策（如印度）的潜在风险。</li>
+                            <li>科技行业竞争激烈，持续的研发投入和创新能力是保持竞争力的关键。</li>
+                        </ul>
+                    </li>
+                 </ul>
+                 <p class="mt-4 text-gray-800">总体而言，小米集团展现了多元化业务布局的韧性和增长潜力，尤其在智能汽车领域的突破值得关注。投资者可持续关注其生态战略协同效应、创新业务盈利进程以及全球市场拓展情况。</p>
+                 <p class="disclaimer">
+                    <i class="fas fa-info-circle mr-1"></i>免责声明：以上内容仅基于所提供的财务报告信息进行分析，不构成任何专业的投资建议。投资有风险，决策需谨慎。
+                 </p>
+             </div>
+        </section>
+
+        <footer class="text-center text-sm text-gray-500 mt-10 pt-5 border-t">
+            数据来源：小米集团截至 2024 年 12 月 31 日止年度之全年业绩公告 | 页面生成时间：<span id="generation-time"></span>
+        </footer>
+    </div>
+
+    <script>
+        // 设置页面生成时间
+        document.getElementById('generation-time').textContent = new Date().toLocaleString('zh-CN');
+
+        // 简单的条形图动画 (可选，增加视觉效果)
+        document.addEventListener('DOMContentLoaded', () => {
+            const bars = document.querySelectorAll('.bar-segment');
+            // 延迟应用宽度，触发 CSS 过渡
+            setTimeout(() => {
+                bars.forEach(bar => {
+                    bar.style.width = bar.getAttribute('style').match(/width:\s*([\d.]+)%/)[1] + '%';
+                });
+            }, 100); // 延迟 100ms
+        });
+    </script>
+</body>
+</html>

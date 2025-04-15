@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>阿里巴巴 2024年第四季度财报亮点</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* 自定义样式 */
+        body {
+            font-family: 'Inter', sans-serif; /* 应用 Inter 字体 */
+            background-color: #f9fafb; /* 淡灰色背景 */
+        }
+        .metric-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* 平滑过渡效果 */
+            border: 1px solid #e5e7eb; /* 添加细边框 */
+        }
+        .metric-card:hover {
+            transform: translateY(-5px); /* 鼠标悬浮时轻微上移 */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* 添加阴影 */
+        }
+        .segment-card {
+            transition: background-color 0.3s ease; /* 背景色过渡 */
+            border: 1px solid #e5e7eb;
+        }
+        .segment-card .details {
+            max-height: 0; /* 默认隐藏 EBITA 详情 */
+            overflow: hidden;
+            transition: max-height 0.5s ease-out; /* 平滑展开/收起效果 */
+        }
+        .segment-card:hover .details {
+            max-height: 100px; /* 鼠标悬浮时展开 EBITA 详情 */
+        }
+        .positive-growth {
+            color: #10b981; /* 绿色表示正增长 */
+        }
+        .negative-growth {
+            color: #ef4444; /* 红色表示负增长 */
+        }
+        .loss-narrowed {
+             color: #10b981; /* 绿色表示亏损收窄 */
+        }
+        .loss-increased {
+             color: #ef4444; /* 红色表示亏损扩大 */
+        }
+        .profit-status {
+            font-size: 0.875rem; /* 调整字体大小 */
+            font-weight: 500;
+        }
+         /* 为移动设备优化 */
+        @media (max-width: 768px) {
+            .grid-cols-3 {
+                grid-template-columns: repeat(1, minmax(0, 1fr)); /* 移动端改为单列 */
+            }
+             .grid-cols-2 {
+                grid-template-columns: repeat(1, minmax(0, 1fr)); /* 移动端改为单列 */
+            }
+            .text-4xl {
+                font-size: 2.25rem; /* 调整标题大小 */
+            }
+             .text-2xl {
+                font-size: 1.5rem; /* 调整卡片标题大小 */
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 p-4 md:p-8">
+
+    <div class="max-w-7xl mx-auto">
+
+        <header class="mb-8 text-center">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-900">阿里巴巴集团 2024财年第四季度</h1>
+            <p class="text-lg text-gray-600 mt-2">（截至2024年12月31日止三个月）</p>
+        </header>
+
+        <section class="mb-10">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-6 text-center">关键财务指标</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="metric-card bg-white p-6 rounded-lg shadow-md text-center">
+                    <h3 class="text-lg font-medium text-gray-500 mb-2">总收入</h3>
+                    <p class="text-3xl font-bold text-gray-900">¥2,801.54 亿</p>
+                    <p class="text-md mt-2 positive-growth font-medium">同比增长 8%</p>
+                </div>
+
+                <div class="metric-card bg-white p-6 rounded-lg shadow-md text-center">
+                    <h3 class="text-lg font-medium text-gray-500 mb-2">经营利润</h3>
+                    <p class="text-3xl font-bold text-gray-900">¥412.05 亿</p>
+                    <p class="text-md mt-2 positive-growth font-medium">同比增长 83%</p>
+                     <p class="text-xs text-gray-500 mt-1">主因无形资产减值减少及经调整EBITA增加</p>
+                </div>
+
+                <div class="metric-card bg-white p-6 rounded-lg shadow-md text-center">
+                    <h3 class="text-lg font-medium text-gray-500 mb-2">归属于普通股股东净利润</h3>
+                    <p class="text-3xl font-bold text-gray-900">¥489.45 亿</p>
+                    <p class="text-md mt-2 positive-growth font-medium">同比增长 239%</p>
+                </div>
+
+                 <div class="metric-card bg-white p-6 rounded-lg shadow-md text-center">
+                    <h3 class="text-lg font-medium text-gray-500 mb-2">非公认会计准则净利润</h3>
+                    <p class="text-3xl font-bold text-gray-900">¥510.66 亿</p>
+                    <p class="text-md mt-2 positive-growth font-medium">同比增长 6%</p>
+                </div>
+
+                 <div class="metric-card bg-white p-6 rounded-lg shadow-md text-center">
+                    <h3 class="text-lg font-medium text-gray-500 mb-2">自由现金流</h3>
+                    <p class="text-3xl font-bold text-gray-900">¥390.20 亿</p>
+                    <p class="text-md mt-2 negative-growth font-medium">同比下降 31%</p>
+                     <p class="text-xs text-gray-500 mt-1">主因云基础设施投入增加</p>
+                </div>
+
+                 <div class="metric-card bg-white p-6 rounded-lg shadow-md text-center">
+                    <h3 class="text-lg font-medium text-gray-500 mb-2">非公认会计准则摊薄每股收益</h3>
+                    <p class="text-3xl font-bold text-gray-900">¥2.67</p>
+                    <p class="text-md mt-2 positive-growth font-medium">同比增长 13%</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-10">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-6 text-center">各业务分部表现</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <div class="segment-card bg-white p-6 rounded-lg shadow hover:bg-orange-50">
+                    <h3 class="text-xl font-semibold text-orange-600 mb-3">淘天集团</h3>
+                    <p class="text-lg font-medium text-gray-700">收入: ¥1,360.91 亿</p>
+                    <p class="text-sm positive-growth mb-3">同比增长 5%</p>
+                    <div class="details">
+                        <hr class="my-2 border-gray-200">
+                        <p class="text-md font-medium text-gray-700">经调整EBITA: ¥610.83 亿</p>
+                        <p class="profit-status positive-growth">同比增长 2%</p>
+                    </div>
+                     <p class="text-xs text-gray-400 mt-2 text-right italic">悬停查看EBITA</p>
+                </div>
+
+                <div class="segment-card bg-white p-6 rounded-lg shadow hover:bg-blue-50">
+                    <h3 class="text-xl font-semibold text-blue-600 mb-3">阿里国际数字商业集团</h3>
+                    <p class="text-lg font-medium text-gray-700">收入: ¥377.56 亿</p>
+                    <p class="text-sm positive-growth mb-3">同比增长 32%</p>
+                     <div class="details">
+                         <hr class="my-2 border-gray-200">
+                        <p class="text-md font-medium text-gray-700">经调整EBITA: -¥49.52 亿</p>
+                        <p class="profit-status loss-increased">亏损同比扩大 57%</p>
+                         <p class="text-xs text-gray-500 mt-1">主因对Trendyol跨境和速卖通投入增加</p>
+                    </div>
+                     <p class="text-xs text-gray-400 mt-2 text-right italic">悬停查看EBITA</p>
+                </div>
+
+                <div class="segment-card bg-white p-6 rounded-lg shadow hover:bg-purple-50">
+                    <h3 class="text-xl font-semibold text-purple-600 mb-3">云智能集团</h3>
+                    <p class="text-lg font-medium text-gray-700">收入: ¥317.42 亿</p>
+                    <p class="text-sm positive-growth mb-3">同比增长 13%</p>
+                     <div class="details">
+                         <hr class="my-2 border-gray-200">
+                        <p class="text-md font-medium text-gray-700">经调整EBITA: ¥31.38 亿</p>
+                        <p class="profit-status positive-growth">同比增长 33%</p>
+                         <p class="text-xs text-gray-500 mt-1">AI相关产品收入连续六季度三位数增长</p>
+                    </div>
+                     <p class="text-xs text-gray-400 mt-2 text-right italic">悬停查看EBITA</p>
+                </div>
+
+                <div class="segment-card bg-white p-6 rounded-lg shadow hover:bg-green-50">
+                    <h3 class="text-xl font-semibold text-green-600 mb-3">菜鸟集团</h3>
+                    <p class="text-lg font-medium text-gray-700">收入: ¥282.41 亿</p>
+                    <p class="text-sm negative-growth mb-3">同比下降 1%</p>
+                     <div class="details">
+                         <hr class="my-2 border-gray-200">
+                        <p class="text-md font-medium text-gray-700">经调整EBITA: ¥2.35 亿</p>
+                        <p class="profit-status negative-growth">同比下降 76%</p>
+                         <p class="text-xs text-gray-500 mt-1">反映业务调整影响</p>
+                    </div>
+                     <p class="text-xs text-gray-400 mt-2 text-right italic">悬停查看EBITA</p>
+                </div>
+
+                <div class="segment-card bg-white p-6 rounded-lg shadow hover:bg-yellow-50">
+                    <h3 class="text-xl font-semibold text-yellow-600 mb-3">本地生活集团</h3>
+                    <p class="text-lg font-medium text-gray-700">收入: ¥169.88 亿</p>
+                    <p class="text-sm positive-growth mb-3">同比增长 12%</p>
+                    <div class="details">
+                         <hr class="my-2 border-gray-200">
+                        <p class="text-md font-medium text-gray-700">经调整EBITA: -¥5.96 亿</p>
+                        <p class="profit-status loss-narrowed">亏损同比收窄 71%</p>
+                        <p class="text-xs text-gray-500 mt-1">得益于运营效率提升和规模扩大</p>
+                    </div>
+                    <p class="text-xs text-gray-400 mt-2 text-right italic">悬停查看EBITA</p>
+                </div>
+
+                <div class="segment-card bg-white p-6 rounded-lg shadow hover:bg-red-50">
+                    <h3 class="text-xl font-semibold text-red-600 mb-3">大文娱集团</h3>
+                    <p class="text-lg font-medium text-gray-700">收入: ¥54.38 亿</p>
+                    <p class="text-sm positive-growth mb-3">同比增长 8%</p>
+                    <div class="details">
+                        <hr class="my-2 border-gray-200">
+                        <p class="text-md font-medium text-gray-700">经调整EBITA: -¥3.09 亿</p>
+                        <p class="profit-status loss-narrowed">亏损同比收窄 40%</p>
+                        <p class="text-xs text-gray-500 mt-1">主因优酷广告收入增加及内容投资效率提升</p>
+                    </div>
+                    <p class="text-xs text-gray-400 mt-2 text-right italic">悬停查看EBITA</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-8">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4 text-center">投资建议</h2>
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <p class="text-gray-700 leading-relaxed">
+                    阿里巴巴在本季度展现了核心业务的增长韧性，特别是在淘天集团的客户管理收入和云智能集团的AI相关业务方面。国际数字商业和本地生活也保持了较快增长，同时亏损有所收窄（本地生活）或因投入增加而扩大（国际数字商业）。公司持续进行股份回购和战略性资产出售，优化资本结构。
+                </p>
+                <p class="text-gray-700 leading-relaxed mt-4">
+                    <strong>请注意：</strong>以上信息基于阿里巴巴集团发布的截至2024年12月31日的季度业绩公告，仅供参考，不构成任何具体的投资建议。金融市场存在风险，投资决策应基于个人的风险承受能力、投资目标以及对公司基本面、行业趋势和宏观经济环境的深入分析。
+                </p>
+                <p class="text-gray-700 leading-relaxed mt-4">
+                    在做出任何投资决策前，建议投资者进行独立研究，仔细阅读完整的财务报告，并咨询专业的财务顾问。过往业绩并不预示未来表现。
+                </p>
+            </div>
+        </section>
+
+        <footer class="text-center text-gray-500 text-sm mt-12">
+            <p>数据来源：阿里巴巴集团2024年第四季度业绩公告。</p>
+            <p>所有金额均为人民币。汇率仅供参考。</p>
+            <p>&copy; 2025 财报信息展示</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
