@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>阜丰集团 2024 年度财务报告摘要</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* 自定义样式 */
+        body {
+            font-family: 'Inter', sans-serif; /* 使用 Inter 字体 */
+            background-color: #f8fafc; /* 浅灰色背景 */
+        }
+        .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* 平滑过渡效果 */
+            background-color: white;
+            border-radius: 0.75rem; /* 圆角 */
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); /* 阴影 */
+        }
+        .card:hover {
+            transform: translateY(-5px); /* 鼠标悬浮时上移 */
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); /* 更深的阴影 */
+        }
+        .highlight-value {
+            font-weight: 600; /* 半粗体 */
+            color: #1e40af; /* 深蓝色 */
+        }
+        .positive-change {
+            color: #16a34a; /* 绿色表示增长 */
+        }
+        .negative-change {
+            color: #dc2626; /* 红色表示下降 */
+        }
+        /* 行业特定颜色 */
+        .bg-food-additive { background-color: #dbeafe; } /* 淡蓝色 */
+        .bg-animal-nutrition { background-color: #dcfce7; } /* 淡绿色 */
+        .bg-amino-acid { background-color: #fef3c7; } /* 淡黄色 */
+        .bg-colloid { background-color: #e0e7ff; } /* 淡紫色 */
+        .bg-others { background-color: #f3f4f6; } /* 灰色 */
+
+        .text-food-additive { color: #1e3a8a; }
+        .text-animal-nutrition { color: #166534; }
+        .text-amino-acid { color: #92400e; }
+        .text-colloid { color: #4338ca; }
+        .text-others { color: #4b5563; }
+
+        /* 紧凑布局 */
+        .compact-grid > div {
+             margin-bottom: 1rem; /* 增加卡片间距 */
+        }
+
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="p-4 md:p-8">
+    <div class="max-w-6xl mx-auto">
+        <header class="text-center mb-8">
+            <h1 class="text-3xl font-bold text-gray-800 mb-2">阜丰集团有限公司 (股份代号: 546)</h1>
+            <h2 class="text-2xl font-semibold text-blue-800">2024 年度财务报告摘要</h2>
+            <p class="text-sm text-gray-500">截至二零二四年十二月三十一日止年度</p>
+        </header>
+
+        <section class="mb-8">
+            <h3 class="text-xl font-semibold text-gray-700 mb-4 border-l-4 border-blue-600 pl-2">关键业绩摘要</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 compact-grid">
+                <div class="card p-4">
+                    <h4 class="font-semibold text-gray-600 mb-1">总收入</h4>
+                    <p class="text-2xl highlight-value">¥278 亿</p>
+                    <p class="text-sm negative-change">同比 -0.9%</p>
+                </div>
+                <div class="card p-4">
+                    <h4 class="font-semibold text-gray-600 mb-1">整体毛利</h4>
+                    <p class="text-2xl highlight-value">¥51 亿</p>
+                    <p class="text-sm negative-change">同比 -19.1%</p>
+                </div>
+                <div class="card p-4">
+                    <h4 class="font-semibold text-gray-600 mb-1">股东应占溢利</h4>
+                    <p class="text-2xl highlight-value">¥23 亿</p>
+                    <p class="text-sm negative-change">同比 -26.5%</p>
+                </div>
+                <div class="card p-4">
+                    <h4 class="font-semibold text-gray-600 mb-1">每股基本盈利</h4>
+                    <p class="text-2xl highlight-value">¥91.86 分</p>
+                    <p class="text-sm text-gray-500">(2023: ¥124.02 分)</p>
+                </div>
+                 <div class="card p-4">
+                    <h4 class="font-semibold text-gray-600 mb-1">股本回报率 (ROE)</h4>
+                    <p class="text-2xl highlight-value">12.6%</p>
+                     <p class="text-sm text-gray-500">(2023: 18.1%)</p>
+                </div>
+                <div class="card p-4">
+                    <h4 class="font-semibold text-gray-600 mb-1">全年股息</h4>
+                    <p class="text-2xl highlight-value">HK$40 仙</p>
+                     <p class="text-sm text-gray-500">(含中期 HK$18 仙)</p>
+                     <p class="text-sm text-gray-500">(2023: HK$58 仙)</p>
+                </div>
+                 <div class="card p-4">
+                    <h4 class="font-semibold text-gray-600 mb-1">全年派息率</h4>
+                    <p class="text-2xl highlight-value">40.0%</p>
+                     <p class="text-sm text-gray-500">(2023: 42.5%)</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-8">
+            <h3 class="text-xl font-semibold text-gray-700 mb-4 border-l-4 border-green-600 pl-2">分部业绩概览 (2024)</h3>
+             <div class="mb-6">
+                 <canvas id="segmentRevenueChart"></canvas>
+             </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 compact-grid">
+                <div class="card p-4 border-t-4 border-blue-500 bg-food-additive">
+                    <h4 class="font-semibold text-food-additive mb-1">食品添加剂</h4>
+                    <p class="text-lg font-medium">收入: ¥143.7 亿 <span class="text-sm positive-change">(+6.4%)</span></p>
+                    <p class="text-lg font-medium">毛利: ¥15.5 亿 <span class="text-sm negative-change">(-28.5%)</span></p>
+                    <p class="text-sm text-gray-600">主要产品: 味精, 淀粉甜味剂</p>
+                    <p class="text-xs text-gray-500 mt-1">味精销量增26.8%，但ASP降16.1%</p>
+                </div>
+                <div class="card p-4 border-t-4 border-green-500 bg-animal-nutrition">
+                    <h4 class="font-semibold text-animal-nutrition mb-1">动物营养</h4>
+                    <p class="text-lg font-medium">收入: ¥87.4 亿 <span class="text-sm negative-change">(-1.8%)</span></p>
+                    <p class="text-lg font-medium">毛利: ¥20.3 亿 <span class="text-sm positive-change">(+33.0%)</span></p>
+                    <p class="text-sm text-gray-600">主要产品: 苏氨酸, 赖氨酸, 玉米提炼产品</p>
+                     <p class="text-xs text-gray-500 mt-1">苏氨酸收入增18.7%，赖氨酸收入增2.9%</p>
+                </div>
+                <div class="card p-4 border-t-4 border-yellow-500 bg-amino-acid">
+                    <h4 class="font-semibold text-amino-acid mb-1">高档氨基酸</h4>
+                    <p class="text-lg font-medium">收入: ¥22.2 亿 <span class="text-sm positive-change">(+12.4%)</span></p>
+                    <p class="text-lg font-medium">毛利: ¥8.2 亿 <span class="text-sm positive-change">(+5.0%)</span></p>
+                    <p class="text-sm text-gray-600">主要产品: 色氨酸, 缬氨酸, 透明质酸等</p>
+                     <p class="text-xs text-gray-500 mt-1">销量增加带动收入增长</p>
+                </div>
+                <div class="card p-4 border-t-4 border-purple-500 bg-colloid">
+                    <h4 class="font-semibold text-colloid mb-1">胶体</h4>
+                    <p class="text-lg font-medium">收入: ¥18.2 亿 <span class="text-sm negative-change">(-35.8%)</span></p>
+                    <p class="text-lg font-medium">毛利: ¥7.5 亿 <span class="text-sm negative-change">(-54.9%)</span></p>
+                    <p class="text-sm text-gray-600">主要产品: 黄原胶, 结冷胶</p>
+                     <p class="text-xs text-gray-500 mt-1">黄原胶ASP降43.8%，收入和毛利大幅下滑</p>
+                </div>
+                <div class="card p-4 border-t-4 border-gray-500 bg-others">
+                    <h4 class="font-semibold text-others mb-1">其他</h4>
+                    <p class="text-lg font-medium">收入: ¥6.2 亿 <span class="text-sm negative-change">(-23.7%)</span></p>
+                    <p class="text-lg font-medium">毛利: ¥-0.9 亿 <span class="text-sm negative-change">(转亏)</span></p>
+                    <p class="text-sm text-gray-600">主要产品: 肥料, 合成氨等</p>
+                    <p class="text-xs text-gray-500 mt-1">肥料收入减少及出售神华药业影响</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-8">
+            <h3 class="text-xl font-semibold text-gray-700 mb-4 border-l-4 border-purple-600 pl-2">投资建议 (仅供参考)</h3>
+            <div class="card p-6">
+                <ul class="list-disc list-inside space-y-2 text-gray-700">
+                    <li><strong class="font-semibold">优势:</strong> 产品组合多元化，部分产品（如味精、黄原胶）市场地位领先；动物营养和高档氨基酸板块表现强劲；原材料成本（玉米）下降利好成本控制；积极推进国际化战略和新产能建设。</li>
+                    <li><strong class="font-semibold">风险:</strong> 整体盈利能力承压（毛利率、净利润下滑）；胶体分部业绩大幅下滑，复苏时间不确定；味精等大宗产品价格波动风险；宏观经济及地缘政治影响全球需求和贸易环境。</li>
+                    <li><strong class="font-semibold">建议:</strong> 审慎乐观。短期需关注胶体板块的复苏进程、主要产品价格走势及新产能的效益释放情况。公司基本面稳健，多元化布局有助抵抗单一市场风险，国际化提供长期增长潜力。股息率尚可但有所下调。投资者需结合自身风险偏好，关注行业周期性波动和公司战略执行效果。</li>
+                </ul>
+                <p class="text-xs text-gray-500 mt-4">*以上内容基于公司发布的2024年度业绩公告，不构成任何具体的投资建议。投资有风险，决策需谨慎。</p>
+            </div>
+        </section>
+
+        <footer class="text-center text-sm text-gray-500 mt-8">
+            数据来源: 阜丰集团有限公司 2024 年度业绩公告 (2025年3月28日发布)
+        </footer>
+    </div>
+
+    <script>
+        // Chart.js - 分部收入占比图表
+        const ctx = document.getElementById('segmentRevenueChart').getContext('2d');
+        const segmentRevenueChart = new Chart(ctx, {
+            type: 'pie', // 使用饼图展示占比
+            data: {
+                labels: ['食品添加剂', '动物营养', '高档氨基酸', '胶体', '其他'],
+                datasets: [{
+                    label: '收入占比 (亿元)',
+                    data: [143.7, 87.4, 22.2, 18.2, 6.2], // 对应各分部收入
+                    backgroundColor: [
+                        'rgba(59, 130, 246, 0.7)', // blue-500
+                        'rgba(34, 197, 94, 0.7)', // green-500
+                        'rgba(234, 179, 8, 0.7)',  // yellow-500
+                        'rgba(139, 92, 246, 0.7)', // purple-500
+                        'rgba(156, 163, 175, 0.7)' // gray-400
+                    ],
+                    borderColor: [
+                        'rgba(59, 130, 246, 1)',
+                        'rgba(34, 197, 94, 1)',
+                        'rgba(234, 179, 8, 1)',
+                        'rgba(139, 92, 246, 1)',
+                        'rgba(156, 163, 175, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top', // 图例放顶部
+                    },
+                    title: {
+                        display: true,
+                        text: '2024年各业务分部收入占比', // 图表标题
+                        font: {
+                            size: 16
+                        }
+                    },
+                    tooltip: {
+                         callbacks: {
+                            label: function(context) {
+                                let label = context.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed !== null) {
+                                    label += context.parsed.toFixed(1) + ' 亿元'; // 显示到小数点后一位
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
