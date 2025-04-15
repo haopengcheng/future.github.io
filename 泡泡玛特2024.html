@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>泡泡玛特 2024 年财报亮点</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif; /* Apply Inter font */
+            background-color: #f7fafc; /* Light gray background */
+        }
+        /* Custom styles for visual appeal */
+        .card {
+            background-color: white;
+            border-radius: 12px; /* More rounded corners */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover */
+            overflow: hidden; /* Ensure content respects rounded corners */
+        }
+        .card:hover {
+            transform: translateY(-5px); /* Lift card on hover */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* Increase shadow on hover */
+        }
+        .highlight-value {
+            font-size: 1.875rem; /* 30px */
+            font-weight: 700;
+            color: #4a5568; /* Dark gray */
+        }
+        .growth-positive {
+            color: #38a169; /* Green for positive growth */
+            font-weight: 600;
+        }
+        .growth-negative {
+            color: #e53e3e; /* Red for negative growth */
+            font-weight: 600;
+        }
+        .section-title {
+            font-size: 1.5rem; /* 24px */
+            font-weight: 700;
+            color: #2d3748; /* Darker gray */
+            margin-bottom: 1rem;
+            border-left: 4px solid #63b3ed; /* Blue accent */
+            padding-left: 0.75rem;
+        }
+        .bar-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            height: 20px; /* Fixed height for bars */
+        }
+        .bar-label {
+            width: 100px; /* Fixed width for labels */
+            font-size: 0.875rem; /* 14px */
+            color: #4a5568;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-right: 0.5rem; /* Space between label and bar */
+        }
+        .bar {
+            height: 100%;
+            background: linear-gradient(90deg, #63b3ed, #4299e1); /* Blue gradient */
+            border-radius: 4px;
+            transition: width 0.5s ease-in-out; /* Animate bar width */
+        }
+        .bar-value {
+            font-size: 0.875rem; /* 14px */
+            color: #718096; /* Medium gray */
+            margin-left: 0.5rem; /* Space between bar and value */
+        }
+        /* Add some playful background elements (optional) */
+        body::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: -50px;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(99, 179, 237, 0.1) 0%, rgba(99, 179, 237, 0) 70%);
+            z-index: -1;
+            border-radius: 50%;
+        }
+         body::after {
+            content: '';
+            position: absolute;
+            bottom: -80px;
+            right: -80px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(237, 99, 162, 0.08) 0%, rgba(237, 99, 162, 0) 70%);
+            z-index: -1;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body class="p-6 md:p-10">
+
+    <header class="text-center mb-10">
+        <h1 class="text-3xl md:text-4xl font-bold text-gray-800">泡泡玛特国际集团有限公司</h1>
+        <p class="text-xl text-gray-600 mt-2">2024 年度财务报告亮点</p>
+    </header>
+
+    <section class="mb-10">
+        <h2 class="section-title">核心财务指标</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="card p-6">
+                <h3 class="text-lg font-semibold text-gray-700 mb-2">总营收</h3>
+                <p class="highlight-value">130.38 亿元</p>
+                <p class="text-sm text-gray-500 mt-1">2023年: 63.01 亿元</p>
+                <p class="growth-positive mt-2">同比增长 +106.9%</p>
+            </div>
+            <div class="card p-6">
+                <h3 class="text-lg font-semibold text-gray-700 mb-2">毛利</h3>
+                <p class="highlight-value">87.08 亿元</p>
+                <p class="text-sm text-gray-500 mt-1">2023年: 38.64 亿元</p>
+                <p class="growth-positive mt-2">同比增长 +125.4%</p>
+                 <p class="text-sm text-gray-600 mt-1">毛利率: 66.8% (2023: 61.3%)</p>
+            </div>
+            <div class="card p-6">
+                <h3 class="text-lg font-semibold text-gray-700 mb-2">净利润 (归母)</h3>
+                <p class="highlight-value">31.25 亿元</p>
+                 <p class="text-sm text-gray-500 mt-1">2023年: 10.82 亿元</p>
+                <p class="growth-positive mt-2">同比增长 +188.8%</p>
+            </div>
+             <div class="card p-6">
+                <h3 class="text-lg font-semibold text-gray-700 mb-2">经调整纯利</h3>
+                <p class="highlight-value">34.03 亿元</p>
+                 <p class="text-sm text-gray-500 mt-1">2023年: 11.91 亿元</p>
+                <p class="growth-positive mt-2">同比增长 +185.9%</p>
+                <p class="text-sm text-gray-600 mt-1">经调整纯利率: 26.1% (2023: 18.9%)</p>
+            </div>
+             <div class="card p-6">
+                <h3 class="text-lg font-semibold text-gray-700 mb-2">经营溢利</h3>
+                <p class="highlight-value">41.54 亿元</p>
+                 <p class="text-sm text-gray-500 mt-1">2023年: 12.31 亿元</p>
+                <p class="growth-positive mt-2">同比增长 +237.6%</p>
+            </div>
+             <div class="card p-6">
+                <h3 class="text-lg font-semibold text-gray-700 mb-2">基本每股盈利</h3>
+                <p class="highlight-value">2.36 元</p>
+                 <p class="text-sm text-gray-500 mt-1">2023年: 0.81 元</p>
+                <p class="growth-positive mt-2">同比增长 +191.4%</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="mb-10">
+        <h2 class="section-title">营收构成分析 (2024年)</h2>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+            <div class="card p-6">
+                <h3 class="text-xl font-semibold text-gray-700 mb-4">按地区划分</h3>
+                <div class="space-y-3">
+                    <div class="bar-container">
+                        <span class="bar-label">中国内地</span>
+                        <div class="bar" style="width: 61.1%;"></div>
+                        <span class="bar-value">79.72 亿元 (占 61.1%)</span>
+                    </div>
+                     <p class="text-xs text-gray-500 ml-[108px]">同比增长 +52.3%</p>
+                    <div class="bar-container">
+                        <span class="bar-label">港澳台及海外</span>
+                        <div class="bar" style="width: 38.9%; background: linear-gradient(90deg, #f6ad55, #ed8936);"></div> <span class="bar-value">50.66 亿元 (占 38.9%)</span>
+                    </div>
+                     <p class="text-xs text-gray-500 ml-[108px]">同比增长 +375.2%</p>
+                </div>
+                 <h4 class="text-md font-semibold text-gray-600 mt-6 mb-2">海外细分地区</h4>
+                 <div class="space-y-2 text-sm text-gray-600 pl-4 border-l-2 border-orange-300">
+                     <p>东南亚: 24.03 亿元 (同比增长 +619.1%)</p>
+                     <p>东亚及港澳台: 13.86 亿元 (同比增长 +184.6%)</p>
+                     <p>北美: 7.23 亿元 (同比增长 +556.9%)</p>
+                     <p>欧澳及其他: 5.54 亿元 (同比增长 +310.7%)</p>
+                 </div>
+            </div>
+
+            <div class="card p-6">
+                <h3 class="text-xl font-semibold text-gray-700 mb-4">按渠道划分 (总计)</h3>
+                 <div class="space-y-3">
+                    <div class="bar-container">
+                        <span class="bar-label">零售店</span>
+                        <div class="bar" style="width: 51.9%; background: linear-gradient(90deg, #48bb78, #38a169);"></div> <span class="bar-value">67.66 亿元 (占 51.9%)</span>
+                    </div>
+                    <div class="bar-container">
+                        <span class="bar-label">线上渠道</span>
+                        <div class="bar" style="width: 31.8%; background: linear-gradient(90deg, #4fd1c5, #38b2ac);"></div> <span class="bar-value">41.53 亿元 (占 31.8%)</span>
+                    </div>
+                     <div class="bar-container">
+                        <span class="bar-label">机器人商店</span>
+                        <div class="bar" style="width: 6.4%; background: linear-gradient(90deg, #ed64a6, #d53f8c);"></div> <span class="bar-value">8.31 亿元 (占 6.4%)</span>
+                    </div>
+                    <div class="bar-container">
+                        <span class="bar-label">批发及其他</span>
+                        <div class="bar" style="width: 9.9%; background: linear-gradient(90deg, #a0aec0, #718096);"></div> <span class="bar-value">12.88 亿元 (占 9.9%)</span>
+                    </div>
+                 </div>
+                 <p class="text-sm text-gray-500 mt-4">*注：此处为中国内地与港澳台及海外渠道合并数据。</p>
+            </div>
+
+             <div class="card p-6">
+                <h3 class="text-xl font-semibold text-gray-700 mb-4">按 IP 划分 (重点IP)</h3>
+                <div class="space-y-3">
+                    <div class="bar-container">
+                        <span class="bar-label">THE MONSTERS</span>
+                        <div class="bar" style="width: 23.3%;"></div>
+                        <span class="bar-value">30.41 亿元 (+726.6%)</span>
+                    </div>
+                    <div class="bar-container">
+                        <span class="bar-label">MOLLY</span>
+                         <div class="bar" style="width: 16.1%; background: linear-gradient(90deg, #f6ad55, #ed8936);"></div>
+                        <span class="bar-value">20.93 亿元 (+105.2%)</span>
+                    </div>
+                     <div class="bar-container">
+                        <span class="bar-label">SKULLPANDA</span>
+                         <div class="bar" style="width: 10.0%; background: linear-gradient(90deg, #48bb78, #38a169);"></div>
+                        <span class="bar-value">13.08 亿元 (+27.7%)</span>
+                    </div>
+                    <div class="bar-container">
+                        <span class="bar-label">CRYBABY</span>
+                         <div class="bar" style="width: 8.9%; background: linear-gradient(90deg, #4fd1c5, #38b2ac);"></div>
+                        <span class="bar-value">11.65 亿元 (+1537.2%)</span>
+                    </div>
+                     <div class="bar-container">
+                        <span class="bar-label">DIMOO</span>
+                         <div class="bar" style="width: 7.0%; background: linear-gradient(90deg, #ed64a6, #d53f8c);"></div>
+                        <span class="bar-value">9.10 亿元</span>
+                    </div>
+                     <div class="bar-container">
+                        <span class="bar-label">HIRONO</span>
+                         <div class="bar" style="width: 5.6%; background: linear-gradient(90deg, #a0aec0, #718096);"></div>
+                        <span class="bar-value">7.27 亿元 (+106.9%)</span>
+                    </div>
+                     <p class="text-sm text-gray-600 mt-2">其他艺术家 IP: 14.09 亿元</p>
+                     <p class="text-sm text-gray-600 mt-1">授权 IP: 16.01 亿元 (+54.5%)</p>
+                </div>
+            </div>
+
+             <div class="card p-6">
+                <h3 class="text-xl font-semibold text-gray-700 mb-4">按产品类别划分</h3>
+                 <div class="space-y-3">
+                    <div class="bar-container">
+                        <span class="bar-label">手办</span>
+                        <div class="bar" style="width: 53.2%;"></div>
+                        <span class="bar-value">69.36 亿元 (占 53.2%)</span>
+                    </div>
+                     <p class="text-xs text-gray-500 ml-[108px]">同比增长 +44.7%</p>
+                    <div class="bar-container">
+                        <span class="bar-label">毛绒</span>
+                        <div class="bar" style="width: 21.7%; background: linear-gradient(90deg, #f6ad55, #ed8936);"></div>
+                        <span class="bar-value">28.32 亿元 (占 21.7%)</span>
+                    </div>
+                     <p class="text-xs text-gray-500 ml-[108px]">同比增长 +1289.0%</p>
+                     <div class="bar-container">
+                        <span class="bar-label">MEGA</span>
+                        <div class="bar" style="width: 12.9%; background: linear-gradient(90deg, #48bb78, #38a169);"></div>
+                        <span class="bar-value">16.84 亿元 (占 12.9%)</span>
+                    </div>
+                     <p class="text-xs text-gray-500 ml-[108px]">同比增长 +146.1%</p>
+                    <div class="bar-container">
+                        <span class="bar-label">衍生品及其他</span>
+                        <div class="bar" style="width: 12.2%; background: linear-gradient(90deg, #4fd1c5, #38b2ac);"></div>
+                        <span class="bar-value">15.86 亿元 (占 12.2%)</span>
+                    </div>
+                     <p class="text-xs text-gray-500 ml-[108px]">同比增长 +156.2%</p>
+                 </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="mb-10">
+        <h2 class="section-title">投资建议与展望</h2>
+        <div class="card p-6">
+            <p class="text-gray-700 leading-relaxed">
+                泡泡玛特在2024年展现了极其强劲的增长势头，总营收和净利润均实现翻倍以上增长，显著超越市场预期。主要驱动因素包括：
+            </p>
+            <ul class="list-disc list-inside text-gray-700 leading-relaxed my-4 space-y-2">
+                <li><strong>海外市场爆发式增长：</strong> 港澳台及海外业务收入同比增长高达375.2%，占比提升至近39%，显示出强大的全球扩张能力和品牌吸引力，尤其在东南亚和北美市场表现突出。</li>
+                <li><strong>IP运营能力卓越：</strong> 核心IP如THE MONSTERS（+726.6%）、MOLLY（+105.2%）、CRYBABY（+1537.2%）等表现亮眼，新锐IP快速成长，IP矩阵持续丰富和强化。</li>
+                <li><strong>产品品类多元化成功：</strong> 毛绒产品成为新的重要增长极（收入达28.3亿元，同比增长近13倍），MEGA系列保持高速增长，积木等新品类拓展顺利，降低了对手办产品的单一依赖。</li>
+                <li><strong>全渠道协同发展：</strong> 线上线下渠道均实现稳健增长，中国内地线上渠道增速（+76.9%）尤为突出，海外电商（+834.0%）更是迅猛发展。</li>
+                <li><strong>盈利能力提升：</strong> 毛利率从61.3%提升至66.8%，经调整净利率从18.9%提升至26.1%，显示出成本控制和运营效率的改善。</li>
+            </ul>
+             <p class="text-gray-700 leading-relaxed mt-4">
+                <strong>展望未来，</strong> 公司计划继续聚焦IP创新与运营，拓展全球业务布局（重点北美、东南亚、欧洲），深化产品多元化（毛绒、MEGA、积木等），并通过乐园、潮流玩具展等形式加强粉丝互动和文化推广，有望维持增长态性。
+            </p>
+            <p class="text-gray-700 leading-relaxed mt-4">
+                <strong>投资建议：</strong> 泡泡玛特2024年业绩表现优异，增长前景广阔，尤其在全球化和多元化方面潜力巨大。然而，投资者也需关注以下风险：
+            </p>
+             <ul class="list-disc list-inside text-gray-700 leading-relaxed my-4 space-y-2">
+                 <li>对核心IP的依赖性及IP生命周期管理的挑战。</li>
+                 <li>潮流玩具市场竞争加剧。</li>
+                 <li>宏观经济波动对可选消费品类的影响。</li>
+                 <li>海外市场拓展的执行风险及文化差异。</li>
+             </ul>
+             <p class="text-gray-700 leading-relaxed mt-4">
+                总体而言，泡泡玛特展现出强大的品牌价值和增长潜力，但投资者应结合自身风险承受能力，进行充分研究和审慎评估。
+            </p>
+            <p class="text-xs text-gray-500 mt-6">*免责声明：以上内容基于公开财报信息分析，不构成任何具体的投资建议。投资有风险，决策需谨慎。</p>
+        </div>
+    </section>
+
+    <footer class="text-center text-sm text-gray-500 mt-10">
+        数据来源：泡泡玛特国际集团有限公司 2024 年度业绩公佈 | 报告日期：2025年3月26日
+    </footer>
+
+</body>
+</html>
