@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>英搏尔 2024 年度财报摘要</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* 自定义样式 */
+        body {
+            font-family: 'Inter', sans-serif; /* 使用 Inter 字体 */
+            background-color: #f8fafc; /* 浅灰色背景 */
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.75rem; /* 圆角 */
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); /* 阴影 */
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* 过渡效果 */
+            overflow: hidden; /* 防止内容溢出 */
+        }
+        .card:hover {
+            transform: translateY(-5px); /* 悬停时轻微上移 */
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); /* 悬停时阴影加深 */
+        }
+        .metric-value {
+            font-size: 1.5rem; /* 24px */
+            font-weight: 600; /* 加粗 */
+            color: #1e40af; /* 深蓝色 */
+        }
+        .metric-label {
+            font-size: 0.875rem; /* 14px */
+            color: #6b7280; /* 灰色 */
+        }
+        .section-title {
+            font-size: 1.25rem; /* 20px */
+            font-weight: 600;
+            color: #1f2937; /* 深灰色 */
+            border-bottom: 2px solid #3b82f6; /* 蓝色下划线 */
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .change-positive {
+            color: #16a34a; /* 绿色 */
+        }
+        .change-negative {
+            color: #dc2626; /* 红色 */
+        }
+        /* 交互式折叠效果 */
+        .collapsible-header {
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+        }
+        .collapsible-content.open {
+            max-height: 1000px; /* 或者一个足够大的值 */
+            transition: max-height 0.5s ease-in;
+        }
+        .arrow {
+            transition: transform 0.3s ease;
+        }
+        .arrow.down {
+            transform: rotate(90deg);
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="p-4 md:p-8">
+
+    <div class="max-w-6xl mx-auto">
+        <header class="mb-8 text-center">
+            <h1 class="text-3xl font-bold text-gray-800">珠海英搏尔电气股份有限公司</h1>
+            <p class="text-xl text-gray-600">2024 年度财务报告摘要</p>
+        </header>
+
+        <section class="mb-8">
+            <h2 class="section-title">关键财务指标 (2024)</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="card p-4">
+                    <p class="metric-label">营业收入</p>
+                    <p class="metric-value">24.30 亿元</p>
+                    <p class="text-sm change-positive">同比增长 23.77%</p>
+                </div>
+                <div class="card p-4">
+                    <p class="metric-label">归母净利润</p>
+                    <p class="metric-value">7100 万元</p>
+                    <p class="text-sm change-negative">同比下降 13.79%</p>
+                </div>
+                <div class="card p-4">
+                    <p class="metric-label">扣非归母净利润</p>
+                    <p class="metric-value">3870 万元</p>
+                    <p class="text-sm change-positive">同比增长 23.17%</p>
+                </div>
+                 <div class="card p-4">
+                    <p class="metric-label">经营活动现金流净额</p>
+                    <p class="metric-value">2.99 亿元</p>
+                     <p class="text-sm change-positive">同比增长 15.23%</p>
+                </div>
+                 <div class="card p-4">
+                    <p class="metric-label">总资产</p>
+                    <p class="metric-value">52.35 亿元</p>
+                     <p class="text-sm change-positive">同比增长 26.78%</p>
+                </div>
+                 <div class="card p-4">
+                    <p class="metric-label">归母净资产</p>
+                    <p class="metric-value">20.52 亿元</p>
+                     <p class="text-sm change-positive">同比增长 12.65%</p>
+                </div>
+            </div>
+             <p class="text-xs text-gray-500 mt-2">*注：归母净利润下降主要受股权激励费用（5561万元）影响，剔除后归母净利润为1.16亿元。</p>
+        </section>
+
+        <section class="mb-8 card p-4">
+             <div class="collapsible-header" onclick="toggleCollapse('revenue-breakdown')">
+                <h2 class="section-title mb-0 pb-0 border-b-0">营收构成 (2024)</h2>
+                <span class="arrow text-blue-600 text-xl font-bold transform" id="arrow-revenue-breakdown">&#x276F;</span>
+            </div>
+            <div id="revenue-breakdown" class="collapsible-content mt-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
+                    <div>
+                        <ul class="list-disc list-inside space-y-1 text-gray-700">
+                            <li>电源总成: <span class="font-semibold text-blue-700">12.34 亿元</span> (占比 50.77%, <span class="change-positive">同比增长 96.72%</span>)</li>
+                            <li>电驱总成: <span class="font-semibold text-blue-700">6.12 亿元</span> (占比 25.20%, <span class="change-positive">同比增长 5.33%</span>)</li>
+                            <li>电机控制器: <span class="font-semibold text-blue-700">4.65 亿元</span> (占比 19.14%, <span class="change-negative">同比下降 25.46%</span>)</li>
+                            <li>其他业务: <span class="font-semibold text-gray-600">1.19 亿元</span> (占比 4.89%)</li>
+                        </ul>
+                        <p class="mt-2 text-sm text-gray-600">总成类产品（电源+电驱）占比提升至 <span class="font-bold">75.97%</span>，显示公司产品集成化战略效果显著。</p>
+                    </div>
+                    <div class="w-full max-w-md mx-auto">
+                         <canvas id="revenueChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-8 card p-4">
+             <div class="collapsible-header" onclick="toggleCollapse('future-outlook')">
+                <h2 class="section-title mb-0 pb-0 border-b-0">低空经济与机器人领域发展评估</h2>
+                <span class="arrow text-blue-600 text-xl font-bold transform" id="arrow-future-outlook">&#x276F;</span>
+            </div>
+             <div id="future-outlook" class="collapsible-content mt-4">
+                <p class="text-gray-700 mb-2">英搏尔凭借其“集成芯”技术（体积小、重量轻、功率密度高）优势，积极拓展低空经济领域，取得显著进展：</p>
+                <ul class="list-disc list-inside space-y-1 text-gray-700 mb-4">
+                    <li><span class="font-semibold">战略合作：</span>与低空经济领军企业<span class="text-blue-600 font-bold">亿航智能</span>签署战略合作及技术开发协议，并对其进行了 1260 万美元的战略投资。</li>
+                    <li><span class="font-semibold">产品开发与交付：</span>
+                        <ul class="list-circle list-inside ml-4">
+                             <li>为亿航智能 EH216-S 机型开发电推进系统，已完成样机交付并建设专用产线。</li>
+                             <li>为亿航智能新机型开发的电推进系统已完成样机交付。</li>
+                             <li>与亿维特 (EVEKTOR)、高域 (GOA) 等 eVTOL 企业合作进展顺利，样机开发中。</li>
+                        </ul>
+                    </li>
+                     <li><span class="font-semibold">技术优势：</span>“集成芯”技术及 eVTOL 油冷电推进系统（双绕组双电控、高可靠性、高功率密度）为核心竞争力。</li>
+                </ul>
+                 <p class="text-gray-700 mb-2">在机器人领域，财报中虽未重点着墨，但其“赋能砖”电机控制器技术平台（高集成、高功率密度、宽功率范围 30kW-500kW）具备广泛应用前景。公司 2025 年计划与丰立智能合作开发<span class="text-blue-600 font-bold">关节模组</span>，将形成“电机+减速器”集成能力，是进入机器人核心部件领域的重要布局。</p>
+                <p class="text-gray-700 font-semibold">评估：公司在低空经济领域布局迅速且深入，与头部企业亿航的绑定是重要看点，技术储备与市场需求契合度高，有望成为新的增长引擎。机器人领域处于早期布局阶段，关节模组的突破将是关键。</p>
+            </div>
+        </section>
+
+        <section class="card p-4">
+             <div class="collapsible-header" onclick="toggleCollapse('investment-advice')">
+                <h2 class="section-title mb-0 pb-0 border-b-0">投资建议</h2>
+                 <span class="arrow text-blue-600 text-xl font-bold transform" id="arrow-investment-advice">&#x276F;</span>
+            </div>
+            <div id="investment-advice" class="collapsible-content mt-4">
+                <p class="text-gray-700 mb-2">综合 2024 年财报及公司战略规划，给出以下投资建议：</p>
+                <ul class="list-disc list-inside space-y-1 text-gray-700 mb-4">
+                    <li><span class="font-semibold">基本面：</span>2024 年营收增长强劲（+23.77%），主要由电源和电驱总成驱动。归母净利润虽有下滑（-13.79%），但扣非后净利润大幅增长（+23.17%），显示主营业务盈利能力改善。经营性现金流健康增长。</li>
+                    <li><span class="font-semibold">增长潜力：</span>
+                        <ul class="list-circle list-inside ml-4">
+                             <li><span class="font-bold text-green-600">低空经济：</span>战略布局清晰，与亿航智能深度合作，技术产品契合 eVTOL 需求，是未来核心看点，市场空间广阔。</li>
+                            <li><span class="font-bold text-blue-600">新能源汽车：</span>在乘用车电源、驱动总成领域地位稳固，客户包括广汽、吉利、上汽通用五菱等主流车企。“集成芯”、“赋能砖”等技术提升产品竞争力。商用车、非道路车辆领域持续拓展。</li>
+                             <li><span class="font-bold text-purple-600">机器人：</span>处于布局初期，关节模组是潜在突破点，需关注后续进展。</li>
+                        </ul>
+                    </li>
+                    <li><span class="font-semibold">风险因素：</span>新能源汽车行业竞争激烈，技术迭代快；原材料供应风险；新业务（低空、机器人）拓展的不确定性；股权激励费用对短期利润的影响。</li>
+                    <li><span class="font-semibold">研发投入：</span>研发投入占营收比重达 7.88%，持续的技术创新是核心驱动力。</li>
+                </ul>
+                <p class="text-gray-800 font-bold">建议：<span class="text-orange-600">审慎乐观，建议关注。</span>公司在新能源汽车主业稳健，低空经济领域展现出巨大潜力。短期需关注盈利能力的持续改善和新业务订单的落地情况。适合对新能源汽车零部件及低空经济赛道有信心的长期投资者。建议密切跟踪其与亿航等伙伴的合作进展及关节模组的研发成果。</p>
+            </div>
+        </section>
+
+        <footer class="mt-8 text-center text-xs text-gray-500">
+            <p>免责声明：本摘要信息来源于珠海英搏尔电气股份有限公司 2024 年年度报告，仅供参考，不构成任何投资建议。</p>
+        </footer>
+    </div>
+
+    <script>
+        // 初始化图表
+        const ctx = document.getElementById('revenueChart').getContext('2d');
+        const revenueChart = new Chart(ctx, {
+            type: 'pie', // 图表类型：饼图
+            data: {
+                labels: ['电源总成 (50.8%)', '电驱总成 (25.2%)', '电机控制器 (19.1%)', '其他 (4.9%)'], // 标签
+                datasets: [{
+                    label: '营收占比',
+                    data: [50.77, 25.20, 19.14, 4.89], // 数据
+                    backgroundColor: [ // 背景色
+                        'rgba(59, 130, 246, 0.7)', // blue-500
+                        'rgba(16, 185, 129, 0.7)', // emerald-500
+                        'rgba(249, 115, 22, 0.7)',  // orange-500
+                        'rgba(107, 114, 128, 0.7)' // gray-500
+                    ],
+                    borderColor: [ // 边框色
+                        'rgba(59, 130, 246, 1)',
+                        'rgba(16, 185, 129, 1)',
+                        'rgba(249, 115, 22, 1)',
+                        'rgba(107, 114, 128, 1)'
+                    ],
+                    borderWidth: 1 // 边框宽度
+                }]
+            },
+            options: {
+                responsive: true, // 响应式
+                plugins: {
+                    legend: {
+                        position: 'top', // 图例位置
+                    },
+                    title: {
+                        display: true,
+                        text: '2024年各产品营收占比' // 图表标题
+                    }
+                }
+            }
+        });
+
+         // 折叠功能
+        function toggleCollapse(elementId) {
+            const content = document.getElementById(elementId);
+            const arrow = document.getElementById(`arrow-${elementId}`);
+            if (content.classList.contains('open')) {
+                content.classList.remove('open');
+                arrow.classList.remove('down');
+            } else {
+                // Close other sections if needed (optional)
+                // document.querySelectorAll('.collapsible-content.open').forEach(openContent => {
+                //     if(openContent.id !== elementId) {
+                //         openContent.classList.remove('open');
+                //         document.getElementById(`arrow-${openContent.id}`).classList.remove('down');
+                //     }
+                // });
+                content.classList.add('open');
+                arrow.classList.add('down');
+            }
+        }
+
+        // Optional: Open the first section by default
+        // document.addEventListener('DOMContentLoaded', () => {
+        //    toggleCollapse('revenue-breakdown');
+        // });
+    </script>
+
+</body>
+</html>
