@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>莱斯信息 财务报告对比分析 (2024 vs 2025 Q1)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* 自定义样式 */
+        body {
+            font-family: 'Inter', 'Microsoft YaHei', sans-serif; /* 应用Inter字体，中文回退雅黑 */
+            background-color: #f8fafc; /* 浅灰色背景 */
+        }
+        .metric-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* 平滑过渡效果 */
+        }
+        .metric-card:hover {
+            transform: translateY(-5px); /* 鼠标悬浮时轻微上移 */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* 悬浮阴影 */
+        }
+        /* 优化图表容器高度 */
+        #revenueChartContainer {
+            position: relative;
+            height: 300px; /* 调整图表高度 */
+            width: 100%;
+        }
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            #revenueChartContainer {
+                height: 250px; /* 移动端图表高度 */
+            }
+        }
+        /* 增加卡片内边距 */
+        .card-padding {
+            padding: 1.5rem; /* 24px */
+        }
+        /* 标题样式 */
+        .section-title {
+            font-size: 1.5rem; /* 24px */
+            line-height: 2rem; /* 32px */
+            font-weight: 600; /* semibold */
+            margin-bottom: 1rem; /* 16px */
+            color: #1e3a8a; /* 深蓝色 */
+            border-bottom: 2px solid #93c5fd; /* 浅蓝色下划线 */
+            padding-bottom: 0.5rem; /* 8px */
+        }
+        /* 表格样式 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #e5e7eb; /* 浅灰色边框 */
+            padding: 0.75rem; /* 12px */
+            text-align: left;
+            vertical-align: top; /* 垂直居上对齐 */
+        }
+        th {
+            background-color: #f3f4f6; /* 更浅的灰色背景 */
+            font-weight: 600;
+            color: #374151; /* 深灰色文字 */
+        }
+        tbody tr:nth-child(even) {
+            background-color: #f9fafb; /* 斑马条纹 */
+        }
+        /* 投资建议区域样式 */
+        .suggestion-section {
+            background: linear-gradient(to right, #eff6ff, #e0e7ff); /* 蓝到靛蓝渐变 */
+        }
+        /* 亏损/减少用红色，盈利/增加用绿色 */
+        .text-loss { color: #dc2626; } /* red-600 */
+        .text-profit { color: #16a34a; } /* green-600 */
+        .text-neutral { color: #4b5563; } /* gray-600 */
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <div class="container mx-auto p-4 md:p-8">
+        <header class="text-center mb-10">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-2">莱斯信息 财务报告对比分析</h1>
+            <p class="text-lg text-gray-600">2024年报 与 2025年Q1季报 关键信息</p>
+        </header>
+
+        <section id="key-indicators" class="mb-8 p-6 bg-white rounded-lg shadow-md card-padding metric-card">
+            <h2 class="section-title">核心财务指标对比 (Q1 同期比较)</h2>
+            <div class="overflow-x-auto">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>指标</th>
+                            <th>2025年Q1</th>
+                            <th>2024年Q1</th>
+                            <th>同比变动</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>营业收入 (元)</td>
+                            <td>108,871,658.60</td>
+                            <td>244,808,343.41</td>
+                            <td class="text-loss">-55.53%</td>
+                            <td>2025年Q1营收同比大幅下降，主要受城市道路交通管理领域收入减少影响。</td>
+                        </tr>
+                        <tr>
+                            <td>归母净利润 (元)</td>
+                            <td class="text-loss">-14,933,401.65 (亏损)</td>
+                            <td class="text-loss">-15,735,462.96 (亏损)</td>
+                            <td class="text-profit">亏损收窄 5.10%</td>
+                             <td>2025年Q1仍亏损，但亏损额较去年同期有所减少。</td>
+                        </tr>
+                         <tr>
+                            <td>扣非归母净利润 (元)</td>
+                            <td class="text-loss">-16,961,211.72 (亏损)</td>
+                            <td class="text-loss">-18,429,799.24 (亏损)</td>
+                             <td class="text-profit">亏损收窄 7.97%</td>
+                            <td>扣非后亏损同样收窄，显示主营业务亏损情况略有改善。</td>
+                        </tr>
+                        <tr>
+                            <td>经营活动现金流净额 (元)</td>
+                            <td class="text-loss">-350,520,074.26</td>
+                            <td class="text-loss">-324,191,394.19</td>
+                            <td class="text-loss">流出增加 8.12%</td>
+                            <td>Q1经营现金流出同比增加，回款压力仍存。</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="text-sm text-gray-500 mt-4">注：第一季度通常是公司收入确认的淡季，业绩占全年比重较低，亏损符合季节性特征。</p>
+        </section>
+
+        <section id="segment-revenue" class="mb-8 p-6 bg-white rounded-lg shadow-md card-padding metric-card">
+            <h2 class="section-title">业务板块营收分析 (2024年度)</h2>
+            <div id="revenueChartContainer" class="mb-6">
+                <canvas id="revenueChart"></canvas>
+            </div>
+            <div class="overflow-x-auto">
+                 <table>
+                    <thead>
+                        <tr>
+                            <th>业务板块</th>
+                            <th>2024年营收 (元)</th>
+                            <th>营收占比</th>
+                            <th>同比变动</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>城市道路交通管理</td>
+                            <td>670,965,206.00</td>
+                            <td>41.68%</td>
+                            <td class="text-profit">+33.47%</td>
+                        </tr>
+                        <tr>
+                            <td>民航空中交通管理</td>
+                            <td>625,870,690.69</td>
+                            <td>38.88%</td>
+                             <td class="text-profit">+13.68%</td>
+                        </tr>
+                        <tr>
+                            <td>城市治理</td>
+                            <td>269,150,027.93</td>
+                            <td>16.72%</td>
+                            <td class="text-loss">-47.31%</td>
+                        </tr>
+                        <tr>
+                            <td>企业级信息化及其他</td>
+                            <td>39,554,200.73</td>
+                            <td>2.46%</td>
+                            <td class="text-loss">-63.06%</td>
+                        </tr>
+                         <tr>
+                            <td>**总计**</td>
+                            <td>**1,605,540,125.35**</td>
+                            <td>**100.00%**</td>
+                            <td>**-3.92%**</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="text-sm text-gray-500 mt-4">注：2024年报数据显示，城市道路交通管理和民航空管是主要收入来源，且均实现同比增长。城市治理及企业信息化板块营收下滑明显。2025年Q1报告未提供详细分部营收数据。</p>
+        </section>
+
+        <section id="low-altitude" class="mb-8 p-6 bg-white rounded-lg shadow-md card-padding metric-card">
+            <h2 class="section-title">低空经济领域发展评估</h2>
+            <div class="text-gray-700 space-y-3">
+                <p>莱斯信息将低空经济视为重要的战略发展方向，并在2024年取得了显著进展：</p>
+                <ul class="list-disc list-inside space-y-2 pl-4">
+                    <li><strong>产品与品牌</strong>：发布以低空飞行服务管理平台为核心的“天牧”系列产品，构筑行业解决方案。</li>
+                    <li><strong>标杆项目</strong>：率先承建并树立国内首个省级低空平台标杆——江苏省低空服务管理平台，实现了军民地三方协同。</li>
+                    <li><strong>市场拓展</strong>：与北京、上海、重庆等20余个省市地区就低空发展进行密切交流，谋划总体方案，并已在部分地区取得阶段性成果。</li>
+                    <li><strong>行业引领</strong>：牵头编制《中国电科集团低空经济发展白皮书》，提出适合国情的低空航行体系和发展路径。</li>
+                    <li><strong>技术创新</strong>：获批江苏省智慧低空飞行管服重点实验室（联合申报）、省工信厅及市科技局相关专项项目。</li>
+                </ul>
+                <p><strong>评估</strong>：公司凭借在空管领域的技术积累和先发优势，在低空经济赛道已占据有利位置，具备成为行业核心龙头企业的潜力。其解决方案和服务能力覆盖了低空飞行的关键环节，特别是在平台建设和标准制定方面展现出领导力。</p>
+            </div>
+        </section>
+
+        <section id="contract-liabilities" class="mb-8 p-6 bg-white rounded-lg shadow-md card-padding metric-card">
+            <h2 class="section-title">合同负债分析</h2>
+            <div class="overflow-x-auto mb-4">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>时点</th>
+                            <th>合同负债 (元)</th>
+                            <th>较上年末变动 (元)</th>
+                            <th>较上年末变动率</th>
+                            <th>较上年同期末变动 (元)</th>
+                            <th>较上年同期末变动率</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                         <tr>
+                            <td>2023年末</td>
+                            <td>320,069,494.61</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                             <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>2024年Q1末</td>
+                            <td>320,069,494.61</td> <td>-</td>
+                            <td>-</td>
+                             <td>-</td>
+                             <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>2024年末</td>
+                            <td>286,398,794.81</td>
+                            <td>-33,670,699.80</td>
+                            <td class="text-loss">-10.52%</td>
+                             <td>-33,670,699.80</td>
+                            <td class="text-loss">-10.52% (较2023年末)</td>
+                        </tr>
+                        <tr>
+                            <td>2025年Q1末</td>
+                            <td>283,332,038.11</td>
+                            <td>-3,066,756.70</td>
+                            <td class="text-loss">-1.07%</td>
+                            <td>-36,737,456.50</td>
+                             <td class="text-loss">-11.48% (较2024年Q1末)</td>
+                        </tr>
+                    </tbody>
+                </table>
+                 <p class="text-sm text-gray-500 mt-1">注：2024年Q1末合同负债数据取自2024年报中披露的2023年末数据，因Q1报告未直接提供上年同期末合同负债。</p>
+            </div>
+            <div class="text-gray-700 space-y-3">
+                <p>合同负债主要反映了公司已收客户款项但尚未完成的履约义务，通常被视为未来收入的先行指标。</p>
+                <ul class="list-disc list-inside space-y-2 pl-4">
+                    <li><strong>趋势</strong>：截至2025年Q1末，公司合同负债为2.83亿元，较2024年末略有下降（-1.07%），较去年同期末（2024年Q1末）下降11.48%。合同负债规模持续收缩，可能反映新签订单增长乏力或项目交付加快。</li>
+                    <li><strong>低空经济相关性</strong>：财报中未单独披露低空经济板块的合同负债。但考虑到公司在低空领域的积极拓展和项目落地（如江苏省平台），预计该领域已对合同负债产生贡献。未来低空经济项目的持续落地将是合同负债增长的关键驱动力。</li>
+                    <li><strong>关注点</strong>：合同负债同比、环比均下降，需重点关注公司新签订单情况，特别是低空经济等新业务的订单获取能力，以判断未来收入的增长潜力。</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="investment-suggestion" class="p-6 rounded-lg shadow-md suggestion-section card-padding metric-card">
+            <h2 class="section-title !text-indigo-800 !border-indigo-300">投资建议</h2>
+            <div class="text-gray-800 space-y-4">
+                <p>综合分析莱斯信息2024年报和2025年Q1季报，我们提出以下投资建议：</p>
+                <ul class="list-disc list-inside space-y-2 pl-4">
+                    <li><strong>核心优势</strong>：公司在民航空管和城市交通管理领域具备深厚的技术积累和市场地位。作为“国家队”成员，在承接政府及相关重大项目方面具有优势。</li>
+                    <li><strong>低空经济潜力</strong>：低空经济是国家战略性新兴产业，政策支持力度大，市场空间广阔。莱斯信息在该领域布局早、起点高，已取得实质性进展和标杆项目，有望充分受益于行业发展红利，是公司未来重要的增长引擎。</li>
+                    <li><strong>业绩短期承压</strong>：2025年Q1营收同比大幅下滑，虽然净亏损有所收窄，但整体业绩仍处低位。投资者需关注后续季度的业绩修复情况以及订单获取能力。</li>
+                    <li><strong>合同负债预警</strong>：合同负债同比、环比均呈下降趋势，这可能预示着未来一段时间的收入增长面临挑战。需密切跟踪新签订单情况，特别是低空经济等新业务对合同负债的拉动作用。</li>
+                    <li><strong>风险提示</strong>：公司业务受宏观经济、政府投资政策影响较大；低空经济发展尚处早期，商业模式和盈利能力有待验证；市场竞争加剧可能影响利润率；当前合同负债规模下降需警惕。</li>
+                </ul>
+                <p><strong>结论</strong>：<strong>谨慎乐观，重点关注低空经济订单落地及合同负债扭转</strong>。莱斯信息在低空经济领域具备显著的先发优势和核心竞争力，长期发展潜力值得期待。但短期业绩承压，合同负债持续下降是重要风险信号。建议投资者保持高度关注，将低空经济相关订单的确认、合同负债规模能否企稳回升以及公司整体业绩改善作为关键决策依据。当前阶段需更加审慎评估短期风险。 </p>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        // 使用Chart.js绘制2024年业务板块营收占比饼图或条形图
+        const ctx = document.getElementById('revenueChart').getContext('2d');
+        const revenueChart = new Chart(ctx, {
+            type: 'bar', // 使用条形图更清晰展示各板块绝对值
+            data: {
+                labels: ['城市道路交通管理', '民航空中交通管理', '城市治理', '企业级信息化及其他'],
+                datasets: [{
+                    label: '2024年营收 (百万元)',
+                    data: [670.97, 625.87, 269.15, 39.55], // 单位: 百万元
+                    backgroundColor: [
+                        'rgba(59, 130, 246, 0.7)', // blue-500
+                        'rgba(16, 185, 129, 0.7)', // emerald-500
+                        'rgba(234, 179, 8, 0.7)',  // yellow-500
+                        'rgba(139, 92, 246, 0.7)'  // violet-500
+                    ],
+                    borderColor: [
+                        'rgba(59, 130, 246, 1)',
+                        'rgba(16, 185, 129, 1)',
+                        'rgba(234, 179, 8, 1)',
+                        'rgba(139, 92, 246, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false, // 允许图表高度调整
+                indexAxis: 'y', // 使条形图水平显示，更易读标签
+                plugins: {
+                    title: {
+                        display: true,
+                        text: '莱斯信息 2024年度 各业务板块营收',
+                        font: {
+                            size: 16
+                        },
+                        color: '#374151'
+                    },
+                    legend: {
+                        display: false // 单个数据集，图例意义不大
+                    },
+                     tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed.x !== null) {
+                                    // 保留两位小数
+                                    label += context.parsed.x.toFixed(2) + ' 百万元';
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: '营收 (百万元)',
+                            color: '#4b5563'
+                        }
+                    },
+                    y: {
+                         ticks: {
+                             autoSkip: false // 确保所有标签都显示
+                         }
+                    }
+                }
+            }
+        });
+
+        // 简单的交互效果示例 (可以在此添加更多交互)
+        document.querySelectorAll('.metric-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                // 可以在这里添加更复杂的进入效果
+            });
+            card.addEventListener('mouseleave', () => {
+                // 可以在这里添加更复杂的离开效果
+            });
+        });
+    </script>
+
+</body>
+</html>

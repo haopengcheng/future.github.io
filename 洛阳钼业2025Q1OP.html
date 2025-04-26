@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>洛阳钼业财报分析与投资建议</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for mining industry feel and interactivity */
+        body {
+            font-family: 'Inter', sans-serif; /* Using Inter font */
+            background-color: #f4f4f5; /* Light gray background */
+        }
+        .card {
+            background-color: #ffffff;
+            border-radius: 0.75rem; /* Rounded corners */
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden; /* Ensure content respects border radius */
+        }
+        .card:hover {
+            transform: translateY(-5px); /* Lift card on hover */
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+        .section-title {
+            border-left: 4px solid #4f46e5; /* Indigo border for titles */
+            padding-left: 0.75rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            color: #1f2937; /* Dark gray text */
+        }
+        .metric-value {
+            font-size: 1.25rem; /* Larger font for key metrics */
+            font-weight: 700;
+            color: #4f46e5; /* Indigo color for metric values */
+        }
+        .metric-change {
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+        .positive-change {
+            color: #10b981; /* Green for positive change */
+        }
+        .negative-change {
+            color: #ef4444; /* Red for negative change */
+        }
+        .segment-card {
+            border: 1px solid #e5e7eb; /* Light border for segment cards */
+            padding: 1rem;
+            border-radius: 0.5rem;
+            background-color: #fafafa; /* Slightly off-white background */
+            transition: background-color 0.3s ease;
+        }
+        .segment-card:hover {
+            background-color: #f0f0f0; /* Darken slightly on hover */
+        }
+        .segment-header {
+            font-weight: 600;
+            color: #374151; /* Medium gray */
+            margin-bottom: 0.5rem;
+        }
+        .compact-list li {
+            margin-bottom: 0.25rem; /* Reduced spacing for compact lists */
+            font-size: 0.875rem; /* Smaller font size */
+        }
+        /* Accordion styles */
+        .accordion-header {
+            cursor: pointer;
+            padding: 0.75rem 1rem;
+            background-color: #eef2ff; /* Light indigo background */
+            border-radius: 0.5rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s ease;
+        }
+        .accordion-header:hover {
+            background-color: #e0e7ff;
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+            background-color: #ffffff;
+            padding: 0 1rem;
+            border-radius: 0 0 0.5rem 0.5rem;
+        }
+        .accordion-content.open {
+            max-height: 1000px; /* Adjust as needed */
+            padding: 1rem;
+            border-top: 1px solid #e5e7eb;
+        }
+        .accordion-icon {
+            transition: transform 0.3s ease;
+        }
+        .accordion-icon.open {
+            transform: rotate(180deg);
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="p-4 md:p-8">
+
+    <div class="max-w-6xl mx-auto">
+        <header class="mb-8 text-center">
+            <h1 class="text-3xl font-bold text-gray-800">洛阳钼业（CMOC）</h1>
+            <p class="text-xl text-gray-600">2024年财报 & 2025年Q1运营报告分析与投资建议</p>
+        </header>
+
+        <section class="mb-8">
+            <h2 class="section-title text-2xl">整体业绩概览</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="card p-4">
+                    <h3 class="text-lg font-semibold mb-2 text-gray-700">2024年年度业绩</h3>
+                    <div class="mb-2">
+                        <span class="text-gray-600">营业收入:</span>
+                        <span class="metric-value">2,130.29 亿元</span>
+                        <span class="metric-change positive-change">(+14.37% vs 2023)</span>
+                    </div>
+                    <div>
+                        <span class="text-gray-600">归母净利润:</span>
+                        <span class="metric-value">135.32 亿元</span>
+                        <span class="metric-change positive-change">(+64.03% vs 2023)</span>
+                    </div>
+                     <div class="mt-2">
+                        <span class="text-gray-600">经营性现金流净额:</span>
+                        <span class="metric-value">323.87 亿元</span>
+                        <span class="metric-change positive-change">(+108.38% vs 2023)</span>
+                    </div>
+                </div>
+                 <div class="card p-4">
+                    <h3 class="text-lg font-semibold mb-2 text-gray-700">2025年第一季度业绩</h3>
+                     <div class="mb-2">
+                        <span class="text-gray-600">营业收入:</span>
+                        <span class="metric-value">460.06 亿元</span>
+                        <span class="metric-change negative-change">(-0.25% vs 2024 Q1)</span>
+                    </div>
+                    <div>
+                        <span class="text-gray-600">归母净利润:</span>
+                        <span class="metric-value">39.46 亿元</span>
+                        <span class="metric-change positive-change">(+90.47% vs 2024 Q1)</span>
+                    </div>
+                    <div class="mt-2">
+                        <span class="text-gray-600">经营性现金流净额:</span>
+                        <span class="metric-value">13.14 亿元</span>
+                        <span class="metric-change negative-change">(-76.02% vs 2024 Q1)</span>
+                    </div>
+                </div>
+                <div class="card p-4 bg-indigo-50">
+                    <h3 class="text-lg font-semibold mb-2 text-indigo-800">关键亮点 (2024)</h3>
+                    <ul class="list-disc list-inside text-indigo-700 compact-list">
+                        <li>营收、利润创历史新高</li>
+                        <li>铜产量跻身全球前十</li>
+                        <li>TFM/KFM项目达产达标</li>
+                        <li>资产负债率降至 49.52%</li>
+                        <li>MSCI ESG 评级保持 AA 级</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-8">
+            <h2 class="section-title text-2xl">板块业绩分析 (矿山采掘及加工)</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="segment-card card">
+                    <h3 class="segment-header">铜</h3>
+                    <ul class="compact-list text-gray-700">
+                        <li><b>2025 Q1 营收:</b> 124.16 亿元 <span class="positive-change">(+43.91% vs 24Q1)</span></li>
+                        <li><b>2025 Q1 毛利率:</b> 55.21% <span class="positive-change">(+7.14 pp vs 24Q1)</span></li>
+                        <li><b>2024 全年营收:</b> 418.57 亿元 <span class="positive-change">(+70.18% vs 23)</span></li>
+                        <li><b>2024 全年产量:</b> 65.02 万吨 <span class="positive-change">(+54.97% vs 23)</span></li>
+                         <li><b>2025 Q1 产量:</b> 17.06 万吨 <span class="positive-change">(+15.65% vs 24Q1)</span></li>
+                    </ul>
+                </div>
+                <div class="segment-card card">
+                    <h3 class="segment-header">钴</h3>
+                     <ul class="compact-list text-gray-700">
+                        <li><b>2025 Q1 营收:</b> 37.78 亿元 <span class="positive-change">(+83.90% vs 24Q1)</span></li>
+                        <li><b>2025 Q1 毛利率:</b> 61.42% <span class="positive-change">(+24.81 pp vs 24Q1)</span></li>
+                        <li><b>2024 全年营收:</b> 87.43 亿元 <span class="positive-change">(+156.71% vs 23)</span></li>
+                        <li><b>2024 全年产量:</b> 11.42 万吨 <span class="positive-change">(+105.61% vs 23)</span></li>
+                        <li><b>2025 Q1 产量:</b> 3.04 万吨 <span class="positive-change">(+20.68% vs 24Q1)</span></li>
+                    </ul>
+                </div>
+                <div class="segment-card card">
+                    <h3 class="segment-header">钼</h3>
+                    <ul class="compact-list text-gray-700">
+                        <li><b>2025 Q1 营收:</b> 13.49 亿元 <span class="positive-change">(+5.12% vs 24Q1)</span></li>
+                        <li><b>2025 Q1 毛利率:</b> 36.98% <span class="positive-change">(+7.95 pp vs 24Q1)</span></li>
+                        <li><b>2024 全年营收:</b> 62.97 亿元 <span class="negative-change">(-11.69% vs 23)</span></li>
+                        <li><b>2024 全年产量:</b> 1.54 万吨 <span class="negative-change">(-1.53% vs 23)</span></li>
+                        <li><b>2025 Q1 产量:</b> 0.33 万吨 <span class="negative-change">(-3.83% vs 24Q1)</span></li>
+                    </ul>
+                </div>
+                <div class="segment-card card">
+                    <h3 class="segment-header">钨</h3>
+                     <ul class="compact-list text-gray-700">
+                        <li><b>2025 Q1 营收:</b> 4.98 亿元 <span class="positive-change">(+37.17% vs 24Q1)</span></li>
+                        <li><b>2025 Q1 毛利率:</b> 65.57% <span class="positive-change">(+3.05 pp vs 24Q1)</span></li>
+                        <li><b>2024 全年营收:</b> 18.22 亿元 <span class="positive-change">(+23.09% vs 23)</span></li>
+                        <li><b>2024 全年产量:</b> 0.83 万吨 <span class="positive-change">(+3.92% vs 23)</span></li>
+                        <li><b>2025 Q1 产量:</b> 0.20 万吨 <span class="positive-change">(+3.73% vs 24Q1)</span></li>
+                    </ul>
+                </div>
+                <div class="segment-card card">
+                    <h3 class="segment-header">铌</h3>
+                    <ul class="compact-list text-gray-700">
+                        <li><b>2025 Q1 营收:</b> 8.67 亿元 <span class="positive-change">(+23.21% vs 24Q1)</span></li>
+                        <li><b>2025 Q1 毛利率:</b> 43.81% <span class="positive-change">(+5.82 pp vs 24Q1)</span></li>
+                        <li><b>2024 全年营收:</b> 29.56 亿元 <span class="positive-change">(+12.46% vs 23)</span></li>
+                        <li><b>2024 全年产量:</b> 1.00 万吨 <span class="positive-change">(+5.35% vs 23)</span></li>
+                         <li><b>2025 Q1 产量:</b> 0.26 万吨 <span class="positive-change">(+4.40% vs 24Q1)</span></li>
+                    </ul>
+                </div>
+                <div class="segment-card card">
+                    <h3 class="segment-header">磷肥</h3>
+                    <ul class="compact-list text-gray-700">
+                        <li><b>2025 Q1 营收:</b> 8.44 亿元 <span class="positive-change">(+17.27% vs 24Q1)</span></li>
+                        <li><b>2025 Q1 毛利率:</b> 27.09% <span class="positive-change">(+12.39 pp vs 24Q1)</span></li>
+                        <li><b>2024 全年营收:</b> 35.85 亿元 <span class="negative-change">(-3.00% vs 23)</span></li>
+                        <li><b>2024 全年产量:</b> 118.05 万吨 <span class="positive-change">(+1.05% vs 23)</span></li>
+                        <li><b>2025 Q1 产量:</b> 27.95 万吨 <span class="positive-change">(+0.24% vs 24Q1)</span></li>
+                    </ul>
+                </div>
+                 <div class="segment-card card md:col-span-2 lg:col-span-3">
+                    <h3 class="segment-header">矿产贸易 (IXM)</h3>
+                    <ul class="compact-list text-gray-700">
+                        <li><b>2025 Q1 精矿金属营收:</b> 168.19 亿元 <span class="positive-change">(+98.59% vs 24Q1)</span></li>
+                        <li><b>2025 Q1 精炼金属营收:</b> 225.88 亿元 <span class="negative-change">(-32.27% vs 24Q1)</span></li>
+                        <li><b>2024 全年归母净利润:</b> 13.53 亿元 (历史新高)</li>
+                        <li><b>2024 贸易量:</b> 铜 339.8万吨 (+21%), 铅锌 106.4万吨 (-2.6%), 镍 66.6万吨 (+98%)</li>
+                        <li><b>说明:</b> 贸易板块毛利率计算方式与矿山不同，受期货业务影响。2025 Q1 IXM按国际准则核算毛利率为2.78%。</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-8">
+            <h2 class="section-title text-2xl">2025年第一季度业绩增长分析</h2>
+            <div class="card p-6">
+                <h3 class="text-xl font-semibold mb-3 text-gray-800">增长驱动因素</h3>
+                <ul class="list-disc list-inside space-y-2 text-gray-700 mb-4 compact-list">
+                    <li><strong class="text-gray-900">铜钴量价齐升:</strong> 铜、钴产品产量同比分别增长 15.65% 和 20.68%。更重要的是，报告期内铜、钴产品销售实现的<strong class="text-green-600">价格较上年同期显著上涨</strong>，直接推高了营收和毛利贡献。</li>
+                    <li><strong class="text-gray-900">成本控制显效:</strong> 公司持续推进精益管理，<strong class="text-green-600">整体成本较上年同期下降</strong>，进一步提升了盈利空间。各主要矿产品毛利率均有显著提升（铜+7.14pp, 钴+24.81pp, 钼+7.95pp, 钨+3.05pp, 铌+5.82pp, 磷肥+12.39pp）。</li>
+                    <li><strong class="text-gray-900">其他板块稳健:</strong> 钼、钨、铌、磷肥等其他矿产品板块营收和毛利率也大多实现同比增长，共同支撑了整体利润增长。</li>
+                </ul>
+
+                <h3 class="text-xl font-semibold mb-3 text-gray-800">可持续性探讨</h3>
+                 <div class="accordion">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>增长可持续性评估</span>
+                        <svg class="accordion-icon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                    <div class="accordion-content">
+                        <ul class="list-disc list-inside space-y-2 text-gray-700 compact-list">
+                            <li><strong class="text-gray-900">有利因素:</strong>
+                                <ul class="list-circle list-inside ml-4 compact-list">
+                                    <li><strong class="text-green-700">产能释放:</strong> TFM 和 KFM 项目已达产，铜钴产能处于高位，为持续贡献产量奠定基础。2025年产量指引显示铜钴产量将维持高位（铜60-66万吨，钴10-12万吨）。</li>
+                                    <li><strong class="text-green-700">成本优势:</strong> 公司持续降本增效，世界级矿山的资源禀赋和规模效应有助于维持成本竞争力。</li>
+                                    <li><strong class="text-green-700">市场需求:</strong> 全球能源转型背景下，铜、钴等新能源金属长期需求看好。</li>
+                                    <li><strong class="text-green-700">ESG领先:</strong> 良好的ESG表现有助于公司获得融资和市场认可，降低运营风险。</li>
+                                </ul>
+                            </li>
+                            <li><strong class="text-gray-900">潜在风险:</strong>
+                                <ul class="list-circle list-inside ml-4 compact-list">
+                                    <li><strong class="text-red-700">价格波动:</strong> 大宗商品价格（尤其是铜、钴）波动是影响业绩的最大不确定性因素。2025 Q1 的高利润很大程度上受益于价格上涨，未来价格若回调将对利润产生压力。</li>
+                                    <li><strong class="text-red-700">地缘政治:</strong> 主要矿山位于刚果(金)等地区，地缘政治和政策风险不容忽视（如近期刚果(金)暂停钴出口）。</li>
+                                    <li><strong class="text-red-700">经营现金流:</strong> 2025 Q1 经营现金流大幅下降 (-76.02%)，主要受贸易业务影响，需关注其后续变化及对公司整体流动性的影响。</li>
+                                    <li><strong class="text-red-700">贸易业务波动:</strong> IXM 贸易业务受市场环境和期货影响较大，盈利稳定性相对矿山板块较低。</li>
+                                </ul>
+                            </li>
+                             <li><strong class="text-gray-900">综合判断:</strong> 2025 Q1 的高增长部分受益于短期价格利好，但公司核心竞争力（产能、成本、资源）的提升是基础。未来业绩能否持续高增长，关键在于主要产品价格能否维持高位以及公司能否持续有效控制成本和运营风险。</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title text-2xl">投资建议</h2>
+            <div class="card p-6 bg-gray-50">
+                <h3 class="text-xl font-semibold mb-3 text-gray-800">核心观点</h3>
+                <p class="text-gray-700 mb-4">洛阳钼业凭借其世界级的资源禀赋、领先的产能规模（尤其是铜钴）、持续优化的成本控制以及“矿山+贸易”的协同模式，展现出较强的核心竞争力。2024年业绩创历史新高，2025年Q1利润大幅增长，验证了公司产能释放和盈利能力的提升。</p>
+
+                <h3 class="text-xl font-semibold mb-3 text-gray-800">投资逻辑与建议</h3>
+                 <div class="accordion">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>详细投资逻辑</span>
+                        <svg class="accordion-icon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                    <div class="accordion-content">
+                        <ul class="list-disc list-inside space-y-2 text-gray-700 compact-list">
+                            <li><strong class="text-green-600">优势:</strong>
+                                <ul class="list-circle list-inside ml-4 compact-list">
+                                    <li>全球领先的铜、钴生产商，充分受益于新能源金属需求增长。</li>
+                                    <li>TFM、KFM两大世界级项目产能完全释放，产量处于历史高位。</li>
+                                    <li>成本控制能力持续提升，盈利能力增强。</li>
+                                    <li>“矿山+贸易”双轮驱动，具备一定抗风险能力和市场洞察力。</li>
+                                    <li>财务状况改善，资产负债率下降。</li>
+                                    <li>持续高比例分红承诺（2024-2026年 >40%），对股东回报友好。</li>
+                                </ul>
+                            </li>
+                            <li><strong class="text-red-600">风险:</strong>
+                                <ul class="list-circle list-inside ml-4 compact-list">
+                                     <li>业绩对大宗商品价格高度敏感，价格波动是最大风险。</li>
+                                     <li>地缘政治风险（刚果(金)）和政策不确定性。</li>
+                                     <li>贸易业务盈利波动性较大，可能影响整体业绩稳定性。</li>
+                                     <li>经营现金流波动（如2025 Q1所示）需关注。</li>
+                                </ul>
+                            </li>
+                            <li><strong class="text-blue-600">建议:</strong> 考虑到公司强大的基本面、行业领先地位以及新能源金属的长期需求前景，虽然短期面临价格波动和地缘政治风险，但长期投资价值显著。结合公司高分红承诺，建议 <strong class="text-xl text-indigo-700">“增持”</strong> 评级。投资者应密切关注主要产品价格走势、刚果(金)政策动向以及公司成本控制的持续性。</li>
+                        </ul>
+                    </div>
+                </div>
+                <p class="mt-4 text-sm text-gray-500">免责声明：本分析仅基于公开财报信息，不构成任何具体的投资操作建议。投资有风险，决策需谨慎。</p>
+            </div>
+        </section>
+
+        <footer class="mt-8 text-center text-gray-500 text-sm">
+            报告日期: 2025年4月26日 | 数据来源: 洛阳钼业2024年报 & 2025年Q1报告
+        </footer>
+    </div>
+
+    <script>
+        // JavaScript for Accordion functionality
+        function toggleAccordion(headerElement) {
+            const content = headerElement.nextElementSibling;
+            const icon = headerElement.querySelector('.accordion-icon');
+            if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+                content.style.maxHeight = '0px';
+                content.classList.remove('open');
+                icon.classList.remove('open');
+            } else {
+                // Close other open accordions in the same section (optional)
+                // const section = headerElement.closest('section');
+                // section.querySelectorAll('.accordion-content.open').forEach(openContent => {
+                //     openContent.style.maxHeight = '0px';
+                //     openContent.classList.remove('open');
+                //     openContent.previousElementSibling.querySelector('.accordion-icon').classList.remove('open');
+                // });
+
+                content.style.maxHeight = content.scrollHeight + "px";
+                content.classList.add('open');
+                icon.classList.add('open');
+            }
+        }
+    </script>
+</body>
+</html>

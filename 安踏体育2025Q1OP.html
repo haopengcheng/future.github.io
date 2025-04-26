@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>安踏体育(Anta Sports) - 业绩分析与投资建议</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif; /* Apply Inter font */
+            background-color: #f8fafc; /* Light gray background */
+        }
+        /* Custom styles for a sporty feel */
+        .brand-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .brand-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .highlight-metric {
+            transition: background-color 0.3s ease;
+        }
+        .highlight-metric:hover {
+            background-color: #e0f2fe; /* Light blue hover effect */
+        }
+        /* Style for section headers */
+        .section-header {
+            border-left: 4px solid #0ea5e9; /* Blue accent */
+            padding-left: 0.75rem;
+            margin-bottom: 1rem;
+        }
+        /* Accordion styles */
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+        }
+        .accordion-button.active + .accordion-content {
+             /* Adjust max-height based on content */
+            max-height: 1000px; /* Example max-height, adjust as needed */
+        }
+         /* Add rotation to the arrow */
+        .accordion-button .arrow {
+            transition: transform 0.3s ease;
+        }
+        .accordion-button.active .arrow {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+    <div class="container mx-auto p-4 md:p-8 max-w-6xl">
+
+        <header class="mb-8 text-center">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-2">安踏体育 (Anta Sports)</h1>
+            <p class="text-lg text-sky-600">2024年报 & 2025年Q1 业绩分析与投资建议</p>
+        </header>
+
+        <section class="mb-8 p-6 bg-white rounded-lg shadow">
+            <h2 class="section-header text-2xl font-semibold mb-4">公司概览</h2>
+            <p class="text-gray-700 leading-relaxed">
+                安踏体育用品有限公司（股份代号：2020.HK）是中国领先的体育用品公司，并逐步拓展全球化布局。公司通过“单聚焦、多品牌、全球化”战略，运营安踏、FILA、DESCENTE、KOLON SPORT等多个品牌，并作为Amer Sports, Inc. (NYSE: AS) 的最大股东，覆盖大众到高端、专业到时尚运动市场。本报告结合公司2024年财报和2025年第一季度运营数据，进行总结分析并提供投资参考。
+            </p>
+        </section>
+
+        <section class="mb-8 p-6 bg-white rounded-lg shadow">
+            <h2 class="section-header text-2xl font-semibold mb-4">2024年财务亮点</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                <div class="highlight-metric p-4 border border-gray-200 rounded-lg text-center">
+                    <h3 class="text-sm font-medium text-gray-500">总营收</h3>
+                    <p class="text-2xl font-bold text-blue-600">¥708.3亿</p>
+                    <p class="text-sm text-green-600">+13.6% YoY</p>
+                </div>
+                <div class="highlight-metric p-4 border border-gray-200 rounded-lg text-center">
+                    <h3 class="text-sm font-medium text-gray-500">股东应占溢利</h3>
+                    <p class="text-2xl font-bold text-blue-600">¥156.0亿*</p>
+                    <p class="text-sm text-green-600">+52.4% YoY</p>
+                    <p class="text-xs text-gray-500 mt-1">*含Amer Sports上市/配售收益</p>
+                     <p class="text-base font-semibold text-blue-500 mt-2">¥117.3亿</p>
+                     <p class="text-xs text-green-500">(不含Amer收益, +7.1% YoY)</p>
+                </div>
+                 <div class="highlight-metric p-4 border border-gray-200 rounded-lg text-center">
+                    <h3 class="text-sm font-medium text-gray-500">经营溢利</h3>
+                    <p class="text-2xl font-bold text-blue-600">¥166.0亿</p>
+                    <p class="text-sm text-green-600">+8.0% YoY</p>
+                     <p class="text-sm text-gray-500 mt-1">经营溢利率: 23.4% (-1.2pp)</p>
+                </div>
+            </div>
+
+            <h3 class="text-xl font-semibold mb-3 text-gray-800">营收构成 (按品牌分部)</h3>
+            <div class="relative h-64 md:h-80">
+                <canvas id="revenueChart"></canvas>
+            </div>
+             <p class="text-sm text-gray-600 mt-4">
+                <span class="font-semibold">电商业务表现：</span> 同比增长21.8% (按绝对金额计)，占集团整体收入 <span class="font-bold">35.1%</span> (2023年: 32.8%)。
+            </p>
+        </section>
+
+        <section class="mb-8 p-6 bg-white rounded-lg shadow">
+            <h2 class="section-header text-2xl font-semibold mb-4">2025年第一季度零售表现</h2>
+            <p class="text-sm text-gray-600 mb-4">(按零售价值计算，与2024年同期比较，不含Amer Sports)</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="brand-card p-4 bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg border border-blue-200">
+                    <h3 class="text-lg font-semibold text-blue-800 mb-2">安踏 (ANTA) 品牌</h3>
+                    <p class="text-3xl font-bold text-blue-700">高单位数</p>
+                    <p class="text-green-700 font-medium">正增长</p>
+                </div>
+                <div class="brand-card p-4 bg-gradient-to-r from-red-50 to-red-100 rounded-lg border border-red-200">
+                    <h3 class="text-lg font-semibold text-red-800 mb-2">斐乐 (FILA) 品牌</h3>
+                    <p class="text-3xl font-bold text-red-700">高单位数</p>
+                    <p class="text-green-700 font-medium">正增长</p>
+                </div>
+                <div class="brand-card p-4 bg-gradient-to-r from-green-50 to-green-100 rounded-lg border border-green-200">
+                    <h3 class="text-lg font-semibold text-green-800 mb-2">所有其他品牌</h3>
+                    <p class="text-3xl font-bold text-green-700">65%-70%</p>
+                    <p class="text-green-700 font-medium">正增长</p>
+                    <p class="text-xs text-gray-600 mt-1">(含 DESCENTE, KOLON SPORT)</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-8 p-6 bg-white rounded-lg shadow">
+            <h2 class="section-header text-2xl font-semibold mb-4">业绩分析</h2>
+
+            <div class="space-y-2">
+                <div>
+                    <button class="accordion-button w-full flex justify-between items-center p-3 bg-gray-100 hover:bg-gray-200 rounded-md text-left font-medium text-gray-700 focus:outline-none">
+                        <span>2025年Q1业绩增长原因分析</span>
+                        <span class="arrow transform transition-transform duration-300">▼</span>
+                    </button>
+                    <div class="accordion-content mt-2 px-3 text-gray-600 leading-relaxed">
+                        <ul class="list-disc list-inside space-y-1">
+                            <li><span class="font-semibold">多品牌战略成效显著：</span> DESCENTE、KOLON SPORT等其他品牌持续高速增长，成功卡位高端及户外运动细分市场。</li>
+                            <li><span class="font-semibold">安踏主品牌韧性：</span> 在巨大体量基础上维持稳健增长，得益于产品创新（如篮球、跑步系列）和零售升级（如超级安踏店）。</li>
+                            <li><span class="font-semibold">FILA品牌稳定：</span> 高端运动时尚定位下，聚焦核心品类（鞋、专业运动）实现平稳增长。</li>
+                            <li><span class="font-semibold">市场环境与渠道：</span> 受益于国内促消费政策及体育健康意识提升，同时电商渠道保持较快增长。</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div>
+                    <button class="accordion-button w-full flex justify-between items-center p-3 bg-gray-100 hover:bg-gray-200 rounded-md text-left font-medium text-gray-700 focus:outline-none">
+                        <span>增长可持续性探讨</span>
+                         <span class="arrow transform transition-transform duration-300">▼</span>
+                    </button>
+                    <div class="accordion-content mt-2 px-3 text-gray-600 leading-relaxed">
+                        <ul class="list-disc list-inside space-y-1">
+                            <li><span class="font-semibold">多品牌协同：</span> 差异化品牌矩阵有助于抵御单一市场风险，提升长期增长潜力。</li>
+                            <li><span class="font-semibold">安踏主品牌：</span> 持续增长需依赖科技创新、品牌升级及全球化突破，面临激烈竞争，高单位数增长有望维持。</li>
+                            <li><span class="font-semibold">FILA品牌：</span> 高端市场竞争加剧，可持续性取决于品牌力维护、产品创新和运营效率，高单位数增长具潜力但或有波动。</li>
+                            <li><span class="font-semibold">其他品牌：</span> 65-70%的超高增速会随基数扩大而放缓，但所处赛道潜力大，中期有望保持强劲双位数增长。</li>
+                            <li><span class="font-semibold">外部因素：</span> 宏观经济、消费信心及行业竞争格局是影响可持续性的关键变量。Amer Sports的独立表现亦影响集团整体价值。</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-8 p-6 bg-white rounded-lg shadow">
+            <h2 class="section-header text-2xl font-semibold mb-4">投资建议</h2>
+            <div class="space-y-4 text-gray-700 leading-relaxed">
+                <div>
+                    <h3 class="text-lg font-semibold text-green-700 mb-1">优势 (Strengths):</h3>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li>中国运动鞋服市场领导者，市场份额稳固。</li>
+                        <li>成功的多品牌战略，有效覆盖不同细分市场。</li>
+                        <li>“其他品牌”增长强劲，成为重要增长引擎。</li>
+                        <li>财务状况稳健，现金流良好。</li>
+                        <li>Amer Sports带来协同效应与全球化想象空间。</li>
+                        <li>电商渠道占比较高且增长迅速。</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold text-red-700 mb-1">风险 (Risks):</h3>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li>国内及国际品牌竞争激烈。</li>
+                        <li>宏观经济波动和消费信心变化影响。</li>
+                        <li>FILA品牌维持高端定位及增长面临挑战，或有利润率压力。</li>
+                        <li>全球化战略推进的执行风险和不确定性。</li>
+                        <li>库存管理及零售效率需持续优化。</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold text-sky-700 mb-1">总结与建议:</h3>
+                    <p>
+                        安踏体育凭借其在中国市场的领先地位和成功的“多品牌”战略，展现出较强的增长韧性。2025年Q1业绩显示核心品牌稳健，“其他品牌”高速增长的良好态势。公司基本面扎实，长期发展前景看好，尤其是在体育产业政策支持和全民健身上升趋势下。
+                    </p>
+                    <p class="mt-2">
+                        <span class="font-semibold">建议：</span> 整体展望积极，维持“谨慎乐观”评级。考虑到公司行业地位、增长潜力及Q1表现，建议投资者<span class="font-bold">关注</span>。具体投资决策需结合当前市场估值水平、个人风险偏好以及对宏观经济和行业竞争格局的判断。长期投资者可关注其全球化进展及多品牌协同效应的进一步释放。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <footer class="mt-12 text-center text-xs text-gray-500">
+            <p>免责声明：本报告基于公开信息编制，仅供参考，不构成任何投资建议。投资者据此操作，风险自担。</p>
+            <p>数据来源：安踏体育2024年年度报告、2025年第一季度营运表现公告。</p>
+            <p>&copy; <span id="currentYear"></span> Anta Sports Analysis. All rights reserved.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Chart.js configuration
+        const ctx = document.getElementById('revenueChart').getContext('2d');
+        const revenueChart = new Chart(ctx, {
+            type: 'bar', // Bar chart to compare brands
+            data: {
+                labels: ['安踏 (ANTA)', '斐乐 (FILA)', '所有其他品牌'],
+                datasets: [{
+                    label: '2023年营收 (亿元)',
+                    data: [303.1, 251.0, 69.5], // Data from 2023 report
+                    backgroundColor: 'rgba(59, 130, 246, 0.6)', // Blue
+                    borderColor: 'rgba(59, 130, 246, 1)',
+                    borderWidth: 1
+                }, {
+                    label: '2024年营收 (亿元)',
+                    data: [335.2, 266.3, 106.8], // Data from 2024 report
+                    backgroundColor: 'rgba(239, 68, 68, 0.6)', // Red
+                    borderColor: 'rgba(239, 68, 68, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: '2023 vs 2024 分部营收对比'
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed.y !== null) {
+                                    label += '¥' + context.parsed.y.toFixed(1) + ' 亿';
+                                }
+                                // Add growth rate on hover for 2024 data
+                                if (context.datasetIndex === 1) {
+                                     const growthRates = { 0: '+10.6%', 1: '+6.1%', 2: '+53.7%' };
+                                     label += ` (${growthRates[context.dataIndex]} YoY)`;
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: '营收 (人民币亿元)'
+                        }
+                    }
+                },
+                interaction: {
+                    mode: 'index', // Show tooltips for all datasets at the same index
+                    intersect: false,
+                },
+            }
+        });
+
+        // Accordion functionality
+        const accordionButtons = document.querySelectorAll('.accordion-button');
+        accordionButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Toggle active class for styling (e.g., arrow rotation)
+                button.classList.toggle('active');
+
+                // Content is the next element sibling
+                const content = button.nextElementSibling;
+                 // Toggle display or max-height
+                if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+                    content.style.maxHeight = '0px';
+                } else {
+                    // Set max-height to scrollHeight to animate opening
+                    // Adding a buffer just in case content size changes slightly during animation
+                    content.style.maxHeight = content.scrollHeight + "px";
+                }
+            });
+        });
+
+    </script>
+</body>
+</html>
