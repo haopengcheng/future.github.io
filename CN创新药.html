@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全球视野下的中国创新药产业：十年回顾与展望</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&family=Roboto:wght@300;400&display=swap');
+
+        :root {
+            --primary-color: #0071e3; /* Apple blue inspired */
+            --highlight-color-1: rgba(0, 113, 227, 0.8); /* Primary highlight */
+            --highlight-color-2: rgba(50, 170, 255, 0.7); /* Secondary highlight */
+            --text-color: #1d1d1f;
+            --secondary-text-color: #515154;
+            --background-color: #f5f5f7;
+            --white-color: #ffffff;
+            --border-color: rgba(0, 0, 0, 0.1);
+            --scroll-behavior: smooth; /* Use smooth scrolling */
+        }
+
+        /* Apply smooth scroll behavior globally */
+        html {
+           scroll-behavior: var(--scroll-behavior);
+        }
+
+
+        body {
+            font-family: 'Noto Sans SC', 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* --- Header & Title --- */
+        header {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--background-color) 50%, var(--white-color) 100%);
+            padding: 40px 20px;
+        }
+
+        .header-content {
+            z-index: 1;
+            max-width: 90%; /* Ensure content doesn't touch edges */
+        }
+
+        .main-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 700;
+            color: var(--text-color);
+            margin-bottom: 10px;
+            line-height: 1.1;
+            display: inline-block; /* Needed for typewriter width */
+        }
+
+        .main-title .typewriter {
+            border-right: .10em solid var(--primary-color);
+            white-space: nowrap;
+            overflow: hidden;
+            display: block; /* Make it block inside title */
+            animation: typing-main 3.5s steps(30, end) forwards, /* Use 'forwards' to keep final state */
+                       blink-caret .75s step-end 5; /* Blink only during typing */
+            width: 0; /* Start with 0 width */
+        }
+
+        .subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: var(--secondary-text-color);
+            font-weight: 300;
+            max-width: 700px;
+            margin: 10px auto 0 auto; /* Adjust margin */
+            white-space: nowrap; /* Keep subtitle on one line for effect */
+            overflow: hidden;
+            width: 0; /* Start hidden */
+            opacity: 0; /* Start invisible */
+            animation: typing-sub 3s steps(40, end) 3.6s forwards, /* Delay start after main title */
+                       blink-caret-sub .75s step-end 3.6s 4; /* Blink during typing, delayed */
+        }
+
+        /* Typing Animations */
+        @keyframes typing-main {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        @keyframes typing-sub {
+             0% { width: 0; opacity: 1;} /* Become visible when starting */
+            100% { width: 100%; opacity: 1;}
+        }
+
+        /* Separate blink animations */
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--primary-color); }
+        }
+         @keyframes blink-caret-sub {
+             from, to { border-right-color: transparent } /* Add cursor to subtitle */
+             50% { border-right-color: var(--primary-color); }
+         }
+        /* Apply subtitle cursor via pseudo-element if direct animation is tricky */
+        .subtitle {
+             border-right: .10em solid transparent; /* Add space for potential cursor */
+        }
+
+
+        .header-visual {
+            position: absolute;
+            bottom: -15%;
+            left: 50%;
+            transform: translateX(-50%) scale(1.5);
+            font-size: clamp(15rem, 40vw, 30rem);
+            color: rgba(0, 113, 227, 0.05);
+            font-weight: 700;
+            z-index: 0;
+            line-height: 1;
+            user-select: none;
+        }
+        /* --- End Header Section --- */
+
+        /* --- Main Content Styling --- */
+        main {
+            display: block;
+        }
+
+        section {
+            padding: 60px 0;
+            border-bottom: 1px solid var(--border-color);
+            background-color: var(--white-color);
+        }
+        section:nth-child(odd) {
+             background-color: var(--background-color);
+        }
+        section:last-of-type {
+            border-bottom: none;
+        }
+
+        .section-title-cn {
+            font-size: clamp(2rem, 4.5vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: var(--text-color);
+        }
+
+        .section-title-en {
+            font-size: clamp(0.8rem, 1.8vw, 1.1rem);
+            font-weight: 400;
+            color: var(--secondary-text-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 30px;
+        }
+
+        h2 { /* Section Title Container */
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h3 { /* Subsection Titles */
+             font-size: 1.5rem;
+             font-weight: 700;
+             color: var(--primary-color);
+             margin-top: 30px;
+             margin-bottom: 15px;
+             border-left: 4px solid var(--primary-color);
+             padding-left: 10px;
+        }
+
+        p, ul {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--secondary-text-color);
+            max-width: 850px;
+            margin: 15px auto;
+        }
+        ul {
+            list-style: none;
+            padding-left: 0; /* Remove default padding */
+            margin-left: 10px; /* Add margin to UL container */
+        }
+        ul li {
+            padding-left: 2em; /* Increased padding for list item text */
+            position: relative;
+            margin-bottom: 12px; /* Slightly more space */
+        }
+         /* Custom bullet - adjusted position */
+        ul li::before {
+            content: '';
+            position: absolute;
+            left: 0.5em; /* Position bullet within the increased padding */
+            top: 0.5em;
+            width: 8px;
+            height: 8px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+        }
+
+        /* Highlight & Tech Feel */
+        .highlight-1, .highlight-2 {
+            font-weight: bold;
+        }
+        .highlight-1 {
+            background: linear-gradient(to bottom, var(--highlight-color-1), rgba(0, 113, 227, 0));
+            -webkit-background-clip: text;
+            color: transparent;
+            display: inline;
+        }
+        .highlight-2 {
+             background: linear-gradient(to bottom, var(--highlight-color-2), rgba(50, 170, 255, 0));
+            -webkit-background-clip: text;
+            color: transparent;
+            display: inline;
+        }
+
+        /* Data Point Styling */
+        .data-point {
+            border: 2px solid var(--primary-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(5px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .data-point:hover {
+             transform: translateY(-5px);
+             box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+         }
+        .data-point .value {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 700;
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 5px;
+        }
+        .data-point .label {
+            font-size: 0.9rem;
+            color: var(--secondary-text-color);
+        }
+
+        /* Chart Container Styling */
+        .chart-container {
+            position: relative;
+            margin: 40px auto;
+            padding: 20px;
+            max-width: 900px; /* Limit width */
+            width: 100%; /* Take available width */
+            height: 400px; /* Fixed height */
+            background-color: var(--white-color);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+         .chart-container canvas {
+             max-width: 100%;
+             height: auto;
+         }
+
+
+        /* Flexbox Layout */
+        .flex-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px; /* Increased gap for more space */
+            align-items: flex-start;
+        }
+        .flex-item {
+            flex: 1;
+            min-width: 320px;
+            /* Add margin for explicit spacing, especially on wrap */
+            margin-bottom: 20px;
+        }
+
+        .flex-item.text-content {
+            text-align: left;
+        }
+         .flex-item.text-content p,
+         .flex-item.text-content ul {
+             margin-left: 0;
+             margin-right: 0;
+             max-width: 100%;
+         }
+         .flex-item.text-content h3 {
+             margin-top: 0;
+         }
+
+        /* Scroll Effects (AOS) */
+        [data-aos] {
+            opacity: 0;
+            transition-property: transform, opacity;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            background-color: #e9e9eb;
+            color: var(--secondary-text-color);
+            font-size: 0.9rem;
+            margin-top: 50px;
+        }
+
+        /* Back to Top Button Styling */
+        #backToTopBtn {
+            display: none; /* Hidden by default */
+            position: fixed; /* Fixed position */
+            bottom: 30px; /* Distance from bottom */
+            right: 30px; /* Distance from right */
+            z-index: 99; /* Stay on top */
+            border: none; /* Remove border */
+            outline: none; /* Remove outline */
+            background-color: var(--primary-color); /* Button color */
+            color: white; /* Text color */
+            cursor: pointer; /* Add cursor */
+            padding: 12px 15px; /* Padding */
+            border-radius: 50%; /* Make it round */
+            font-size: 16px; /* Increase font size */
+            line-height: 1;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: background-color 0.3s, opacity 0.3s, visibility 0.3s;
+        }
+
+        #backToTopBtn:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+             .flex-item { min-width: 100%; margin-bottom: 10px;}
+             .flex-container { gap: 20px; } /* Reduce gap on mobile */
+             .flex-item.text-content { text-align: left; }
+             .flex-item.text-content p,
+             .flex-item.text-content ul { margin: 15px auto; max-width: 95%; }
+             .main-title { font-size: 2.5rem; }
+            /* Subtitle animation might look odd on mobile, could hide it */
+             .subtitle { font-size: 1.1rem; white-space: normal; width: auto; animation: none; opacity: 1; border-right: none;}
+             .section-title-cn { font-size: 1.8rem; }
+             .section-title-en { font-size: 0.8rem; }
+            .chart-container { height: 300px; } /* Smaller charts */
+            .data-point .value { font-size: 1.8rem; }
+             h3 { font-size: 1.3rem; }
+             p, ul { font-size: 1rem; }
+             ul li { padding-left: 1.8em; } /* Adjust padding */
+             ul li::before { left: 0.4em; } /* Adjust bullet position */
+             #backToTopBtn { bottom: 20px; right: 20px; padding: 10px 12px; font-size: 14px; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-content">
+            <h1 class="main-title"><span class="typewriter">中国创新药产业</span></h1>
+            <p class="subtitle">全球视野下的十年回顾与展望 (2015-2024)</p>
+        </div>
+        <div class="header-visual">10</div>
+    </header>
+
+    <main>
+        <section id="overview">
+            <div class="container">
+                <h2 data-aos="fade-up">
+                    <span class="section-title-cn">产业全景</span><br>
+                    <span class="section-title-en">INDUSTRY OVERVIEW (2015-2024)</span>
+                </h2>
+                <p data-aos="fade-up" data-aos-delay="100">
+                    2015年以来，中国创新药产业迎来历史性转折。面对审评积压、低水平仿制等困境，国家启动了深刻的“医药供给侧改革”。通过改革审评审批制度、优化医保准入、打通资本市场渠道等一系列政策组合拳（“三医联动”），为产业注入强大动力，推动中国从创新追随者向全球竞争重要力量转变。
+                </p>
+                <div class="flex-container">
+                    <div class="flex-item text-content" data-aos="fade-right" data-aos-delay="200">
+                         <h3><span class="highlight-1">十年成就</span> Decade Achievements</h3>
+                         <ul>
+                              <li><span class="highlight-2">研发领跑：</span>截至2024年，中国企业自主研发的活跃创新药数量达 <span class="highlight-1">3,575个</span>，超越美国位居全球首位，细胞疗法和小分子药最多。</li>
+                              <li><span class="highlight-2">本土崛起：</span>国产创新药在中国获批上市的比例从2015年的不足10%增至2024年的 <span class="highlight-1">42%</span>，共获批39个。</li>
+                              <li><span class="highlight-2">转化加速：</span>中国成为全球创新药首发上市的“第一梯队”，2024年首发上市药物占全球近 <span class="highlight-1">38%</span>。</li>
+                              <li><span class="highlight-2">用药可及：</span>中美新药上市时间差从改革前的约8年显著缩短至 <span class="highlight-1">2年</span> 以内，部分新药甚至在中国率先获批。</li>
+                              <li><span class="highlight-2">市场增长：</span>核心医院市场规模达 <span class="highlight-1">8,822亿元</span> (2024E)，创新药占比从21%增至 <span class="highlight-1">29%</span>。</li>
+                              <li><span class="highlight-2">资本助力：</span>一二级市场累计融资超 <span class="highlight-1">1.23万亿元</span>，港交所18A、科创板等拓宽融资渠道，产业集群效应显著。</li>
+                              <li><span class="highlight-2">全球布局：</span>对外授权 (License-out) 交易总额超 <span class="highlight-1">1500亿</span> 美元，2024年单年达519亿美元；已有 <span class="highlight-1">18款</span> 中国原研新药在海外获批上市。</li>
+                         </ul>
+                    </div>
+                    <div class="flex-item" data-aos="fade-left" data-aos-delay="300">
+                        <div class="data-point">
+                            <span class="value">30%+</span>
+                            <span class="label">2024年中国FIC创新药占新增研发比例</span>
+                        </div>
+                         <div class="data-point">
+                            <span class="value">>50%</span>
+                            <span class="label">2024年美国IND申请中来自中国的分子比例 (by Scott Gottlieb)</span>
+                        </div>
+                         <div class="data-point">
+                            <span class="value">10%</span>
+                            <span class="label">2015年后上市创新药占2024年核心医院市场份额</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="rd-trends">
+            <div class="container">
+                 <h2 data-aos="fade-up">
+                    <span class="section-title-cn">研发趋势</span><br>
+                    <span class="section-title-en">R&D TRENDS</span>
+                </h2>
+                 <p data-aos="fade-up" data-aos-delay="100">
+                    全球创新药研发数量持续攀升，中国成为最主要的增长引擎。研发管线呈现多元化，细胞疗法、小分子药物是主力，ADC、双抗/多抗、放射性药物等新技术崭露头角。中国正努力从“快速跟随”向“源头创新”转变，FIC药物研发潜力不断释放。
+                 </p>
+                 <div class="flex-container">
+                     <div class="flex-item" data-aos="zoom-in" data-aos-delay="200">
+                         <div class="chart-container">
+                             <canvas id="rdCountChart"></canvas> </div>
+                         <p style="text-align:center; font-size: 0.9rem; color: var(--secondary-text-color);">图：全球主要国家/地区创新药年研发数量 (款)</p>
+                    </div>
+                     <div class="flex-item text-content" data-aos="fade-left" data-aos-delay="300">
+                         <h3><span class="highlight-1">研发格局</span> R&D Landscape</h3>
+                          <ul>
+                              <li><span class="highlight-2">全球增长：</span>2015-2024年全球累计研发 <span class="highlight-1">12,263款</span> 创新药，年均超1300款进入临床 (近五年)。</li>
+                              <li><span class="highlight-2">中国引领：</span>中国企业年研发数量从100款增至 <span class="highlight-1">704款</span> (2024)，超越美国。</li>
+                              <li><span class="highlight-2">药物类型：</span>细胞疗法 (<span class="highlight-1">21%</span>) 和小分子 (<span class="highlight-1">20%</span>) 占比最高，其次是单抗 (8%)，新兴技术如放射性药物 (5%)、双/多抗 (4%) 增多。</li>
+                              <li><span class="highlight-2">靶点热度：</span>全球热门靶点Top20中国重合度 <span class="highlight-1">80%</span>，并在CD19、BCMA、CLDN18.2等靶点贡献超 <span class="highlight-1">50%</span> 甚至 <span class="highlight-1">80%</span> 的药品数量。</li>
+                              <li><span class="highlight-2">FIC突破：</span>中国FIC创新药研发数量全球第二，2024年达 <span class="highlight-1">120个</span>，占当年新增研发超30%。</li>
+                              <li><span class="highlight-2">临床试验：</span>中国企业临床试验数年复合增长 <span class="highlight-1">18.8%</span>，2024年超1900项，但国际多中心试验占比较低 (约10%)。</li>
+                          </ul>
+                     </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="commercialization">
+            <div class="container">
+                 <h2 data-aos="fade-up">
+                    <span class="section-title-cn">商业化趋势</span><br>
+                    <span class="section-title-en">COMMERCIALIZATION TRENDS</span>
+                </h2>
+                 <p data-aos="fade-up" data-aos-delay="100">
+                     创新药的最终目的是惠及患者。中国通过常态化医保谈判机制，极大缩短了新药从获批到纳入医保的时间，加速市场准入。核心医院市场稳步增长，国产创新药份额提升，但“进院难”成为新的瓶颈，“腾笼换鸟”在不同治疗领域速度不一。
+                 </p>
+                <div class="flex-container">
+                     <div class="flex-item text-content" data-aos="fade-right" data-aos-delay="200">
+                        <h3><span class="highlight-1">市场准入与表现</span> Market Access & Performance</h3>
+                        <ul>
+                            <li><span class="highlight-2">医保加速：</span>近四年谈判成功的新药 <span class="highlight-1">~90%</span> 在获批2年内进入医保目录，实现“以时间换空间”。</li>
+                            <li><span class="highlight-2">市场扩容：</span>核心医院（占全国~50%份额）药品市场规模达 <span class="highlight-1">8822亿</span> (2024E)，创新药占比增至 <span class="highlight-1">29%</span>。</li>
+                            <li><span class="highlight-2">国产替代：</span>中国企业研发的创新药市场份额从18.7%升至 <span class="highlight-1">27.8%</span> (2015-2024)，2015年后上市的国产新药贡献显著 (达11.3%)。</li>
+                            <li><span class="highlight-2">领域分化：</span>抗肿瘤和免疫调节剂是创新药主战场，市场份额增长最快；而呼吸、激素等领域仿制药仍占主导。</li>
+                            <li><span class="highlight-2">院外市场：</span>DTP药房等院外渠道重要性凸显，承接大量处方，PD-1、EGFR、VEGFR等靶点药物院外销售占比高 (达30-44%)。</li>
+                            <li><span class="highlight-2">进院困境：</span>新药上市后进入医院目录比例低（京粤约 <span class="highlight-1">50%</span>），且进入后覆盖医院范围窄（平均 <span class="highlight-1">10-12%</span>），影响患者可及性。</li>
+                        </ul>
+                    </div>
+                     <div class="flex-item" data-aos="zoom-in" data-aos-delay="300">
+                         <div class="chart-container">
+                              <canvas id="marketShareChart"></canvas> </div>
+                         <p style="text-align:center; font-size: 0.9rem; color: var(--secondary-text-color);">图：中外企业创新药市场规模 (亿人民币)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="investment">
+            <div class="container">
+                 <h2 data-aos="fade-up">
+                    <span class="section-title-cn">投融资趋势</span><br>
+                    <span class="section-title-en">INVESTMENT & FINANCING TRENDS</span>
+                </h2>
+                 <p data-aos="fade-up" data-aos-delay="100">
+                     资本是创新药研发的“燃料”。过去十年，政策红利和资本市场开放（港交所18A、科创板）点燃了投融资热潮，累计融资超 <span class="highlight-1">1.23万亿</span>。然而，自2021年全球生物科技进入调整期，中国也经历“资本寒冬”，融资额连续下滑，IPO遇冷，退出渠道受阻。
+                 </p>
+                <div class="flex-container">
+                    <div class="flex-item" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="chart-container">
+                            <canvas id="investmentChart"></canvas> </div>
+                         <p style="text-align:center; font-size: 0.9rem; color: var(--secondary-text-color);">图：中国创新药领域一、二级市场融资额 (亿人民币)</p>
+                    </div>
+                     <div class="flex-item text-content" data-aos="fade-left" data-aos-delay="300">
+                        <h3><span class="highlight-1">资本脉动</span> Capital Pulse</h3>
+                        <ul>
+                            <li><span class="highlight-2">全球周期：</span>全球一级市场创新药融资在2021年达 <span class="highlight-1">551亿</span> 美元高峰后回落，但ADC、小核酸、放射性药物等领域仍有亮点。</li>
+                            <li><span class="highlight-2">中国寒冬：</span>中国医药领域融资额连续4年下滑，2024年较2020高点缩水 <span class="highlight-1">76%</span>。IPO数量锐减，2024年仅 <span class="highlight-1">7家</span> 创新药企上市。</li>
+                            <li><span class="highlight-2">融资渠道：</span>港交所18A累计融资超 <span class="highlight-1">1100亿</span> 港币 (56家)，科创板第五套标准为未盈利企业打开A股大门。</li>
+                            <li><span class="highlight-2">集群效应：</span>超 <span class="highlight-1">50%</span> 资本涌入上海张江、北京中关村、苏州BioBay等生物医药基地。</li>
+                            <li><span class="highlight-2">退出多元化：</span>IPO受阻下，并购 (M&A) 成为重要退出方式，国内并购活动在2024年显著增加 (达<span class="highlight-1">22起</span>)。NewCo模式（剥离管线成立海外新公司）也成为探索方向。</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="globalization">
+            <div class="container">
+                <h2 data-aos="fade-up">
+                    <span class="section-title-cn">出海趋势</span><br>
+                    <span class="section-title-en">GLOBALIZATION TRENDS</span>
+                </h2>
+                <p data-aos="fade-up" data-aos-delay="100">
+                    面对国内竞争加剧和资本压力，走向全球市场成为中国创新药企的必然选择。通过自主研发国际化或对外授权 (License-out) 合作，中国药企正加速融入全球产业链，提升品牌价值和获取回报。
+                </p>
+                 <div class="flex-container">
+                      <div class="flex-item text-content" data-aos="fade-right" data-aos-delay="200">
+                        <h3><span class="highlight-1">扬帆远航</span> Sailing Globally</h3>
+                        <ul>
+                            <li><span class="highlight-2">出海里程碑：</span>自2019年泽布替尼在美国获批以来，已有 <span class="highlight-1">18款</span> 中国原研创新药在海外上市，2024年新增6款。</li>
+                            <li><span class="highlight-2">授权交易火爆：</span>2024年License-out交易达 <span class="highlight-1">94笔</span>，总金额 <span class="highlight-1">519亿</span> 美元，首付款 <span class="highlight-1">41亿</span> 美元，均创新高。</li>
+                            <li><span class="highlight-2">主要伙伴：</span>美国企业是主要受让方 (占<span class="highlight-1">49%</span>交易量，<span class="highlight-1">55%</span>总金额)。Biotech是主要转让方，但跨国巨头 (TOP MNC) 兴趣浓厚，2024年达成 <span class="highlight-1">29笔</span> 交易。</li>
+                            <li><span class="highlight-2">权益分配：</span>多以全球权益 (35%) 或美欧日主流地区权益 (42%) 转让为主。</li>
+                            <li><span class="highlight-2">技术前沿：</span>交易项目类型多样化，抗体药 (尤其ADC)、细胞基因疗法、小核酸受青睐。临床前项目交易占比超 <span class="highlight-1">60%</span> (2024)，显示MNC向早期布局。</li>
+                            <li><span class="highlight-2">风险显现：</span>出海并非一帆风顺，已有自主项目失败，<span class="highlight-1">36个</span> 交易项目因疗效、审批、商业策略等原因终止或暂停。</li>
+                        </ul>
+                     </div>
+                      <div class="flex-item" data-aos="zoom-in" data-aos-delay="300">
+                         <div class="chart-container">
+                            <canvas id="licenseOutChart"></canvas> </div>
+                        <p style="text-align:center; font-size: 0.9rem; color: var(--secondary-text-color);">图：中国药企 License-out 交易金额 (亿美元) 与数量 (件)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="challenges-outlook">
+            <div class="container">
+                 <h2 data-aos="fade-up">
+                    <span class="section-title-cn">挑战与展望</span><br>
+                    <span class="section-title-en">CHALLENGES & OUTLOOK</span>
+                </h2>
+                 <p data-aos="fade-up" data-aos-delay="100">
+                     尽管成就显著，但中国创新药产业仍面临严峻挑战：研发同质化内卷严重、医保支付体系单一且降价压力大、医院准入梗阻（“最后一公里”）、资本寒冬持续、源头创新能力不足等。要实现从“跟随”到“引领”，从“规模”到“价值”的跨越，需要系统性解决这些序贯性瓶颈。
+                 </p>
+                 <h3 data-aos="fade-up" data-aos-delay="150"><span class="highlight-1">破局之路</span> Path Forward</h3>
+                 <ul>
+                     <li data-aos="fade-up" data-aos-delay="200"><span class="highlight-2">优化竞争生态：</span>遏制无序内卷，对FIC/BIC等高价值创新给予优先准入、价格保护、专利补偿、数据保护等激励，避免“后来者掀桌子”。</li>
+                     <li data-aos="fade-up" data-aos-delay="250"><span class="highlight-2">构建多元支付：</span>平衡患者负担与企业回报。除医保外，大力发展商业健康险，探索创新支付模式，给予高价值创新药合理定价空间和时间窗，医保价格需保密以支持国际化。</li>
+                     <li data-aos="fade-up" data-aos-delay="300"><span class="highlight-2">深化三医联动：</span>打通新药进院“最后一公里”，改革医院考评机制，解决医院引进创新药动力不足问题，确保创新成果能快速惠及患者，保护创新者领先优势。</li>
+                     <li data-aos="fade-up" data-aos-delay="350"><span class="highlight-2">完善资本生态：</span>打通融资、上市、退出的良性循环。设立政府引导基金支持早期创新，稳定市场预期，缓解企业融资困境和“卖青苗”现象。</li>
+                     <li data-aos="fade-up" data-aos-delay="400"><span class="highlight-2">接轨国际标准：</span>深入理解国际规则，提升临床设计、注册申报能力。推动审评审批标准互认，支持企业拓展“一带一路”等新兴市场。</li>
+                     <li data-aos="fade-up" data-aos-delay="450"><span class="highlight-2">强化源头创新：</span>加大基础研究投入，聚焦重大疾病机制和新靶点发现。完善成果转化机制，允许科研人员参与利益分配，构建从基础到产业的创新闭环。</li>
+                 </ul>
+                 <p data-aos="fade-up" data-aos-delay="500">
+                    展望未来十年，通过政策精准发力与市场高效协同，中国创新药产业有望实现从规模驱动到价值创造的质变，在全球健康事业中扮演更重要的角色。
+                 </p>
+
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>友情提示：本页内容仅作参考</p>
+    </footer>
+
+    <button id="backToTopBtn" title="返回顶部">↑</button>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS (Animate on Scroll)
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100,
+            disable: 'mobile'
+        });
+
+        // Chart.js & Back to Top Button Logic
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- Back to Top Button Logic ---
+            const backToTopButton = document.getElementById("backToTopBtn");
+
+            window.onscroll = function() { scrollFunction(); };
+
+            function scrollFunction() {
+                if (backToTopButton) {
+                     if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                        backToTopButton.style.display = "block";
+                     } else {
+                        backToTopButton.style.display = "none";
+                     }
+                }
+            }
+
+            if (backToTopButton) {
+                backToTopButton.addEventListener('click', () => {
+                     window.scrollTo({ top: 0 }); // Use smooth scroll from CSS
+                 });
+            }
+
+            // --- Chart.js Implementations ---
+
+            // Helper function to safely get context and create chart
+             function safeCreateChart(canvasId, config) {
+                const canvas = document.getElementById(canvasId);
+                 // Delay chart creation slightly to ensure layout is stable after potential AOS shifts
+                setTimeout(() => {
+                    if (!canvas) {
+                        console.warn(`Canvas element with ID '${canvasId}' not found.`);
+                        return;
+                    }
+                     const ctx = canvas.getContext('2d');
+                     if (!ctx) {
+                         console.error(`Failed to get 2D context for canvas ID: ${canvasId}`);
+                         return;
+                     }
+                     try {
+                        new Chart(ctx, config);
+                        console.log(`Chart created successfully for canvas ID: ${canvasId}`);
+                     } catch (e) {
+                        console.error(`Error creating chart for canvas ID: ${canvasId}`, e);
+                     }
+                }, 100); // Small delay
+             }
+
+
+            // --- R&D Count Chart ---
+            const rdConfig = {
+                type: 'line',
+                data: { /* Data as before */
+                    labels: ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024'],
+                    datasets: [
+                        { label: '中国 China', data: [100, 163, 190, 238, 265, 360, 409, 411, 541, 704], borderColor: 'rgba(0, 113, 227, 1)', backgroundColor: 'rgba(0, 113, 227, 0.1)', borderWidth: 2, tension: 0.3, pointRadius: 4, pointBackgroundColor: 'rgba(0, 113, 227, 1)', fill: true },
+                        { label: '美国 USA', data: [283, 300, 267, 302, 342, 440, 451, 440, 420, 440], borderColor: 'rgba(255, 159, 10, 1)', backgroundColor: 'rgba(255, 159, 10, 0.1)', borderWidth: 2, tension: 0.3, pointRadius: 4, pointBackgroundColor: 'rgba(255, 159, 10, 1)', fill: true },
+                        { label: '欧洲 Europe', data: [180, 197, 207, 188, 209, 221, 229, 206, 212, 167], borderColor: 'rgba(48, 209, 88, 1)', backgroundColor: 'rgba(48, 209, 88, 0.1)', borderWidth: 2, tension: 0.3, pointRadius: 4, pointBackgroundColor: 'rgba(48, 209, 88, 1)', fill: true }
+                    ]
+                },
+                options: { /* Options as before */ responsive: true, maintainAspectRatio: false, scales: { y: { beginAtZero: true, title: { display: true, text: '新增创新药数量 (款)' } }, x: { title: { display: true, text: '年份' } } }, plugins: { legend: { position: 'top' }, tooltip: { mode: 'index', intersect: false } } }
+            };
+            safeCreateChart('rdCountChart', rdConfig);
+
+            // --- Market Share Chart ---
+            const marketLabels = ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024E'];
+            const totalMarket = [1374, 1534, 1683, 1880, 2119, 2225, 2261, 2321, 2403, 2576];
+            const domesticMarket = [257, 305, 350, 430, 556, 713, 817, 940, 1057, 1232];
+            const foreignMarket = totalMarket.map((total, i) => total - domesticMarket[i]);
+            const marketConfig = {
+                type: 'bar',
+                data: { /* Data as before */
+                    labels: marketLabels,
+                    datasets: [
+                         { label: '国内企业创新药 Domestic Cos.', data: domesticMarket, backgroundColor: 'rgba(0, 113, 227, 0.7)', borderColor: 'rgba(0, 113, 227, 1)', borderWidth: 1 },
+                         { label: '国外企业创新药 Foreign Cos.', data: foreignMarket, backgroundColor: 'rgba(142, 142, 147, 0.7)', borderColor: 'rgba(142, 142, 147, 1)', borderWidth: 1 }
+                    ]
+                },
+                options: { /* Options as before */ responsive: true, maintainAspectRatio: false, scales: { y: { beginAtZero: true, stacked: true, title: { display: true, text: '创新药市场规模 (亿人民币)' } }, x: { stacked: true, title: { display: true, text: '年份' } } }, plugins: { legend: { position: 'top' }, tooltip: { mode: 'index', intersect: false } } }
+            };
+            safeCreateChart('marketShareChart', marketConfig);
+
+             // --- Investment Chart ---
+            const investmentLabels = ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024'];
+            const investmentData = [591.21, 772.22, 413.40, 826.84, 1542.99, 2663.67, 2272.56, 1257.97, 1040.82, 891.18];
+            const investmentConfig = {
+                 type: 'line',
+                 data: { /* Data as before */ labels: investmentLabels, datasets: [{ label: '融资金额 (亿人民币)', data: investmentData, borderColor: 'rgba(50, 170, 255, 1)', backgroundColor: 'rgba(50, 170, 255, 0.1)', borderWidth: 2, tension: 0.3, pointRadius: 4, pointBackgroundColor: 'rgba(50, 170, 255, 1)', fill: true }] },
+                 options: { /* Options as before */ responsive: true, maintainAspectRatio: false, scales: { y: { beginAtZero: true, title: { display: true, text: '融资金额 (亿人民币)' } }, x: { title: { display: true, text: '年份' } } }, plugins: { legend: { display: false }, tooltip: { mode: 'index', intersect: false } } }
+            };
+             safeCreateChart('investmentChart', investmentConfig);
+
+              // --- License-Out Chart ---
+            const licenseLabels = ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024'];
+            const licenseAmount = [5, 25, 30, 17, 22, 84, 134, 277, 411, 519];
+            const licenseCount = [1, 6, 11, 10, 17, 62, 50, 61, 89, 94];
+            const licenseOutConfig = {
+                type: 'bar',
+                data: { /* Data as before */
+                    labels: licenseLabels,
+                    datasets: [
+                        { label: '交易数量 (件)', data: licenseCount, backgroundColor: 'rgba(0, 113, 227, 0.7)', borderColor: 'rgba(0, 113, 227, 1)', yAxisID: 'y1', order: 2 },
+                        { label: '总金额 (亿美元)', data: licenseAmount, type: 'line', borderColor: 'rgba(255, 69, 58, 1)', backgroundColor: 'rgba(255, 69, 58, 0.1)', borderWidth: 2, tension: 0.3, yAxisID: 'y', pointRadius: 4, pointBackgroundColor: 'rgba(255, 69, 58, 1)', fill: false, order: 1 }
+                    ]
+                },
+                 options: { /* Options as before */ responsive: true, maintainAspectRatio: false, scales: { y: { type: 'linear', display: true, position: 'left', beginAtZero: true, title: { display: true, text: '总金额 (亿美元)' } }, y1: { type: 'linear', display: true, position: 'right', beginAtZero: true, title: { display: true, text: '交易数量 (件)' }, grid: { drawOnChartArea: false } }, x: { title: { display: true, text: '年份' } } }, plugins: { legend: { position: 'top' }, tooltip: { mode: 'index', intersect: false } } }
+            };
+             safeCreateChart('licenseOutChart', licenseOutConfig);
+
+        }); // End DOMContentLoaded
+    </script>
+
+</body>
+</html>
