@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>利通电子 2024-2025Q1 财报分析与投资展望</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif; /* 应用 Inter 字体 */
+            background-color: #f8f9fa; /* 浅灰色背景 */
+            color: #333; /* 深灰色文字 */
+        }
+
+        /* 标题打字机效果 */
+        .typewriter h1 {
+            overflow: hidden; /* 确保文字在动画完成前不显示 */
+            border-right: .15em solid orange; /* 光标效果 */
+            white-space: nowrap; /* 保持文字在一行 */
+            margin: 0 auto; /* 水平居中 */
+            letter-spacing: .1em; /* 字符间距 */
+            animation:
+                typing 3.5s steps(40, end),
+                blink-caret .75s step-end infinite;
+        }
+
+        /* 打字动画 */
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        /* 光标闪烁动画 */
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: orange; }
+        }
+
+        /* 滚动动画基础样式 */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .scroll-animate.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 强调大数字样式 */
+        .highlight-number {
+            font-size: 4rem; /* 超大字体 */
+            font-weight: bold;
+            color: #007bff; /* 蓝色高亮 */
+            line-height: 1;
+        }
+        .highlight-number-sub {
+             font-size: 2.5rem; /* 稍小字体 */
+             font-weight: bold;
+             color: #17a2b8; /* 青色高亮 */
+             line-height: 1;
+        }
+
+        /* 中英混排标题样式 */
+        .mixed-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #343a40; /* 深灰色 */
+            margin-bottom: 0.5rem;
+        }
+
+        .mixed-title .en-subtitle {
+            display: block;
+            font-size: 1rem;
+            font-weight: normal;
+            color: #6c757d; /* 中灰色 */
+            margin-top: 0.25rem;
+            letter-spacing: 0.05em;
+        }
+
+        /* 科技感渐变背景 */
+        .tech-gradient-bg {
+            background: linear-gradient(135deg, rgba(0, 123, 255, 0.1), rgba(0, 123, 255, 0));
+        }
+        .tech-gradient-bg-alt {
+            background: linear-gradient(135deg, rgba(23, 162, 184, 0.1), rgba(23, 162, 184, 0));
+        }
+
+        /* 返回顶部按钮样式 */
+        #backToTopBtn {
+            display: none; /* 默认隐藏 */
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 99;
+            border: none;
+            outline: none;
+            background-color: #007bff; /* 蓝色背景 */
+            color: white;
+            cursor: pointer;
+            padding: 15px;
+            border-radius: 50%; /* 圆形按钮 */
+            font-size: 18px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: background-color 0.3s, opacity 0.5s, visibility 0.5s;
+        }
+
+        #backToTopBtn:hover {
+            background-color: #0056b3; /* 深蓝色悬停效果 */
+        }
+
+        /* 卡片样式 */
+        .card {
+            background-color: white;
+            border-radius: 1rem; /* 圆角 */
+            padding: 2rem;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            overflow: hidden; /* 确保内容不溢出 */
+        }
+
+        /* 图表容器 */
+        .chart-container {
+            position: relative;
+            height: 300px; /* 设置图表高度 */
+            width: 100%;
+        }
+
+        /* 简单的勾线图形 */
+        .line-graphic {
+            border-left: 3px solid #007bff;
+            padding-left: 1rem;
+            margin-bottom: 1rem;
+        }
+         .line-graphic-alt {
+            border-left: 3px solid #17a2b8;
+            padding-left: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        /* 强调文本颜色 */
+        .text-highlight {
+            color: #007bff;
+            font-weight: bold;
+        }
+        .text-highlight-alt {
+             color: #17a2b8;
+             font-weight: bold;
+        }
+        .text-danger {
+            color: #dc3545; /* 红色 */
+            font-weight: bold;
+        }
+        .text-success {
+            color: #28a745; /* 绿色 */
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <div class="text-xl font-bold text-gray-800">利通电子</div>
+            <div>
+                <a href="#overview" class="text-gray-600 hover:text-blue-500 mx-3">概览</a>
+                <a href="#financials" class="text-gray-600 hover:text-blue-500 mx-3">财务亮点</a>
+                <a href="#segments" class="text-gray-600 hover:text-blue-500 mx-3">板块分析</a>
+                <a href="#industry" class="text-gray-600 hover:text-blue-500 mx-3">行业洞察</a>
+                <a href="#outlook" class="text-gray-600 hover:text-blue-500 mx-3">投资展望</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+
+        <section class="text-center mb-16 scroll-animate">
+            <div class="typewriter inline-block">
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">利通电子 | 2024 & 2025 Q1 财报解读</h1>
+            </div>
+            <p class="text-lg text-gray-600 mt-4">财务表现分析与投资前景展望</p>
+            <div class="mt-8 flex justify-center items-center space-x-8">
+                 <div class="text-center">
+                    <div class="highlight-number">18.7%</div>
+                    <p class="text-gray-600 mt-2">2024 营收增长</p>
+                 </div>
+                 <div class="text-center">
+                     <div class="highlight-number-sub">64.6%</div>
+                     <p class="text-gray-600 mt-2">2025 Q1 营收增长</p>
+                 </div>
+            </div>
+        </section>
+
+        <section id="financials" class="mb-16 scroll-animate">
+            <h2 class="mixed-title">财务概览 <span class="en-subtitle">FINANCIAL OVERVIEW</span></h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card tech-gradient-bg">
+                    <h3 class="text-xl font-bold mb-4 text-gray-700">2024 年度业绩</h3>
+                    <div class="space-y-3">
+                        <p><strong>营业收入:</strong> <span class="text-highlight">22.48 亿元</span> (<span class="text-success">↑ 18.72%</span>)</p>
+                        <p><strong>归母净利润:</strong> <span class="text-danger">0.25 亿元</span> (<span class="text-danger">↓ 38.77%</span>)</p>
+                        <p><strong>扣非归母净利润:</strong> <span class="text-danger">0.06 亿元</span> (<span class="text-danger">↓ 71.10%</span>)</p>
+                        <p><strong>经营性现金流:</strong> <span class="text-danger">0.75 亿元</span> (<span class="text-danger">↓ 89.78%</span>)</p>
+                        <p><strong>总资产 (年末):</strong> 59.32 亿元 (<span class="text-success">↑ 63.26%</span>)</p>
+                        <p><strong>资产负债率 (年末):</strong> <span class="text-danger">71.98%</span> (较年初大幅提升)</p>
+                    </div>
+                </div>
+                <div class="card tech-gradient-bg-alt">
+                    <h3 class="text-xl font-bold mb-4 text-gray-700">2025 Q1 业绩 (同比2024 Q1)</h3>
+                    <div class="space-y-3">
+                        <p><strong>营业收入:</strong> <span class="text-highlight-alt">7.04 亿元</span> (<span class="text-success">↑ 64.62%</span>)</p>
+                        <p><strong>归母净利润:</strong> <span class="text-danger">0.29 亿元</span> (<span class="text-danger">↓ 11.01%</span>)</p>
+                        <p><strong>扣非归母净利润:</strong> <span class="text-highlight-alt">0.29 亿元</span> (<span class="text-danger">↓ 1.90%</span>)</p>
+                        <p><strong>经营性现金流:</strong> <span class="text-highlight-alt">1.92 亿元</span> (<span class="text-danger">↓ 62.79%</span>)</p>
+                    </div>
+                </div>
+                 <div class="card lg:col-span-1">
+                     <h3 class="text-xl font-bold mb-4 text-gray-700">营收与净利润趋势</h3>
+                     <div class="chart-container">
+                         <canvas id="revenueProfitChart"></canvas>
+                     </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="segments" class="mb-16 scroll-animate">
+            <h2 class="mixed-title">板块分析 <span class="en-subtitle">SEGMENT ANALYSIS (2024)</span></h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="card tech-gradient-bg">
+                    <h3 class="text-xl font-bold mb-4 text-gray-700">AI 算力云服务</h3>
+                     <div class="line-graphic">
+                        <p><strong>营收:</strong> <span class="text-highlight">4.55 亿元</span> (<span class="text-success">↑ 3817%</span>)</p>
+                        <p><strong>净利润:</strong> <span class="text-highlight">1.42 亿元</span></p>
+                        <p><strong>毛利率:</strong> <span class="text-highlight">53.42%</span> (<span class="text-success">↑ 9.39 pp</span>)</p>
+                        <p><strong>期末规模:</strong> 超 13,000 P</p>
+                    </div>
+                    <p class="text-gray-600">已成为公司主要增长引擎和利润来源。建立了完整的服务体系（设备经销、算力优化、并网集群、技术维护），与重要供应商和客户建立稳定合作。业务规模在行业内处于领先地位。</p>
+                </div>
+                <div class="card tech-gradient-bg-alt">
+                    <h3 class="text-xl font-bold mb-4 text-gray-700">精密结构件与电子元器件制造</h3>
+                     <div class="line-graphic-alt">
+                        <p><strong>营收:</strong> <span class="text-highlight-alt">17.92 亿元</span> (<span class="text-danger">↓ 4.74%</span>)</p>
+                        <p><strong>净利润:</strong> <span class="text-danger">-1.16 亿元</span> (亏损)</p>
+                        <p><strong>毛利率:</strong> <span class="text-danger">8.65%</span> (<span class="text-danger">↓ 6.26 pp</span>)</p>
+                        <p><strong>主要产品:</strong> 电视金属结构件 (<span class="text-danger">营收↓3.06%</span>), 电子元器件 (<span class="text-danger">营收↓11.55%</span>)</p>
+                    </div>
+                    <p class="text-gray-600">传统主业面临挑战，整体亏损。主要受安徽博盈持续亏损及海外工厂（墨西哥、越南）初期量产未达预期影响。公司计划收缩安徽产能，调整海外管理，力争扭亏为盈。</p>
+                </div>
+                 <div class="card md:col-span-2">
+                     <h3 class="text-xl font-bold mb-4 text-gray-700">2024 年营收构成</h3>
+                     <div class="chart-container">
+                         <canvas id="revenueCompositionChart"></canvas>
+                     </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="industry" class="mb-16 scroll-animate">
+            <h2 class="mixed-title">行业洞察 <span class="en-subtitle">INDUSTRY INSIGHTS</span></h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="card">
+                    <h3 class="text-xl font-bold mb-4 text-gray-700">AI 算力行业</h3>
+                    <div class="line-graphic">
+                        <p><strong>市场趋势:</strong> AI 时代核心生产力，产业进入高速增长阶段。</p>
+                        <p><strong>中国市场 (2024):</strong> 算力规模 <span class="text-highlight">725.3 EFLOPS</span> (<span class="text-success">↑ 74.1%</span>), 市场规模 <span class="text-highlight">$190亿</span> (<span class="text-success">↑ 86.9%</span>)。</p>
+                        <p><strong>利通地位:</strong> 凭借先发优势和资源整合能力，算力规模超 <span class="text-highlight">15,000 P</span> (截至报告发布日)，境内外布局，业内领先。</p>
+                    </div>
+                    <p class="text-gray-600">未来两年预计持续高速增长，但也面临竞争加剧和供应链风险。</p>
+                </div>
+                <div class="card">
+                    <h3 class="text-xl font-bold mb-4 text-gray-700">液晶电视制造行业</h3>
+                    <div class="line-graphic-alt">
+                        <p><strong>市场趋势:</strong> 成熟市场，整体增长缓慢，竞争激烈。</p>
+                        <p><strong>中国市场 (2024):</strong> 零售量 <span class="text-danger">3086万台</span> (<span class="text-danger">↓ 1.8%</span>), 零售额 <span class="text-success">1271亿元</span> (<span class="text-success">↑ 15.7%</span>, 受益于政策)。</p>
+                        <p><strong>产品趋势:</strong> 大尺寸化、高刷新率、MiniLED 增长，产能向海外转移持续。</p>
+                        <p><strong>利通地位:</strong> 金属结构件领域产能、产量、销售位居<span class="text-highlight-alt">第一</span>，但受行业景气度和成本影响。</p>
+                    </div>
+                    <p class="text-gray-600">市场复苏有待技术突破（如与 AI 融合），成本控制和效率是关键。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="outlook" class="mb-16 scroll-animate">
+            <h2 class="mixed-title">投资展望 <span class="en-subtitle">INVESTMENT OUTLOOK</span></h2>
+            <div class="card tech-gradient-bg">
+                <h3 class="text-xl font-bold mb-4 text-gray-700">核心观点</h3>
+                <ul class="list-disc list-inside space-y-2 text-gray-700">
+                    <li><strong>双主业战略转型:</strong> 公司进入“AI 算力 + 传统制造”双轮驱动阶段。AI 算力是明确的增长引擎，而传统制造业务面临扭亏挑战。</li>
+                    <li><strong>AI 算力前景广阔:</strong> 业务增长迅猛，毛利率高，行业地位领先，长期合同提供一定稳定性。是公司未来价值的核心看点。</li>
+                    <li><strong>制造业务挑战严峻:</strong> 2024年亏损严重，受行业竞争、成本压力及内部管理（安徽、海外）影响。2025年扭亏计划是关键，但存在不确定性。</li>
+                    <li><strong>财务风险增加:</strong> 2024年资产负债率大幅提升 (达 71.98%)，显示扩张带来的财务压力。虽然 Q1 营收大幅增长，但净利润同比下滑，盈利能力仍需改善。</li>
+                    <li><strong>关键风险点:</strong>
+                        <ul class="list-disc list-inside ml-6 space-y-1">
+                            <li>AI 市场竞争加剧可能压缩利润空间。</li>
+                            <li>GPU 芯片等核心部件的供应链风险。</li>
+                            <li>传统制造业务能否成功扭亏。</li>
+                            <li>宏观经济及国际政治经济形势变化。</li>
+                            <li>高负债率带来的财务风险。</li>
+                            <li>客户集中度较高（双主业均存在）。</li>
+                        </ul>
+                    </li>
+                </ul>
+                <h3 class="text-xl font-bold mt-6 mb-4 text-gray-700">投资建议考量</h3>
+                <p class="text-gray-600">利通电子正处于战略转型的关键时期。AI 算力业务的高成长性为其提供了想象空间，但投资者需密切关注传统制造业务的扭亏进展以及公司整体的财务健康状况。高负债率和制造业务的亏损是短期内需要重点考量的风险因素。未来股价表现可能取决于 AI 业务能否持续超预期增长，以及制造业务的改善速度和幅度。</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-800 text-white py-6 mt-12">
+        <div class="container mx-auto px-6 text-center">
+            <p>友情提示：本页内容仅作参考</p>
+            <p>&copy; 2025 利通电子财报分析. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <button onclick="scrollToTop()" id="backToTopBtn" title="返回顶部">↑</button>
+
+    <script>
+        // 滚动动画 Intersection Observer
+        const scrollElements = document.querySelectorAll('.scroll-animate');
+
+        const elementInView = (el, dividend = 1) => {
+            const elementTop = el.getBoundingClientRect().top;
+            return (
+                elementTop <= (window.innerHeight || document.documentElement.clientHeight) / dividend
+            );
+        };
+
+        const displayScrollElement = (element) => {
+            element.classList.add('visible');
+        };
+
+        const hideScrollElement = (element) => {
+             element.classList.remove('visible');
+        };
+
+        const handleScrollAnimation = () => {
+            scrollElements.forEach((el) => {
+                if (elementInView(el, 1.15)) { // 调整触发阈值
+                    displayScrollElement(el);
+                }
+                // 可选：如果希望元素滚出视口时再次隐藏，取消下面的注释
+                // else {
+                //     hideScrollElement(el);
+                // }
+            })
+        }
+
+        window.addEventListener('scroll', () => {
+            handleScrollAnimation();
+        });
+        // 初始加载时检查一次
+        handleScrollAnimation();
+
+        // 返回顶部按钮逻辑
+        const backToTopButton = document.getElementById('backToTopBtn');
+
+        window.onscroll = function() {
+            scrollFunction();
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+                backToTopButton.style.display = 'block';
+            } else {
+                backToTopButton.style.display = 'none';
+            }
+        }
+
+        function scrollToTop() {
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        // Chart.js 图表配置
+        document.addEventListener('DOMContentLoaded', () => {
+            // 营收与净利润图表
+            const ctxRevenueProfit = document.getElementById('revenueProfitChart').getContext('2d');
+            new Chart(ctxRevenueProfit, {
+                type: 'bar', // 使用条形图
+                data: {
+                    labels: ['2022', '2023', '2024', '2025 Q1'],
+                    datasets: [{
+                        label: '营业收入 (亿元)',
+                        data: [20.25, 18.93, 22.48, 7.04], // 2022, 2023, 2024, 2025 Q1 营收数据
+                        backgroundColor: 'rgba(0, 123, 255, 0.6)', // 蓝色
+                        borderColor: 'rgba(0, 123, 255, 1)',
+                        borderWidth: 1,
+                        yAxisID: 'y-revenue' // 指定Y轴
+                    }, {
+                        label: '归母净利润 (亿元)',
+                        data: [0.66, 0.40, 0.25, 0.29], // 2022, 2023, 2024, 2025 Q1 净利润数据
+                        backgroundColor: 'rgba(23, 162, 184, 0.6)', // 青色
+                        borderColor: 'rgba(23, 162, 184, 1)',
+                        borderWidth: 1,
+                        type: 'line', // 利润用折线图表示
+                        yAxisID: 'y-profit', // 指定另一个Y轴
+                        tension: 0.1 // 使线条平滑
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        'y-revenue': { // 定义第一个Y轴（营收）
+                            type: 'linear',
+                            position: 'left',
+                            title: {
+                                display: true,
+                                text: '营业收入 (亿元)'
+                            }
+                        },
+                        'y-profit': { // 定义第二个Y轴（利润）
+                            type: 'linear',
+                            position: 'right',
+                            title: {
+                                display: true,
+                                text: '归母净利润 (亿元)'
+                            },
+                            grid: {
+                                drawOnChartArea: false // 不绘制利润轴的网格线，避免混乱
+                            }
+                        },
+                        x: {
+                             title: {
+                                display: true,
+                                text: '年度 / 季度'
+                            }
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false,
+                        }
+                    }
+                }
+            });
+
+             // 营收构成图表 (2024)
+             const ctxRevenueComp = document.getElementById('revenueCompositionChart').getContext('2d');
+             new Chart(ctxRevenueComp, {
+                type: 'pie', // 饼图
+                data: {
+                    labels: ['精密金属冲压结构件', '电子元器件', '模具', 'AI算力业务', '其他'],
+                    datasets: [{
+                        label: '2024 营收构成 (亿元)',
+                        // 数据来源：2024年报 P20 (主营业务分产品情况)
+                        // 精密金属冲压结构件: 15.27亿
+                        // 电子元器件: 1.55亿
+                        // 模具: 0.47亿
+                        // 算力业务: 4.55亿
+                        // 其他: 0.33亿 (主营业务其他)
+                        data: [15.27, 1.55, 0.47, 4.55, 0.33],
+                        backgroundColor: [
+                            'rgba(0, 123, 255, 0.7)', // 蓝色
+                            'rgba(23, 162, 184, 0.7)', // 青色
+                            'rgba(255, 193, 7, 0.7)',  // 黄色
+                            'rgba(40, 167, 69, 0.7)',  // 绿色
+                            'rgba(108, 117, 125, 0.7)' // 灰色
+                        ],
+                        borderColor: [
+                            'rgba(0, 123, 255, 1)',
+                            'rgba(23, 162, 184, 1)',
+                            'rgba(255, 193, 7, 1)',
+                            'rgba(40, 167, 69, 1)',
+                            'rgba(108, 117, 125, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                     plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        tooltip: {
+                             callbacks: {
+                                label: function(context) {
+                                    let label = context.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed !== null) {
+                                        label += context.parsed.toFixed(2) + ' 亿元';
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+
+    </script>
+
+</body>
+</html>
