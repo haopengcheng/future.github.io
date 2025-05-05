@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>云天化财报分析与投资建议</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Noto+Sans+SC:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            background-color: #f8fafc; /* 浅灰色背景 */
+            color: #1f2937; /* 深灰色文字 */
+            overflow-x: hidden; /* 防止水平滚动 */
+        }
+        /* 打字机效果 CSS */
+        .typewriter h1 {
+            overflow: hidden; /* 隐藏超出部分 */
+            border-right: .15em solid #3b82f6; /* 光标效果 */
+            white-space: nowrap; /* 保持文本在一行 */
+            margin: 0 auto; /* 水平居中 */
+            letter-spacing: .1em; /* 字符间距 */
+            animation:
+                typing 3.5s steps(40, end),
+                blink-caret .75s step-end infinite;
+            display: inline-block; /* 使宽度适应内容 */
+        }
+
+        /* 打字动画 */
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        /* 光标闪烁动画 */
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #3b82f6; }
+        }
+
+        /* 高亮渐变效果 */
+        .highlight-gradient-blue {
+            background: linear-gradient(to right, rgba(59, 130, 246, 0.1), rgba(59, 130, 246, 0.5));
+        }
+        .highlight-gradient-green {
+            background: linear-gradient(to right, rgba(16, 185, 129, 0.1), rgba(16, 185, 129, 0.5));
+        }
+
+        /* 滚动动画基础样式 */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .scroll-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 强调数字样式 */
+        .emphasis-number {
+            font-size: 4rem; /* 超大字体 */
+            font-weight: 900; /* 最粗字体 */
+            color: #1d4ed8; /* 深蓝色 */
+            line-height: 1;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        .emphasis-label {
+            font-size: 1.1rem;
+            color: #4b5563; /* 中灰色 */
+        }
+
+        /* 标题中英文混排 */
+        .title-mixed {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #111827; /* 更深的灰色 */
+            margin-bottom: 0.5rem;
+        }
+        .title-mixed .en {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #6b7280; /* 稍浅灰色 */
+            margin-left: 0.5rem;
+            vertical-align: middle;
+        }
+
+        /* 科技感线条图标 */
+        .line-icon {
+            stroke: #3b82f6; /* 蓝色线条 */
+            stroke-width: 1.5;
+            fill: none;
+        }
+
+        /* 返回顶部按钮 */
+        #back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: none;
+            background-color: rgba(59, 130, 246, 0.8); /* 半透明蓝色 */
+            color: white;
+            padding: 10px 15px;
+            border-radius: 9999px; /* 圆形 */
+            cursor: pointer;
+            transition: opacity 0.3s, visibility 0.3s;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        #back-to-top:hover {
+            background-color: rgba(37, 99, 235, 1); /* 深蓝色 */
+        }
+
+        /* 容器统一样式 */
+        .content-section {
+            padding: 4rem 1rem; /* 上下大内边距，左右小内边距 */
+            max-width: 1200px; /* 最大宽度 */
+            margin: 0 auto; /* 水平居中 */
+        }
+        @media (min-width: 768px) {
+            .content-section {
+                padding: 6rem 2rem; /* 中等屏幕以上增加内边距 */
+            }
+        }
+
+        /* 卡片样式 */
+        .info-card {
+            background-color: white;
+            border-radius: 1rem; /* 更大的圆角 */
+            padding: 2rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* 更柔和的阴影 */
+            margin-bottom: 2rem;
+            overflow: hidden; /* 防止内容溢出 */
+        }
+
+        /* 图表容器 */
+        .chart-container {
+            position: relative;
+            height: 400px; /* 固定高度 */
+            width: 100%; /* 宽度自适应 */
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="text-xl font-bold text-blue-600">云天化 YTH</span>
+                </div>
+                </div>
+        </div>
+    </nav>
+
+    <header class="bg-gradient-to-b from-blue-50 to-gray-50 text-center py-24 sm:py-32 content-section">
+        <div class="typewriter">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-gray-900 mb-6">云天化财报深度解析</h1>
+        </div>
+        <p class="mt-4 text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
+            结合 2024 年报与 2025 Q1 季报，洞察行业趋势，提供专业投资视角。
+        </p>
+        <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <div class="info-card text-left scroll-reveal highlight-gradient-blue">
+                <span class="emphasis-number">53.33 <span class="text-2xl font-normal">亿元</span></span>
+                <span class="emphasis-label">2024年归母净利润</span>
+                <p class="text-sm text-gray-500 mt-2">同比增长 17.93%</p>
+            </div>
+            <div class="info-card text-left scroll-reveal highlight-gradient-green">
+                <span class="emphasis-number">12.89 <span class="text-2xl font-normal">亿元</span></span>
+                <span class="emphasis-label">2025 Q1 归母净利润</span>
+                 <p class="text-sm text-gray-500 mt-2">同比 -11.65%</p>
+            </div>
+        </div>
+    </header>
+
+    <section id="2024-performance" class="content-section">
+        <div class="text-center mb-16 scroll-reveal">
+            <h2 class="title-mixed">
+                <span class="text-blue-600">2024</span> 年度业绩回顾 <span class="en">Annual Performance Review</span>
+            </h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">全年营收稳健，核心板块表现亮眼，展现强劲发展韧性。</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            <div class="info-card scroll-reveal">
+                <h3 class="text-2xl font-bold mb-4 text-gray-800">核心财务指标 <span class="text-sm font-normal text-gray-500">Key Financials</span></h3>
+                <ul class="space-y-3 text-gray-700">
+                    <li><strong>营业总收入:</strong> 615.37 亿元 <span class="text-sm text-red-500">(同比 -10.89%)</span></li>
+                    <li><strong>归母净利润:</strong> 53.33 亿元 <span class="text-sm text-green-500">(同比 +17.93%)</span></li>
+                    <li><strong>经营现金流净额:</strong> 107.52 亿元 <span class="text-sm text-green-500">(同比 +13.93%)</span></li>
+                    <li><strong>基本每股收益:</strong> 2.9073 元 <span class="text-sm text-green-500">(同比 +17.75%)</span></li>
+                </ul>
+            </div>
+             <div class="info-card scroll-reveal">
+                 <h3 class="text-2xl font-bold mb-4 text-gray-800">主要业务亮点 <span class="text-sm font-normal text-gray-500">Business Highlights</span></h3>
+                 <p class="text-gray-700 mb-3">化肥、聚甲醛、饲钙等主要产品保持较好盈利水平。</p>
+                 <p class="text-gray-700 mb-3">生产组织统筹高效，主要装置实现“长周期”运行，多项产品产量创新高。</p>
+                 <p class="text-gray-700">产业链运营高效，原料保供降本与产品销售策略得当。</p>
+            </div>
+        </div>
+
+        <div class="info-card scroll-reveal">
+            <h3 class="text-2xl font-bold mb-6 text-center text-gray-800">2024 各业务板块营收贡献 <span class="text-sm font-normal text-gray-500">Revenue Contribution by Segment</span></h3>
+            <div class="chart-container">
+                <canvas id="revenueChart2024"></canvas>
+            </div>
+             <p class="text-xs text-gray-500 mt-4 text-center">注：部分板块名称根据财报内容进行了归纳。</p>
+        </div>
+    </section>
+
+    <section id="2025-q1-performance" class="bg-gray-100 content-section">
+        <div class="text-center mb-16 scroll-reveal">
+            <h2 class="title-mixed">
+                <span class="text-green-600">2025 Q1</span> 业绩速览 <span class="en">Q1 Performance Snapshot</span>
+            </h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">开年业绩承压，需关注后续市场变化及公司应对策略。</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="info-card scroll-reveal">
+                <h3 class="text-2xl font-bold mb-4 text-gray-800">Q1 核心数据 <span class="text-sm font-normal text-gray-500">Q1 Key Data</span></h3>
+                 <ul class="space-y-3 text-gray-700">
+                    <li><strong>营业总收入:</strong> 130.04 亿元 <span class="text-sm text-red-500">(同比 -6.16%)</span></li>
+                    <li><strong>归母净利润:</strong> 12.89 亿元 <span class="text-sm text-red-500">(同比 -11.65%)</span></li>
+                    <li><strong>经营现金流净额:</strong> 28.48 亿元 <span class="text-sm text-green-500">(同比 +14.34%)</span></li>
+                    <li><strong>基本每股收益:</strong> 0.7029 元 <span class="text-sm text-red-500">(同比 -11.65%)</span></li>
+                </ul>
+                 <p class="mt-4 text-sm text-gray-600">一季度业绩较去年同期有所下滑，主要受市场环境及产品价格波动影响。</p>
+            </div>
+            <div class="info-card scroll-reveal">
+                <h3 class="text-2xl font-bold mb-4 text-gray-800">Q1 简评 <span class="text-sm font-normal text-gray-500">Q1 Brief Comments</span></h3>
+                <p class="text-gray-700 mb-3">营收和利润同比下降，显示出市场环境的挑战性。</p>
+                <p class="text-gray-700 mb-3">经营性现金流表现稳健，同比增长，显示出公司良好的现金管理能力。</p>
+                <p class="text-gray-700">需关注二季度及下半年市场回暖情况及公司成本控制、市场策略的有效性。</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="industry-outlook" class="content-section">
+        <div class="text-center mb-16 scroll-reveal">
+            <h2 class="title-mixed">
+                行业分析与前景展望 <span class="en">Industry Analysis & Outlook</span>
+            </h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">宏观政策与市场供需共同塑造行业格局，云天化依托资源优势稳固地位。</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="info-card scroll-reveal">
+                 <svg class="w-12 h-12 text-blue-500 mb-4 line-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10h6c2 1 2.657 1.343 2.657 2.657a8 8 0 01-10.657 6zM5 6a8 8 0 0012.657 5.343" /> </svg>
+                <h3 class="text-xl font-bold mb-3 text-gray-800">磷化工与化肥</h3>
+                <p class="text-gray-700 text-sm">磷矿石作为核心资源，价格高位运行提供成本支撑。国内化肥保供稳价政策下，市场景气度稳定。新能源材料需求分化部分磷资源，行业集中度提升。</p>
+            </div>
+            <div class="info-card scroll-reveal">
+                 <svg class="w-12 h-12 text-green-500 mb-4 line-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /> </svg>
+                <h3 class="text-xl font-bold mb-3 text-gray-800">新材料领域</h3>
+                <p class="text-gray-700 text-sm">聚甲醛市场差异化竞争显现，高品质产品需求增长，进口替代空间大。磷酸铁行业产能增长迅速，市场竞争加剧，价格底部运行，具备成本和技术优势的企业更具竞争力。</p>
+            </div>
+            <div class="info-card scroll-reveal">
+                 <svg class="w-12 h-12 text-yellow-500 mb-4 line-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /> </svg>
+                <h3 class="text-xl font-bold mb-3 text-gray-800">行业趋势</h3>
+                <p class="text-gray-700 text-sm">国家对磷资源高效高值利用、磷石膏综合治理提出更高要求。绿色、高效、新型肥料是发展方向。产业链一体化、技术创新和成本控制是企业核心竞争力。</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="investment-advice" class="bg-blue-50 content-section">
+        <div class="text-center mb-12 scroll-reveal">
+             <h2 class="title-mixed">
+                投资分析与建议 <span class="en">Investment Analysis & Suggestion</span>
+            </h2>
+             <p class="text-gray-600 max-w-2xl mx-auto">综合考量公司业绩、行业地位及未来发展潜力。</p>
+        </div>
+
+        <div class="info-card scroll-reveal">
+            <h3 class="text-xl font-bold mb-4 text-gray-800">分析要点</h3>
+            <ul class="list-disc list-inside space-y-2 text-gray-700">
+                <li><strong>业绩表现：</strong> 2024年利润增长强劲，显示出公司主营业务的盈利能力和抗风险能力。2025年Q1业绩有所回调，需关注后续季度表现。</li>
+                <li><strong>核心优势：</strong> 公司拥有丰富的磷矿资源，产业链一体化优势明显，成本控制能力较强。品牌知名度高，市场渠道完善。</li>
+                <li><strong>行业地位：</strong> 在磷肥、尿素、饲钙、聚甲醛等领域处于国内领先地位，具备规模优势。</li>
+                <li><strong>成长潜力：</strong> 积极布局精细磷化工和新能源材料，符合国家产业升级方向，有望带来新的增长点。磷矿资源价值有望重估。</li>
+                <li><strong>风险因素：</strong> 宏观经济波动、原材料价格大幅波动、环保安全压力、新业务拓展不及预期等。Q1业绩下滑提示短期经营压力。</li>
+                 <li><strong>估值与分红：</strong> 公司估值需结合行业周期和未来增长预期综合判断。公司有明确的现金分红规划（2024-2026年不低于45%），对股东回报有保障。</li>
+            </ul>
+        </div>
+
+        <div class="mt-8 p-6 bg-white rounded-lg shadow-md scroll-reveal">
+            <h3 class="text-xl font-bold mb-3 text-center text-blue-700">投资建议</h3>
+            <p class="text-center text-gray-700 leading-relaxed">
+                **谨慎乐观 / 关注**
+            </p>
+            <p class="mt-4 text-gray-600 text-sm leading-relaxed">
+                云天化作为磷化工和化肥行业的龙头企业，凭借其资源和产业链优势，在2024年取得了良好的业绩增长。公司在传统主业保持竞争力的同时，积极向新材料领域拓展，符合长期发展趋势。然而，2025年一季度业绩出现下滑，显示短期内面临一定的市场压力和周期性波动风险。
+                <br><br>
+                考虑到公司稳固的行业地位、资源优势以及未来的转型潜力，长期来看具备投资价值。但短期内需密切关注宏观经济形势、主要产品价格走势、原材料成本变化以及新业务的进展情况。建议投资者保持谨慎乐观态度，密切关注公司后续经营情况和行业动态，可考虑在股价回调时分批布局或暂时观望。
+            </p>
+        </div>
+    </section>
+
+    <footer class="bg-gray-800 text-gray-400 py-8 text-center text-sm">
+        <p>友情提示：本页内容基于公开财报信息分析，仅作参考，不构成任何投资决策依据。</p>
+        <p>&copy; 2025 云天化财报分析. 保留所有权利。</p>
+    </footer>
+
+    <button id="back-to-top" title="返回顶部">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+        </svg>
+    </button>
+
+    <script>
+        // GSAP 和 ScrollTrigger 注册
+        gsap.registerPlugin(ScrollTrigger);
+
+        // 滚动显示动画
+        gsap.utils.toArray('.scroll-reveal').forEach(element => {
+            gsap.fromTo(element,
+                { opacity: 0, y: 50 }, // 起始状态
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: element,
+                        start: 'top 85%', // 当元素顶部进入视口85%时触发
+                        toggleActions: 'play none none none', // 触发时播放动画
+                        // markers: true, // 调试用标记
+                    }
+                }
+            );
+        });
+
+        // 2024 营收构成图表
+        const ctx2024 = document.getElementById('revenueChart2024').getContext('2d');
+        const revenueChart2024 = new Chart(ctx2024, {
+            type: 'doughnut', // 甜甜圈图
+            data: {
+                labels: ['化肥', '工程材料', '磷矿采选', '煤炭采掘', '磷化工', '新能源材料', '商贸物流', '其他'],
+                datasets: [{
+                    label: '2024年营收占比',
+                    // 数据来自财报，单位：亿元，保留两位小数
+                    data: [269.97, 14.52, 6.73, 4.19, 27.68, 7.54, 255.80, 24.49],
+                    backgroundColor: [
+                        'rgba(59, 130, 246, 0.7)', // Blue
+                        'rgba(16, 185, 129, 0.7)', // Green
+                        'rgba(249, 115, 22, 0.7)',  // Orange
+                        'rgba(107, 114, 128, 0.7)',// Gray
+                        'rgba(139, 92, 246, 0.7)', // Violet
+                        'rgba(239, 68, 68, 0.7)',  // Red
+                        'rgba(217, 119, 6, 0.7)',  // Amber
+                        'rgba(163, 163, 163, 0.7)' // Light Gray
+                    ],
+                    borderColor: [
+                        'rgba(59, 130, 246, 1)',
+                        'rgba(16, 185, 129, 1)',
+                        'rgba(249, 115, 22, 1)',
+                        'rgba(107, 114, 128, 1)',
+                        'rgba(139, 92, 246, 1)',
+                        'rgba(239, 68, 68, 1)',
+                        'rgba(217, 119, 6, 1)',
+                        'rgba(163, 163, 163, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false, // 允许图表高度调整
+                plugins: {
+                    legend: {
+                        position: 'bottom', // 图例放底部
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed !== null) {
+                                    // 计算总和
+                                    const total = context.dataset.data.reduce((acc, value) => acc + value, 0);
+                                    const percentage = ((context.parsed / total) * 100).toFixed(2);
+                                    label += context.parsed.toFixed(2) + ' 亿元 (' + percentage + '%)';
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // 返回顶部按钮逻辑
+        const backToTopButton = document.getElementById('back-to-top');
+
+        window.onscroll = function() {
+            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+                backToTopButton.style.display = "block";
+                 // 使用GSAP添加淡入效果
+                gsap.to(backToTopButton, { opacity: 1, duration: 0.3 });
+            } else {
+                 // 使用GSAP添加淡出效果
+                gsap.to(backToTopButton, { opacity: 0, duration: 0.3, onComplete: () => {
+                    if (backToTopButton.style.opacity === '0') { // 确保动画完成后再隐藏
+                       backToTopButton.style.display = "none";
+                    }
+                }});
+            }
+        };
+
+        backToTopButton.onclick = function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+
+    </script>
+
+</body>
+</html>
