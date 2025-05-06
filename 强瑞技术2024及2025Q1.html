@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>强瑞技术 | 投资分析 | Investment Analysis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* 自定义样式 */
+        body {
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            background-color: #f8f9fa; /* 淡灰色背景 */
+            color: #333;
+            overflow-x: hidden; /* 防止水平滚动 */
+        }
+
+        /* 科技感高亮色 - 蓝色 */
+        .highlight-blue {
+            color: #007bff;
+            position: relative;
+            display: inline-block;
+        }
+        .highlight-blue::before {
+            content: '';
+            position: absolute;
+            left: -5px;
+            right: -5px;
+            bottom: 0;
+            height: 40%;
+            background: linear-gradient(to top, rgba(0, 123, 255, 0.3), rgba(0, 123, 255, 0));
+            z-index: -1;
+            border-radius: 4px;
+        }
+
+        /* 科技感高亮色 - 绿色 */
+        .highlight-green {
+            color: #28a745;
+            position: relative;
+            display: inline-block;
+        }
+        .highlight-green::before {
+            content: '';
+            position: absolute;
+            left: -5px;
+            right: -5px;
+            bottom: 0;
+            height: 40%;
+            background: linear-gradient(to top, rgba(40, 167, 69, 0.3), rgba(40, 167, 69, 0));
+            z-index: -1;
+            border-radius: 4px;
+        }
+
+        /* 打字机效果 */
+        .typewriter h1 {
+            overflow: hidden; /* 确保文字在边界内 */
+            border-right: .15em solid #007bff; /* 光标效果 */
+            white-space: nowrap; /* 保持文字在一行 */
+            margin: 0 auto; /* 水平居中 */
+            letter-spacing: .1em; /* 字符间距 */
+            animation:
+                typing 3.5s steps(40, end),
+                blink-caret .75s step-end infinite;
+        }
+
+        /* 打字机动画 */
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        /* 光标闪烁动画 */
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #007bff; }
+        }
+
+        /* 超大视觉元素 */
+        .giant-element {
+            font-size: 8rem; /* 调整大小 */
+            font-weight: 700;
+            line-height: 1;
+            color: rgba(0, 123, 255, 0.1); /* 淡化颜色 */
+            position: absolute;
+            z-index: 0;
+            user-select: none; /* 防止选中 */
+        }
+
+        /* 标题中英文混排 */
+        .mixed-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .mixed-title .en {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #6c757d; /* 灰色 */
+            margin-left: 0.5rem;
+            vertical-align: middle;
+        }
+
+        /* 简洁勾线图形化 (示例：用边框模拟) */
+        .line-graphic {
+            border: 2px solid #007bff;
+            border-radius: 8px;
+            padding: 1rem;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(0, 123, 255, 0.05));
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        /* 卡片样式 */
+        .info-card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden; /* 确保内容不溢出 */
+            position: relative; /* 为绝对定位的元素提供基准 */
+        }
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 返回顶部按钮 */
+        #back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: none; /* 默认隐藏 */
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s, opacity 0.3s;
+            z-index: 1000;
+        }
+        #back-to-top:hover {
+            background-color: #0056b3;
+        }
+
+        /* 滚动动画基础样式 */
+        [data-aos] {
+            opacity: 0;
+            transition-property: transform, opacity;
+        }
+        [data-aos="fade-up"] {
+            transform: translateY(50px);
+        }
+        [data-aos="fade-in"] {
+            transform: scale(0.95);
+        }
+        [data-aos].aos-animate {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* 模拟 Apple 滚动效果 - 粘性定位和透明度变化 */
+        .sticky-section {
+            position: sticky;
+            top: 10vh; /* 调整粘性定位的顶部距离 */
+            min-height: 80vh; /* 确保有足够的滚动空间 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .scroll-content {
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        /* 图表容器 */
+        .chart-container {
+            position: relative;
+            height: 300px; /* 调整图表高度 */
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        /* 页脚 */
+        footer {
+            background-color: #343a40;
+            color: #adb5bd;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <nav class="bg-white shadow-sm sticky top-0 z-50 py-4">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <div class="text-xl font-bold text-blue-600">强瑞技术 | QRTECH</div>
+            <div>
+                <a href="#financials" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">财务亮点</a>
+                <a href="#segments" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">业务板块</a>
+                <a href="#market" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">行业洞察</a>
+                <a href="#outlook" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">投资展望</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="h-screen flex items-center justify-center text-center bg-gradient-to-br from-blue-50 via-white to-blue-100 relative overflow-hidden px-6">
+        <div class="giant-element top-1/4 left-10 opacity-50" data-aos="fade-right" data-aos-delay="500">Q</div>
+        <div class="giant-element bottom-1/4 right-10 opacity-50" data-aos="fade-left" data-aos-delay="500">R</div>
+
+        <div class="z-10">
+            <div class="typewriter mb-6">
+                <h1 class="text-4xl md:text-6xl font-bold text-gray-800 mx-auto" style="width: fit-content; max-width: 90%;">强瑞技术 | 智造驱动未来</h1>
+            </div>
+            <p class="text-lg md:text-xl text-gray-600 mb-8 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="1000">
+                基于 2024 年财报与 2025 年 Q1 财报的深度投资分析
+            </p>
+            <div class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-8" data-aos="fade-up" data-aos-delay="1500">
+                <div class="text-center">
+                    <div class="text-5xl font-bold highlight-blue">67.1%</div>
+                    <div class="text-sm text-gray-500 mt-1">2024 营收增长 YoY</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-5xl font-bold highlight-green">184.3%</div>
+                    <div class="text-sm text-gray-500 mt-1">2025 Q1 净利增长 YoY</div>
+                </div>
+                 <div class="text-center">
+                    <div class="text-5xl font-bold highlight-blue">357%</div>
+                    <div class="text-sm text-gray-500 mt-1">2024 散热器业务增长 YoY</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-6 text-center">
+             <h2 class="mixed-title mb-4" data-aos="fade-up">
+                公司概览 <span class="en">COMPANY OVERVIEW</span>
+            </h2>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                深圳市强瑞精密技术股份有限公司（股票代码：301128）专注于工装、检测治具及自动化设备的研发、生产和销售，产品广泛应用于移动终端、智能汽车、AI服务器等前沿领域，致力于为客户提供高精度、高效率的智能制造解决方案。
+            </p>
+        </div>
+    </section>
+
+    <section id="financials" class="py-16 md:py-24 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h2 class="mixed-title text-center mb-12" data-aos="fade-up">
+                财务亮点 <span class="en">FINANCIAL HIGHLIGHTS</span>
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="info-card" data-aos="fade-up">
+                    <h3 class="text-xl font-bold mb-3">2024 年度业绩</h3>
+                    <p class="text-3xl font-bold highlight-blue mb-2">¥11.27 亿</p>
+                    <p class="text-gray-600 mb-4">营业收入 (+67.1% YoY)</p>
+                    <p class="text-3xl font-bold highlight-green mb-2">¥0.98 亿</p>
+                    <p class="text-gray-600 mb-4">归母净利润 (+75.0% YoY)</p>
+                     <p class="text-lg font-semibold text-gray-700 mb-2">毛利率: <span class="text-blue-600">30.31%</span></p>
+                    <p class="text-gray-500 text-sm">多元化战略初见成效，新业务驱动增长。</p>
+                </div>
+                <div class="info-card" data-aos="fade-up" data-aos-delay="100">
+                    <h3 class="text-xl font-bold mb-3">2025 Q1 业绩</h3>
+                    <p class="text-3xl font-bold highlight-blue mb-2">¥3.17 亿</p>
+                    <p class="text-gray-600 mb-4">营业收入 (+111.3% YoY)</p>
+                    <p class="text-3xl font-bold highlight-green mb-2">¥0.12 亿</p>
+                    <p class="text-gray-600 mb-4">归母净利润 (+184.3% YoY)</p>
+                    <p class="text-lg font-semibold text-gray-700 mb-2">扣非净利: <span class="text-green-600">+558.0%</span></p>
+                    <p class="text-gray-500 text-sm">增长势头强劲，盈利能力显著提升。</p>
+                </div>
+                <div class="info-card lg:col-span-1" data-aos="fade-up" data-aos-delay="200">
+                    <h3 class="text-xl font-bold mb-3">增长趋势 (YoY)</h3>
+                    <div class="chart-container">
+                        <canvas id="growthChart"></canvas>
+                    </div>
+                    <p class="text-gray-500 text-sm mt-4">营收与净利润同比高速增长。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="segments" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="mixed-title text-center mb-12" data-aos="fade-up">
+                业务板块分析 <span class="en">SEGMENT PERFORMANCE (2024)</span>
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                <div class="info-card" data-aos="fade-up">
+                    <h3 class="text-xl font-bold mb-3">营收构成 (按产品)</h3>
+                    <div class="chart-container" style="height: 250px;">
+                        <canvas id="revenueByProductChart"></canvas>
+                    </div>
+                     <ul class="text-sm text-gray-600 mt-4 space-y-1">
+                        <li>治具: 45.3%</li>
+                        <li>零部件及其他: 18.8%</li>
+                        <li>设备: 18.7%</li>
+                        <li>散热器: 17.3%</li>
+                    </ul>
+                </div>
+                <div class="info-card" data-aos="fade-up" data-aos-delay="100">
+                    <h3 class="text-xl font-bold mb-3">营收构成 (按应用领域)</h3>
+                     <div class="chart-container" style="height: 250px;">
+                        <canvas id="revenueByApplicationChart"></canvas>
+                    </div>
+                    <ul class="text-sm text-gray-600 mt-4 space-y-1">
+                        <li>移动终端: ~60% <span class="text-green-600">(+30% YoY)</span></li>
+                        <li>智能汽车: ~11% <span class="text-green-600 font-bold">(+182% YoY)</span></li>
+                        <li>AI 服务器: ~6% <span class="text-green-600 font-bold">(+135% YoY)</span></li>
+                        <li>散热器: ~17% <span class="text-green-600 font-bold">(+357% YoY)</span></li>
+                        <li>其他: ~6%</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="space-y-8">
+                <div class="info-card line-graphic" data-aos="fade-up">
+                    <h4 class="text-lg font-semibold mb-2">移动终端 <span class="text-sm text-gray-500">Mobile Terminals</span></h4>
+                    <p class="text-gray-600">作为传统优势领域，受益于市场复苏和折叠屏等创新，保持<span class="highlight-green">稳健增长 (+30%)</span>。虽然占比有所下降，但仍是营收基石。未来需关注 AI 手机带来的新机遇。</p>
+                </div>
+                <div class="info-card line-graphic" data-aos="fade-up">
+                    <h4 class="text-lg font-semibold mb-2">智能汽车 <span class="text-sm text-gray-500">Smart Cars</span></h4>
+                    <p class="text-gray-600">实现<span class="highlight-green font-bold">爆发式增长 (+182%)</span>，主要得益于智驾系统（如比亚迪“天神之眼”）检测线体的放量。随着智驾渗透率提升，该领域有望成为<span class="highlight-blue">核心增长引擎</span>。</p>
+                </div>
+                <div class="info-card line-graphic" data-aos="fade-up">
+                    <h4 class="text-lg font-semibold mb-2">AI 服务器 <span class="text-sm text-gray-500">AI Servers</span></h4>
+                    <p class="text-gray-600">营收<span class="highlight-green font-bold">高速增长 (+135%)</span>。液冷测试设备和散热器产品双轮驱动，紧抓 AI 算力发展和液冷散热趋势。与华为等核心客户合作紧密，<span class="highlight-blue">增长潜力巨大</span>。</p>
+                </div>
+                 <div class="info-card line-graphic" data-aos="fade-up">
+                    <h4 class="text-lg font-semibold mb-2">散热器业务 <span class="text-sm text-gray-500">Heat Sink Business</span></h4>
+                    <p class="text-gray-600">通过子公司（三烨科技、维玺温控）贡献显著，营收<span class="highlight-green font-bold">激增 (+357%)</span>。主要受益于通信、AI 服务器客户出货量大增。风冷与液冷产品线完善，<span class="highlight-blue">协同效应明显</span>。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+     <section id="market" class="py-16 md:py-24 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h2 class="mixed-title text-center mb-12" data-aos="fade-up">
+                行业洞察 <span class="en">MARKET INSIGHTS</span>
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="info-card" data-aos="fade-up">
+                    <h3 class="text-xl font-bold mb-3">智能汽车浪潮</h3>
+                    <p class="text-gray-600">智能驾驶渗透率快速提升（预计2025年L2达50%），市场规模高速增长（预计2025年达4200亿元）。政策大力支持 L3/L4 级自动驾驶发展。强瑞技术在智驾测试领域<span class="highlight-blue">卡位精准</span>，直接受益。</p>
+                     <svg class="w-full h-20 mt-4 text-blue-200" fill="none" stroke="currentColor" viewBox="0 0 100 20" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M5 15 Q 25 5, 45 15 T 85 15"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="0.5" d="M10 18 Q 30 8, 50 18 T 90 18" class="opacity-50"></path></svg>
+                </div>
+                <div class="info-card" data-aos="fade-up" data-aos-delay="100">
+                    <h3 class="text-xl font-bold mb-3">AI 服务器 & 液冷趋势</h3>
+                    <p class="text-gray-600">全球 AI 服务器市场持续扩张（预计2028年达2227亿美元）。高功率芯片推动液冷散热成为趋势（预计2025年国内超50%数据中心应用液冷）。强瑞技术在液冷测试和散热器方面具备<span class="highlight-blue">先发优势</span>。</p>
+                     <svg class="w-full h-20 mt-4 text-green-200" fill="none" stroke="currentColor" viewBox="0 0 100 20" xmlns="http://www.w3.org/2000/svg"><polyline points="5,15 25,5 45,10 65,2 85,12 95,8" stroke-width="1"></polyline><polyline points="5,18 25,8 45,13 65,5 85,15 95,11" stroke-width="0.5" class="opacity-50"></polyline></svg>
+                </div>
+                <div class="info-card" data-aos="fade-up" data-aos-delay="200">
+                    <h3 class="text-xl font-bold mb-3">智能终端复苏与创新</h3>
+                    <p class="text-gray-600">全球智能手机市场在经历两年下跌后迎来复苏。AI、折叠屏等技术创新驱动换机需求。强瑞技术在该领域拥有<span class="highlight-blue">稳固基础</span>，并能受益于技术升级带来的产线更新需求。</p>
+                    <svg class="w-full h-20 mt-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 100 20" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="5" width="15" height="10" rx="2" stroke-width="1"></rect><rect x="35" y="8" width="15" height="7" rx="2" stroke-width="1"></rect><rect x="60" y="3" width="15" height="12" rx="2" stroke-width="1"></rect></svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="outlook" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-6">
+             <h2 class="mixed-title text-center mb-12" data-aos="fade-up">
+                投资展望 <span class="en">INVESTMENT OUTLOOK</span>
+            </h2>
+            <div class="bg-gradient-to-r from-blue-50 to-green-50 p-8 rounded-lg shadow-lg" data-aos="fade-in">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h4 class="text-xl font-semibold text-gray-800 mb-3">投资亮点 (Strengths)</h4>
+                        <ul class="list-disc list-inside text-gray-700 space-y-2">
+                            <li><span class="font-bold text-green-600">增长强劲:</span> 2024 及 2025 Q1 业绩高速增长，盈利能力提升显著。</li>
+                            <li><span class="font-bold text-green-600">多元化成功:</span> 智能汽车、AI 服务器、散热器业务成为重要增长极，降低单一市场依赖。</li>
+                            <li><span class="font-bold text-green-600">赛道优质:</span> 深耕智能汽车、AI 服务器等高景气度行业，市场空间广阔。</li>
+                            <li><span class="font-bold text-green-600">技术积累:</span> 在精密制造、自动化测试、散热等领域具备核心竞争力。</li>
+                             <li><span class="font-bold text-green-600">Q1势头良好:</span> 2025年第一季度业绩加速增长，显示出良好发展态势。</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-semibold text-gray-800 mb-3">风险提示 (Risks)</h4>
+                        <ul class="list-disc list-inside text-gray-700 space-y-2">
+                            <li><span class="font-bold text-red-600">客户集中度:</span> 对华为、比亚迪等大客户依赖度较高，存在一定风险。</li>
+                            <li><span class="font-bold text-red-600">毛利率波动:</span> 新业务拓展和市场竞争可能带来毛利率压力。</li>
+                            <li><span class="font-bold text-red-600">市场依赖:</span> 业绩增长依赖下游智能汽车、AI 服务器等市场的持续繁荣。</li>
+                            <li><span class="font-bold text-red-600">新业务整合:</span> 外延并购（如旭益达电机）的整合与协同效应存在不确定性。</li>
+                            <li><span class="font-bold text-red-600">宏观经济影响:</span> 整体经济环境变化可能影响下游需求。</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mt-8 pt-6 border-t border-gray-300">
+                     <h4 class="text-xl font-semibold text-gray-800 mb-3">综合观点 (Overall View)</h4>
+                     <p class="text-gray-700">
+                        强瑞技术凭借成功的战略转型，在保持移动终端业务稳健的同时，抓住了智能汽车和 AI 服务器等新兴市场的高速增长机遇，展现出强劲的增长潜力和良好的发展前景。2025年Q1的亮眼业绩进一步验证了其增长逻辑。
+                        <span class="highlight-blue">建议投资者关注</span>其在新兴市场的持续拓展能力、核心客户的订单情况以及毛利率的稳定性。公司未来在人形机器人、半导体设备等新领域的布局也值得期待。
+                        总体而言，强瑞技术是一家<span class="highlight-green">具备成长潜力的公司</span>，但投资者也需<span class="text-red-600">警惕相关风险</span>。
+                     </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-8 mt-16 text-center">
+        <div class="container mx-auto px-6">
+            <p>友情提示：本页内容仅作参考</p>
+            <p class="text-sm mt-2">&copy; 2025 强瑞技术投资分析. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <button id="back-to-top" title="返回顶部">
+        &uarr; </button>
+
+    <script>
+        // AOS 初始化
+        AOS.init({
+            duration: 800, // 动画持续时间
+            once: false, // 滚动时重复触发动画
+        });
+
+        // 返回顶部按钮逻辑
+        const backToTopButton = document.getElementById('back-to-top');
+        window.onscroll = function() {
+            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+                backToTopButton.style.display = "block";
+            } else {
+                backToTopButton.style.display = "none";
+            }
+        };
+        backToTopButton.onclick = function() {
+            document.body.scrollTop = 0; // For Safari
+            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        };
+
+        // Chart.js 图表绘制
+        document.addEventListener('DOMContentLoaded', () => {
+            // 增长趋势图表
+            const growthCtx = document.getElementById('growthChart')?.getContext('2d');
+            if (growthCtx) {
+                new Chart(growthCtx, {
+                    type: 'line',
+                    data: {
+                        labels: ['2023', '2024', '2025 Q1 (YoY)'],
+                        datasets: [{
+                            label: '营收增长率 (%)',
+                            data: [0, 67.1, 111.3], // 假设2023为基准0
+                            borderColor: 'rgba(0, 123, 255, 1)',
+                            backgroundColor: 'rgba(0, 123, 255, 0.1)',
+                            tension: 0.1,
+                            fill: true,
+                            yAxisID: 'y',
+                        }, {
+                            label: '归母净利增长率 (%)',
+                            data: [0, 75.0, 184.3], // 假设2023为基准0
+                            borderColor: 'rgba(40, 167, 69, 1)',
+                            backgroundColor: 'rgba(40, 167, 69, 0.1)',
+                            tension: 0.1,
+                            fill: true,
+                            yAxisID: 'y',
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: '同比增长率 (%)'
+                                }
+                            }
+                        },
+                        plugins: {
+                            tooltip: {
+                                mode: 'index',
+                                intersect: false,
+                            },
+                            legend: {
+                                position: 'bottom',
+                            }
+                        }
+                    }
+                });
+            }
+
+            // 营收构成图表 (按产品)
+            const productCtx = document.getElementById('revenueByProductChart')?.getContext('2d');
+             if (productCtx) {
+                new Chart(productCtx, {
+                    type: 'doughnut', // 或 'pie'
+                    data: {
+                        labels: ['治具', '零部件及其他', '设备', '散热器'],
+                        datasets: [{
+                            label: '2024 营收占比',
+                            data: [45.3, 18.8, 18.7, 17.3],
+                            backgroundColor: [
+                                'rgba(0, 123, 255, 0.7)',
+                                'rgba(40, 167, 69, 0.7)',
+                                'rgba(255, 193, 7, 0.7)',
+                                'rgba(220, 53, 69, 0.7)',
+                            ],
+                            borderColor: [
+                                'rgba(0, 123, 255, 1)',
+                                'rgba(40, 167, 69, 1)',
+                                'rgba(255, 193, 7, 1)',
+                                'rgba(220, 53, 69, 1)',
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                         plugins: {
+                            legend: {
+                                position: 'bottom',
+                                labels: {
+                                    boxWidth: 12,
+                                    padding: 15
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+             // 营收构成图表 (按应用领域)
+            const applicationCtx = document.getElementById('revenueByApplicationChart')?.getContext('2d');
+             if (applicationCtx) {
+                new Chart(applicationCtx, {
+                    type: 'pie', // 或 'doughnut'
+                    data: {
+                        labels: ['移动终端', '智能汽车', 'AI 服务器', '散热器', '其他'],
+                        datasets: [{
+                            label: '2024 营收占比 (估算)',
+                            data: [60, 11, 6, 17, 6], // 基于财报估算
+                            backgroundColor: [
+                                'rgba(0, 123, 255, 0.7)',
+                                'rgba(255, 193, 7, 0.7)',
+                                'rgba(23, 162, 184, 0.7)',
+                                'rgba(220, 53, 69, 0.7)',
+                                'rgba(108, 117, 125, 0.7)'
+                            ],
+                             borderColor: [
+                                'rgba(0, 123, 255, 1)',
+                                'rgba(255, 193, 7, 1)',
+                                'rgba(23, 162, 184, 1)',
+                                'rgba(220, 53, 69, 1)',
+                                'rgba(108, 117, 125, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                         plugins: {
+                            legend: {
+                                position: 'bottom',
+                                 labels: {
+                                    boxWidth: 12,
+                                    padding: 15
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+        });
+
+        // 简单的滚动透明度效果 (替代复杂 Apple 效果)
+        const scrollSections = document.querySelectorAll('.sticky-section');
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0] // 触发阈值
+        };
+
+        const observerCallback = (entries, observer) => {
+            entries.forEach(entry => {
+                const targetContent = entry.target.querySelector('.scroll-content');
+                if (targetContent) {
+                    // 根据进入视口的比例调整透明度
+                    targetContent.style.opacity = Math.max(0.1, entry.intersectionRatio); // 最低透明度 0.1
+                }
+            });
+        };
+
+        const intersectionObserver = new IntersectionObserver(observerCallback, observerOptions);
+        scrollSections.forEach(section => {
+            intersectionObserver.observe(section);
+        });
+
+    </script>
+</body>
+</html>
