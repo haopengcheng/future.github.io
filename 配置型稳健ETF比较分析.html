@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ETF 产品比较分析 (ETF Product Comparison)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Noto+Sans+SC:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            background-color: #0a0f1f; /* Dark tech background */
+            color: #e0e0e0;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+
+        .font-noto-sans-sc {
+            font-family: 'Noto Sans SC', sans-serif;
+        }
+
+        .hero-section {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg-shape {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 120vw; /* Large visual element */
+            height: 120vw;
+            max-width: 1500px;
+            max-height: 1500px;
+            background: radial-gradient(circle, rgba(23, 87, 209, 0.2) 0%, rgba(23, 87, 209, 0) 60%);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            animation: pulse-bg 10s infinite ease-in-out;
+        }
+
+        @keyframes pulse-bg {
+            0% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.7; }
+            50% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
+            100% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.7; }
+        }
+
+        .typewriter-text {
+            font-size: 5vw; /* Responsive large font */
+            font-weight: 900;
+            color: #ffffff;
+            letter-spacing: 2px;
+            border-right: .15em solid #00d1ff; /* Bright accent for cursor */
+            white-space: nowrap;
+            overflow: hidden;
+            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+            z-index: 1;
+        }
+
+        @media (max-width: 768px) {
+            .typewriter-text {
+                font-size: 8vw;
+            }
+        }
+         @media (min-width: 1200px) {
+            .typewriter-text {
+                font-size: 70px; /* Max font size */
+            }
+        }
+
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #00d1ff; }
+        }
+
+        .section-title {
+            margin-bottom: 2rem; /* More space for titles */
+            text-align: center;
+        }
+
+        .section-title .chinese-title {
+            font-size: 2.8rem; /* Larger Chinese title */
+            font-weight: 900;
+            color: #ffffff;
+            display: block;
+        }
+
+        .section-title .english-subtitle {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #00d1ff; /* Accent color */
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 0.25rem;
+            display: block;
+        }
+        
+        @media (max-width: 768px) {
+            .section-title .chinese-title {
+                font-size: 2rem;
+            }
+            .section-title .english-subtitle {
+                font-size: 0.8rem;
+            }
+        }
+
+        .content-section {
+            padding: 4rem 2rem; /* Increased padding */
+            max-width: 1200px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .content-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .etf-card {
+            background-color: rgba(21, 28, 58, 0.6); /* Semi-transparent card bg */
+            border: 1px solid rgba(0, 209, 255, 0.3); /* Accent border */
+            border-radius: 16px; /* More rounded corners */
+            padding: 2rem; /* Increased padding */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            backdrop-filter: blur(10px); /* Frosted glass effect */
+        }
+
+        .etf-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 209, 255, 0.2); /* Brighter glow on hover */
+        }
+
+        .etf-card h3 {
+            font-size: 1.8rem; /* Larger card title */
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+        .etf-card .etf-code {
+            font-size: 0.9rem;
+            color: #00d1ff;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .metric {
+            margin-bottom: 1rem;
+        }
+        .metric-label {
+            font-size: 0.9rem;
+            color: #a0a0a0;
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+        .metric-value {
+            font-size: 1.5rem; /* Larger metric value */
+            font-weight: 700;
+            color: #ffffff;
+        }
+        .metric-value.positive { color: #00ffaa; } /* Green for positive returns */
+        .metric-value.negative { color: #ff4d4d; } /* Red for negative drawdown */
+
+        .holdings-list {
+            list-style: none;
+            padding-left: 0;
+            font-size: 0.9rem;
+        }
+        .holdings-list li {
+            padding: 0.3rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .holdings-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* Simple Bar Chart Placeholder Styling */
+        .chart-placeholder {
+            background-color: rgba(255,255,255,0.05);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            text-align: center;
+            color: #a0a0a0;
+            border: 1px dashed rgba(0, 209, 255, 0.3);
+        }
+        .bar-chart-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-end;
+            height: 200px; /* Fixed height for chart */
+            padding: 10px;
+            border: 1px solid rgba(0, 209, 255, 0.2);
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+        .bar {
+            width: 15%; /* Width of each bar */
+            background-color: #00d1ff; /* Accent color for bars */
+            opacity: 0.7;
+            transition: height 0.5s ease-out;
+            position: relative;
+            border-radius: 4px 4px 0 0;
+        }
+        .bar:hover {
+            opacity: 1;
+        }
+        .bar-label {
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.8em;
+            color: #e0e0e0;
+            white-space: nowrap;
+        }
+         .bar-value {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.8em;
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        /* Line graphic element */
+        .line-divider {
+            height: 2px;
+            width: 100px;
+            background: linear-gradient(90deg, rgba(0,209,255,0), rgba(0,209,255,1) 50%, rgba(0,209,255,0) 100%);
+            margin: 3rem auto; /* Increased margin */
+            opacity: 0.7;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem; /* Increased margin */
+            font-size: 0.8rem;
+            color: #a0a0a0;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        #backToTopBtn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: rgba(0, 209, 255, 0.8); /* Accent color with opacity */
+            color: white;
+            border: none;
+            border-radius: 50%; /* Circular button */
+            width: 50px;
+            height: 50px;
+            font-size: 24px; /* Larger icon */
+            cursor: pointer;
+            display: none; /* Hidden by default */
+            z-index: 1000;
+            transition: background-color 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 209, 255, 0.3);
+        }
+        #backToTopBtn:hover {
+            background-color: #00d1ff; /* Solid accent on hover */
+            transform: scale(1.1);
+        }
+
+        /* Highlighting effect with transparency gradient */
+        .highlight-gradient {
+            position: relative;
+            padding: 0.5rem 1rem;
+        }
+        .highlight-gradient::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            background: linear-gradient(to right, rgba(0, 209, 255, 0.3), rgba(0, 209, 255, 0.05));
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        .content-section.visible .highlight-gradient::before {
+            opacity: 1;
+        }
+
+        /* For scroll animation debugging */
+        /* .content-section { border: 1px solid red; } */
+
+    </style>
+</head>
+<body>
+
+    <section class="hero-section">
+        <div class="hero-bg-shape"></div>
+        <h1 class="typewriter-text font-noto-sans-sc">ETF智能对比分析</h1>
+        <p class="text-xl md:text-2xl text-gray-300 mt-8 z-10 animate-fadeInUp" style="animation-delay: 3.6s;">
+            深入洞察 <span class="text-[#00d1ff] font-bold">关键指标</span>，优化您的 <span class="text-[#00d1ff] font-bold">投资决策</span>
+            <br>Deep dive into <span class="text-[#00d1ff] font-bold">key metrics</span>, optimize your <span class="text-[#00d1ff] font-bold">investment decisions</span>.
+        </p>
+        <div class="absolute bottom-10 text-3xl text-[#00d1ff] animate-bounce z-10">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 5.25 7.5 7.5 7.5-7.5M4.5 12l7.5 7.5 7.5-7.5" />
+            </svg>          
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="section-title">
+            <span class="chinese-title font-noto-sans-sc">产品总览</span>
+            <span class="english-subtitle">ETF Overview</span>
+        </div>
+        <p class="text-lg text-center text-gray-300 max-w-3xl mx-auto">
+            本页面旨在对三款热门ETF产品：<strong class="text-[#00d1ff]">159339 (科技创新ETF)</strong>、<strong class="text-[#00d1ff]">159201 (稳健增长ETF)</strong> 及 <strong class="text-[#00d1ff]">513530 (全球视野ETF)</strong> 进行多维度对比分析，涵盖持仓、规模、收益与风险控制，助您做出更明智的投资选择。
+        </p>
+        <div class="line-divider"></div>
+    </section>
+
+    <section class="content-section">
+        <div class="section-title">
+            <span class="chinese-title font-noto-sans-sc">核心指标对比</span>
+            <span class="english-subtitle">Key Metrics Comparison</span>
+        </div>
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="etf-card">
+                <h3 class="font-noto-sans-sc">科技创新ETF</h3>
+                <span class="etf-code">CODE: 159339</span>
+                <div class="metric">
+                    <span class="metric-label">基金规模 (AUM)</span>
+                    <span class="metric-value">¥150 亿</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">近一年收益率 (1Y Return)</span>
+                    <span class="metric-value positive">+25.00%</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">最大回撤 (Max Drawdown)</span>
+                    <span class="metric-value negative">-12.00%</span>
+                </div>
+                <div class="mt-4">
+                    <span class="metric-label">主要持仓 (Top Holdings):</span>
+                    <ul class="holdings-list">
+                        <li>半导体龙头 (Semiconductor Leader): 20%</li>
+                        <li>人工智能方案 (AI Solutions): 15%</li>
+                        <li>云计算服务 (Cloud Computing): 12%</li>
+                        <li>新能源车技术 (EV Tech): 10%</li>
+                        <li>生物科技 (Biotech): 8%</li>
+                    </ul>
+                </div>
+                <div class="chart-placeholder mt-6">
+                    <p>持仓分布图 (Holdings Pie Chart Placeholder)</p>
+                    <svg viewBox="0 0 100 100" class="w-32 h-32 mx-auto mt-2">
+                        <circle cx="50" cy="50" r="40" fill="transparent" stroke="#00d1ff" stroke-width="10" stroke-dasharray="125.66 251.32" stroke-dashoffset="0"></circle> <circle cx="50" cy="50" r="40" fill="transparent" stroke="#33ffcc" stroke-width="10" stroke-dasharray="94.245 251.32" stroke-dashoffset="-125.66"></circle> <circle cx="50" cy="50" r="40" fill="transparent" stroke="#66ccff" stroke-width="10" stroke-dasharray="75.396 251.32" stroke-dashoffset="-219.905"></circle> <text x="50" y="55" text-anchor="middle" fill="#e0e0e0" font-size="10">科技</text>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="etf-card">
+                <h3 class="font-noto-sans-sc">稳健增长ETF</h3>
+                <span class="etf-code">CODE: 159201</span>
+                <div class="metric">
+                    <span class="metric-label">基金规模 (AUM)</span>
+                    <span class="metric-value">¥250 亿</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">近一年收益率 (1Y Return)</span>
+                    <span class="metric-value positive">+10.00%</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">最大回撤 (Max Drawdown)</span>
+                    <span class="metric-value negative">-5.00%</span>
+                </div>
+                 <div class="mt-4">
+                    <span class="metric-label">主要持仓 (Top Holdings):</span>
+                    <ul class="holdings-list">
+                        <li>大型银行 (Major Bank): 18%</li>
+                        <li>消费品龙头 (Leading Consumer Goods): 16%</li>
+                        <li>医疗保健巨头 (Healthcare Giant): 14%</li>
+                        <li>公用事业 (Utility Provider): 11%</li>
+                        <li>房地产信托 (REIT): 10%</li>
+                    </ul>
+                </div>
+                <div class="chart-placeholder mt-6">
+                    <p>持仓分布图 (Holdings Pie Chart Placeholder)</p>
+                     <svg viewBox="0 0 100 100" class="w-32 h-32 mx-auto mt-2">
+                        <circle cx="50" cy="50" r="40" fill="transparent" stroke="#00d1ff" stroke-width="10" stroke-dasharray="113.094 251.32" stroke-dashoffset="0"></circle> 
+                        <circle cx="50" cy="50" r="40" fill="transparent" stroke="#33ffcc" stroke-width="10" stroke-dasharray="100.528 251.32" stroke-dashoffset="-113.094"></circle> 
+                        <circle cx="50" cy="50" r="40" fill="transparent" stroke="#66ccff" stroke-width="10" stroke-dasharray="87.962 251.32" stroke-dashoffset="-213.622"></circle> 
+                        <text x="50" y="55" text-anchor="middle" fill="#e0e0e0" font-size="10">稳健</text>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="etf-card">
+                <h3 class="font-noto-sans-sc">全球视野ETF</h3>
+                <span class="etf-code">CODE: 513530</span>
+                <div class="metric">
+                    <span class="metric-label">基金规模 (AUM)</span>
+                    <span class="metric-value">¥100 亿</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">近一年收益率 (1Y Return)</span>
+                    <span class="metric-value positive">+18.00%</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">最大回撤 (Max Drawdown)</span>
+                    <span class="metric-value negative">-8.00%</span>
+                </div>
+                 <div class="mt-4">
+                    <span class="metric-label">主要持仓 (Top Holdings):</span>
+                    <ul class="holdings-list">
+                        <li>美国科技巨头 (US Tech Giant): 15%</li>
+                        <li>欧洲工业 (European Industrial): 12%</li>
+                        <li>日本制造 (Japanese Manufacturer): 10%</li>
+                        <li>新兴市场消费 (Emerging Market Consumer): 9%</li>
+                        <li>全球医疗 (Global Healthcare): 8%</li>
+                    </ul>
+                </div>
+                <div class="chart-placeholder mt-6">
+                    <p>持仓分布图 (Holdings Pie Chart Placeholder)</p>
+                     <svg viewBox="0 0 100 100" class="w-32 h-32 mx-auto mt-2">
+                        <circle cx="50" cy="50" r="40" fill="transparent" stroke="#00d1ff" stroke-width="10" stroke-dasharray="94.245 251.32" stroke-dashoffset="0"></circle> 
+                        <circle cx="50" cy="50" r="40" fill="transparent" stroke="#33ffcc" stroke-width="10" stroke-dasharray="75.396 251.32" stroke-dashoffset="-94.245"></circle> 
+                        <circle cx="50" cy="50" r="40" fill="transparent" stroke="#66ccff" stroke-width="10" stroke-dasharray="62.83 251.32" stroke-dashoffset="-169.641"></circle> 
+                        <text x="50" y="55" text-anchor="middle" fill="#e0e0e0" font-size="10">全球</text>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="section-title">
+            <span class="chinese-title font-noto-sans-sc">深度剖析</span>
+            <span class="english-subtitle">In-depth Analysis</span>
+        </div>
+        
+        <div class="highlight-gradient p-6 rounded-lg mb-12 bg-slate-800/30">
+            <h4 class="text-2xl font-bold text-[#00d1ff] mb-3 font-noto-sans-sc">持仓组成 <span class="text-sm text-gray-400 uppercase">Holdings Breakdown</span></h4>
+            <p class="text-gray-300 mb-4">
+                科技创新ETF (159339) 高度集中于高成长性的科技板块，如半导体与人工智能，预期波动较大，但潜力也较高。
+                稳健增长ETF (159201) 则分散投资于金融、消费、医疗等传统蓝筹领域，追求更平稳的资本增值。
+                全球视野ETF (513530) 提供跨国界、跨市场的多元化配置，有助于分散单一市场风险，捕捉全球增长机会。
+            </p>
+            <div class="chart-placeholder">模拟持仓行业对比图 (Sector Allocation Comparison - Placeholder)</div>
+        </div>
+
+        <div class="highlight-gradient p-6 rounded-lg mb-12 bg-slate-800/30">
+            <h4 class="text-2xl font-bold text-[#00d1ff] mb-3 font-noto-sans-sc">业绩与回撤 <span class="text-sm text-gray-400 uppercase">Performance & Drawdown</span></h4>
+            <p class="text-gray-300 mb-4">
+                从近一年数据看，科技创新ETF (159339) 收益率领先，但其最大回撤也相对较高，显示其高风险高回报特性。
+                稳健增长ETF (159201) 收益率较为温和，回撤控制表现最佳，适合风险厌恶型投资者。
+                全球视野ETF (513530) 收益与风险水平均处于中等，体现了全球分散配置的平衡效果。
+            </p>
+            <div class="bar-chart-container" id="performanceChart">
+                </div>
+            <div class="flex justify-around mt-2 text-xs text-gray-400">
+                <span>159339 (收益)</span>
+                <span>159201 (收益)</span>
+                <span>513530 (收益)</span>
+            </div>
+        </div>
+        <div class="line-divider"></div>
+    </section>
+
+    <section class="content-section">
+        <div class="section-title">
+            <span class="chinese-title font-noto-sans-sc">投资建议</span>
+            <span class="english-subtitle">Investment Suggestions</span>
+        </div>
+        <div class="bg-slate-800/50 border border-sky-500/30 p-8 rounded-xl shadow-2xl">
+            <ul class="list-disc list-inside space-y-4 text-gray-300 text-lg">
+                <li>
+                    <strong class="text-[#00d1ff]">追求高成长、能承受较高波动的投资者：</strong>可重点关注 <strong class="text-white">科技创新ETF (159339)</strong>。其聚焦于前沿科技领域，长期增长潜力较大，但需注意短期市场波动风险。
+                </li>
+                <li>
+                    <strong class="text-[#00d1ff]">偏好稳健、注重风险控制的投资者：</strong><strong class="text-white">稳健增长ETF (159201)</strong> 或是更佳选择。其持仓多为成熟行业龙头，历史回撤较小，适合作为核心配置。
+                </li>
+                <li>
+                    <strong class="text-[#00d1ff]">希望分散风险、捕捉全球机遇的投资者：</strong>可以考虑 <strong class="text-white">全球视野ETF (513530)</strong>。通过投资于不同国家和地区的资产，能够有效降低单一市场依赖，分享全球经济发展红利。
+                </li>
+                <li>
+                    <strong class="text-[#00d1ff]">组合配置建议：</strong>投资者也可根据自身风险偏好，将不同特点的ETF进行组合配置，例如以稳健增长ETF为核心，搭配一定比例的科技创新ETF以增强收益弹性，或加入全球视野ETF以实现更广泛的风险分散。
+                </li>
+            </ul>
+            <p class="mt-6 text-sm text-amber-400/80">
+                重要提示：以上建议仅基于模拟数据和一般市场情况分析，不构成任何具体的投资操作指引。投资有风险，入市需谨慎。请在充分了解产品特性和自身风险承受能力后做出决策。
+            </p>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>友情提示：本页内容仅作参考。</p>
+        <p>&copy; 2025 ETF Analysis Platform. All rights reserved.</p>
+    </footer>
+
+    <button id="backToTopBtn" title="返回顶部 (Back to Top)">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 mx-auto">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18" />
+        </svg>
+    </button>
+
+    <script>
+        // Typewriter Effect (already handled by CSS animation)
+
+        // Scroll-triggered Animations
+        const sections = document.querySelectorAll('.content-section');
+        const observerOptions = {
+            root: null, // relative to the viewport
+            rootMargin: '0px',
+            threshold: 0.1 // 10% of the item is visible
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    // Optional: unobserve after animation to save resources
+                    // observer.unobserve(entry.target); 
+                } else {
+                    // Optional: remove class if you want animation to replay on scroll up
+                    // entry.target.classList.remove('visible'); 
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        // Back to Top Button
+        const backToTopBtn = document.getElementById('backToTopBtn');
+        window.onscroll = function() {
+            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+                backToTopBtn.style.display = "block";
+                backToTopBtn.style.opacity = "1";
+            } else {
+                backToTopBtn.style.opacity = "0";
+                // Hide after transition
+                setTimeout(() => { if(!(document.body.scrollTop > 100 || document.documentElement.scrollTop > 100)) backToTopBtn.style.display = "none"; }, 300);
+            }
+        };
+        backToTopBtn.onclick = function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+
+        // Simple Bar Chart Data & Rendering for Performance
+        const performanceData = [
+            { label: '159339', value: 25, color: '#00ffaa' }, // Positive
+            { label: '159201', value: 10, color: '#00ffaa' }, // Positive
+            { label: '513530', value: 18, color: '#00ffaa' }  // Positive
+            // For drawdowns, you might use negative values and different colors
+            // { label: '159339 DD', value: -12, color: '#ff4d4d' }, 
+        ];
+
+        const performanceChartContainer = document.getElementById('performanceChart');
+        if (performanceChartContainer) {
+            const maxValue = Math.max(...performanceData.map(d => Math.abs(d.value)), 20); // Ensure a minimum height for scale
+            
+            performanceData.forEach(data => {
+                const bar = document.createElement('div');
+                bar.classList.add('bar');
+                const barHeight = (Math.abs(data.value) / maxValue) * 100;
+                bar.style.height = `${barHeight}%`;
+                bar.style.backgroundColor = data.color; // Use specific color
+
+                const barLabel = document.createElement('span');
+                barLabel.classList.add('bar-label');
+                // barLabel.textContent = data.label; // Labels are now below the chart
+                
+                const barValue = document.createElement('span');
+                barValue.classList.add('bar-value');
+                barValue.textContent = `${data.value}%`;
+
+                bar.appendChild(barLabel);
+                bar.appendChild(barValue);
+                performanceChartContainer.appendChild(bar);
+
+                // Trigger animation after slight delay
+                setTimeout(() => {
+                     bar.style.height = `${barHeight}%`;
+                }, 100);
+            });
+        }
+
+        // Add a subtle scroll effect for the hero background shape
+        const heroBgShape = document.querySelector('.hero-bg-shape');
+        if (heroBgShape) {
+            window.addEventListener('scroll', () => {
+                const scrollY = window.scrollY;
+                heroBgShape.style.transform = `translate(-50%, -50%) scale(${0.9 + scrollY * 0.0002})`;
+                heroBgShape.style.opacity = `${Math.max(0.1, 0.7 - scrollY * 0.0005)}`;
+            });
+        }
+
+        // Add fadeInUp animation class for elements that need it after typewriter
+        // This is a workaround as direct JS manipulation of Tailwind classes can be tricky
+        // So we define a simple CSS animation
+        const styleSheet = document.createElement("style");
+        styleSheet.type = "text/css";
+        styleSheet.innerText = `
+            @keyframes fadeInUp {
+                from { opacity: 0; transform: translateY(20px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+            .animate-fadeInUp { animation: fadeInUp 1s ease-out forwards; }
+        `;
+        document.head.appendChild(styleSheet);
+
+
+    </script>
+</body>
+</html>
