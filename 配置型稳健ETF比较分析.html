@@ -6,6 +6,7 @@
     <title>ETF 产品比较分析 (ETF Product Comparison)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Noto+Sans+SC:wght@400;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script> 
     <style>
         body {
             font-family: 'Inter', 'Noto Sans SC', sans-serif;
@@ -207,30 +208,30 @@
         /* Styling for Performance and Drawdown Chart Container */
         .performance-drawdown-chart-style {
             display: flex;
-            flex-direction: row; /* Arrange ETF groups horizontally */
-            justify-content: space-around; /* Distribute ETF groups */
-            align-items: flex-end; /* Align bars at the bottom */
-            height: 230px; /* Adjusted height to accommodate labels */
+            flex-direction: row; 
+            justify-content: space-around; 
+            align-items: flex-end; 
+            height: 230px; 
             padding: 10px 0;
             margin-top: 1rem;
             border-radius: 8px;
         }
 
-        .etf-bar-group { /* Container for one ETF's return and drawdown bars */
+        .etf-bar-group { 
             display: flex;
             justify-content: center; 
             align-items: flex-end;
-            gap: 8px; /* Space between return and drawdown bar for the same ETF */
+            gap: 8px; 
             flex-grow: 1; 
-            position: relative; /* For label positioning */
-            height: 100%; /* MODIFIED: Make group take full height of its parent */
+            position: relative; 
+            height: 100%; 
         }
 
-        .sector-bar-group-container { /* For sector allocation chart */
+        .sector-bar-group-container { 
             display: flex;
             justify-content: space-around; 
-            align-items: flex-start; /* Align tops of ETF sector blocks */
-            height: auto; /* Auto height based on content */
+            align-items: flex-start; 
+            height: auto; 
             min-height: 250px; 
             padding: 10px 0;
             border-radius: 8px;
@@ -242,7 +243,7 @@
             flex-direction: column; 
             align-items: center; 
             gap: 5px;
-            width: calc(33% - 10px); /* Adjust width for 3 columns with gap */
+            width: calc(33% - 10px); 
         }
         .etf-sector-label {
             font-size: 0.85rem;
@@ -259,7 +260,7 @@
             margin-bottom: 3px;
         }
         .sector-bar {
-            height: 18px; /* Slightly taller sector bars */
+            height: 18px; 
             opacity: 0.8;
             transition: width 0.5s ease-out, opacity 0.3s ease;
             border-radius: 3px;
@@ -272,7 +273,7 @@
             font-size: 0.75rem;
             color: #b0b0b0;
             white-space: nowrap;
-            flex-shrink: 0; /* Prevent label from shrinking */
+            flex-shrink: 0; 
         }
         .sector-bar-value {
             font-size: 0.75rem;
@@ -282,8 +283,8 @@
         }
 
 
-        .bar { /* General style for performance/drawdown bars */
-            width: 30px; /* Slightly wider bars */
+        .bar { 
+            width: 30px; 
             opacity: 0.7;
             transition: height 0.5s ease-out, opacity 0.3s ease;
             position: relative;
@@ -294,19 +295,19 @@
         }
         .bar-label { 
             position: absolute;
-            bottom: -40px; /* Adjusted position for more space */
+            bottom: -40px; 
             left: 50%;
             transform: translateX(-50%);
-            font-size: 0.7em; /* Smaller font for potentially longer labels */
+            font-size: 0.7em; 
             color: #e0e0e0;
             white-space: nowrap;
-            width: 120px; /* Increased width for labels */
+            width: 120px; 
             text-align: center;
             line-height: 1.2;
         }
         .bar-value { 
             position: absolute;
-            top: -22px; /* Adjusted position */
+            top: -22px; 
             left: 50%;
             transform: translateX(-50%);
             font-size: 0.8em;
@@ -380,7 +381,7 @@
             display: flex;
             justify-content: center;
             gap: 20px;
-            margin-top: 15px; /* More space above legend */
+            margin-top: 15px; 
             font-size: 0.8rem;
         }
         .legend-item {
@@ -418,7 +419,7 @@
             <span class="english-subtitle">ETF Overview</span>
         </div>
         <p class="text-lg text-center text-gray-300 max-w-3xl mx-auto">
-            本页面旨在对三款热门ETF产品：<strong class="text-[#00d1ff]">159399 (现金流ETF)</strong>、<strong class="text-[#00d1ff]">159201 (稳健增长ETF)</strong> 及 <strong class="text-[#00d1ff]">513530 (全球视野ETF)</strong> 进行多维度对比分析，涵盖持仓、规模、收益与风险控制，助您做出更明智的投资选择。
+            本页面旨在对三款ETF产品：<strong class="text-[#00d1ff]">159201 (华夏国证自由现金流ETF)</strong>、<strong class="text-[#00d1ff]">159399 (国泰A股现金流聚焦ETF)</strong> 及 <strong class="text-[#00d1ff]">513530 (华泰柏瑞港股高股息ETF)</strong> 进行多维度对比分析，涵盖持仓、规模、收益与风险控制，助您做出更明智的投资选择。
         </p>
         <div class="line-divider"></div>
     </section>
@@ -431,28 +432,28 @@
         <div class="grid md:grid-cols-3 gap-8">
             <div class="etf-card">
                 <div>
-                    <h3 class="font-noto-sans-sc">现金流ETF</h3>
-                    <span class="etf-code">CODE: 159399</span>
+                    <h3 class="font-noto-sans-sc">华夏国证自由现金流ETF</h3>
+                    <span class="etf-code">CODE: 159201</span>
                     <div class="metric">
                         <span class="metric-label">基金规模 (AUM)</span>
-                        <span class="metric-value">¥120 亿</span>
+                        <span class="metric-value">¥120 亿 (模拟)</span>
                     </div>
                     <div class="metric">
-                        <span class="metric-label">近一年收益率 (1Y Return)</span>
-                        <span class="metric-value positive">+16.00%</span>
+                        <span class="metric-label">近三月收益率 (3M Return)</span>
+                        <span class="metric-value negative">-0.94%</span>
                     </div>
                     <div class="metric">
-                        <span class="metric-label">最大回撤 (Max Drawdown)</span>
-                        <span class="metric-value negative">-7.00%</span>
+                        <span class="metric-label">最大回撤 (3M Est. Drawdown)</span>
+                        <span class="metric-value negative">-4.0%</span>
                     </div>
                     <div class="mt-4">
-                        <span class="metric-label">主要持仓 (Top Holdings):</span>
+                        <span class="metric-label">主要持仓 (Top Holdings - 示例):</span>
                         <ul class="holdings-list">
-                            <li>高现金流消费 (High Cash Flow Consumer): 20%</li>
-                            <li>稳定派息工业 (Stable Dividend Industrial): 18%</li>
-                            <li>优质公用事业 (Quality Utility): 15%</li>
-                            <li>医疗保健现金牛 (Healthcare Cash Cow): 12%</li>
-                            <li>精选金融服务 (Select Financial Services): 10%</li>
+                            <li>美的集团: 1.31%</li>
+                            <li>中国海油: 1.30%</li>
+                            <li>中煤能源: 1.04%</li>
+                            <li>潍柴动力: 0.95%</li>
+                            <li>中国铝业: 0.82%</li>
                         </ul>
                     </div>
                 </div>
@@ -462,35 +463,35 @@
                         <circle cx="50" cy="50" r="40" fill="transparent" stroke="#00d1ff" stroke-width="10" stroke-dasharray="125.66 251.32" stroke-dashoffset="0"></circle> 
                         <circle cx="50" cy="50" r="40" fill="transparent" stroke="#33ffcc" stroke-width="10" stroke-dasharray="113.094 251.32" stroke-dashoffset="-125.66"></circle> 
                         <circle cx="50" cy="50" r="40" fill="transparent" stroke="#66ccff" stroke-width="10" stroke-dasharray="94.245 251.32" stroke-dashoffset="-238.754"></circle> 
-                        <text x="50" y="55" text-anchor="middle" fill="#e0e0e0" font-size="10">现金流</text>
+                        <text x="50" y="55" text-anchor="middle" fill="#e0e0e0" font-size="8">华夏现金流</text>
                     </svg>
                 </div>
             </div>
 
             <div class="etf-card">
                 <div>
-                    <h3 class="font-noto-sans-sc">稳健增长ETF</h3>
-                    <span class="etf-code">CODE: 159201</span>
+                    <h3 class="font-noto-sans-sc">国泰A股现金流聚焦ETF</h3>
+                    <span class="etf-code">CODE: 159399</span>
                     <div class="metric">
                         <span class="metric-label">基金规模 (AUM)</span>
-                        <span class="metric-value">¥250 亿</span>
+                        <span class="metric-value">¥250 亿 (模拟)</span>
                     </div>
                     <div class="metric">
-                        <span class="metric-label">近一年收益率 (1Y Return)</span>
-                        <span class="metric-value positive">+10.00%</span>
+                        <span class="metric-label">近三月收益率 (3M Return)</span>
+                        <span class="metric-value positive">+1.75%</span>
                     </div>
                     <div class="metric">
-                        <span class="metric-label">最大回撤 (Max Drawdown)</span>
-                        <span class="metric-value negative">-5.00%</span>
+                        <span class="metric-label">最大回撤 (3M Est. Drawdown)</span>
+                        <span class="metric-value negative">-5.0%</span>
                     </div>
                      <div class="mt-4">
-                        <span class="metric-label">主要持仓 (Top Holdings):</span>
+                        <span class="metric-label">主要持仓 (Top Holdings - 示例):</span>
                         <ul class="holdings-list">
-                            <li>大型银行 (Major Bank): 18%</li>
-                            <li>消费品龙头 (Leading Consumer Goods): 16%</li>
-                            <li>医疗保健巨头 (Healthcare Giant): 14%</li>
-                            <li>公用事业 (Utility Provider): 11%</li>
-                            <li>房地产信托 (REIT): 10%</li>
+                            <li>潍柴动力: 0.28%</li>
+                            <li>大秦铁路: 0.26%</li>
+                            <li>中国联通: 0.26%</li>
+                            <li>格力电器: 0.25%</li>
+                            <li>中国石油: 0.25%</li>
                         </ul>
                     </div>
                 </div>
@@ -500,35 +501,35 @@
                         <circle cx="50" cy="50" r="40" fill="transparent" stroke="#00d1ff" stroke-width="10" stroke-dasharray="113.094 251.32" stroke-dashoffset="0"></circle> 
                         <circle cx="50" cy="50" r="40" fill="transparent" stroke="#33ffcc" stroke-width="10" stroke-dasharray="100.528 251.32" stroke-dashoffset="-113.094"></circle> 
                         <circle cx="50" cy="50" r="40" fill="transparent" stroke="#66ccff" stroke-width="10" stroke-dasharray="87.962 251.32" stroke-dashoffset="-213.622"></circle> 
-                        <text x="50" y="55" text-anchor="middle" fill="#e0e0e0" font-size="10">稳健</text>
+                        <text x="50" y="55" text-anchor="middle" fill="#e0e0e0" font-size="8">国泰现金流</text>
                     </svg>
                 </div>
             </div>
 
             <div class="etf-card">
                 <div>
-                    <h3 class="font-noto-sans-sc">全球视野ETF</h3>
+                    <h3 class="font-noto-sans-sc">华泰柏瑞港股高股息ETF</h3>
                     <span class="etf-code">CODE: 513530</span>
                     <div class="metric">
                         <span class="metric-label">基金规模 (AUM)</span>
-                        <span class="metric-value">¥100 亿</span>
+                        <span class="metric-value">¥100 亿 (模拟)</span>
                     </div>
                     <div class="metric">
-                        <span class="metric-label">近一年收益率 (1Y Return)</span>
-                        <span class="metric-value positive">+18.00%</span>
+                        <span class="metric-label">近三月收益率 (3M Return)</span>
+                        <span class="metric-value positive">+7.95%</span>
                     </div>
                     <div class="metric">
-                        <span class="metric-label">最大回撤 (Max Drawdown)</span>
-                        <span class="metric-value negative">-8.00%</span>
+                        <span class="metric-label">最大回撤 (3M Est. Drawdown)</span>
+                        <span class="metric-value negative">-10.0%</span>
                     </div>
                      <div class="mt-4">
-                        <span class="metric-label">主要持仓 (Top Holdings):</span>
+                        <span class="metric-label">主要持仓 (Top Holdings - 示例):</span>
                         <ul class="holdings-list">
-                            <li>美国科技巨头 (US Tech Giant): 15%</li>
-                            <li>欧洲工业 (European Industrial): 12%</li>
-                            <li>日本制造 (Japanese Manufacturer): 10%</li>
-                            <li>新兴市场消费 (Emerging Market Consumer): 9%</li>
-                            <li>全球医疗 (Global Healthcare): 8%</li>
+                            <li>中远海控: 9.82%</li>
+                            <li>兖煤澳大利亚: 5.91%</li>
+                            <li>东方海外国际: 4.16%</li>
+                            <li>国泰君安: 3.95%</li>
+                            <li>中国海洋石油: 3.76%</li>
                         </ul>
                     </div>
                 </div>
@@ -538,10 +539,21 @@
                         <circle cx="50" cy="50" r="40" fill="transparent" stroke="#00d1ff" stroke-width="10" stroke-dasharray="94.245 251.32" stroke-dashoffset="0"></circle> 
                         <circle cx="50" cy="50" r="40" fill="transparent" stroke="#33ffcc" stroke-width="10" stroke-dasharray="75.396 251.32" stroke-dashoffset="-94.245"></circle> 
                         <circle cx="50" cy="50" r="40" fill="transparent" stroke="#66ccff" stroke-width="10" stroke-dasharray="62.83 251.32" stroke-dashoffset="-169.641"></circle> 
-                        <text x="50" y="55" text-anchor="middle" fill="#e0e0e0" font-size="10">全球</text>
+                        <text x="50" y="55" text-anchor="middle" fill="#e0e0e0" font-size="8">港股高股息</text>
                     </svg>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="section-title">
+            <span class="chinese-title font-noto-sans-sc">ETF近三月走势对比</span>
+            <span class="english-subtitle">Last 3 Months ETF Performance Trend (Simulated)</span>
+        </div>
+        <div class="chart-container-wrapper">
+            <p class="chart-title">模拟近三月累计收益率走势 (Simulated Last 3 Months Cumulative Return Trend)</p>
+            <canvas id="etfTrendChart"></canvas>
         </div>
     </section>
 
@@ -554,9 +566,8 @@
         <div class="highlight-gradient p-6 rounded-lg mb-12 bg-slate-800/30">
             <h4 class="text-2xl font-bold text-[#00d1ff] mb-3 font-noto-sans-sc">持仓组成 <span class="text-sm text-gray-400 uppercase">Holdings Breakdown</span></h4>
             <p class="text-gray-300 mb-4">
-                现金流ETF (159399) 专注于投资那些具有强劲且持续自由现金流能力的公司，通常这些公司财务状况较为健康，可能具备持续分红或回购潜力。
-                稳健增长ETF (159201) 则分散投资于金融、消费、医疗等传统蓝筹领域，追求更平稳的资本增值。
-                全球视野ETF (513530) 提供跨国界、跨市场的多元化配置，有助于分散单一市场风险，捕捉全球增长机会。
+                华夏国证自由现金流ETF (159201) 和国泰A股现金流聚焦ETF (159399) 均专注于投资那些具有强劲且持续自由现金流能力的公司，通常这些公司财务状况较为健康。
+                华泰柏瑞港股高股息ETF (513530) 则主要投资于香港市场中具有较高股息率的公司，旨在提供稳定的股息回报和潜在的资本增值。
             </p>
             <div class="chart-container-wrapper">
                 <p class="chart-title">模拟持仓行业对比图 (Sector Allocation Comparison)</p>
@@ -568,12 +579,10 @@
         <div class="highlight-gradient p-6 rounded-lg mb-12 bg-slate-800/30">
             <h4 class="text-2xl font-bold text-[#00d1ff] mb-3 font-noto-sans-sc">业绩与回撤 <span class="text-sm text-gray-400 uppercase">Performance & Drawdown</span></h4>
             <p class="text-gray-300 mb-4">
-                从近一年模拟数据看，现金流ETF (159399) 展现出较好的收益性，同时回撤控制也相对稳健，体现了其投资标的财务质量的优势。
-                稳健增长ETF (159201) 收益率较为温和，回撤控制表现最佳，适合风险厌恶型投资者。
-                全球视野ETF (513530) 收益与风险水平均处于中等，体现了全球分散配置的平衡效果。
+                根据近三月模拟数据，国泰A股现金流聚焦ETF (159399) 和华泰柏瑞港股高股息ETF (513530) 表现出正收益，而华夏国证自由现金流ETF (159201)略有回调。各ETF的回撤控制也各有特点，具体数据请参考下方图表。
             </p>
             <div class="chart-container-wrapper">
-                <p class="chart-title">业绩与最大回撤对比 (Return & Max Drawdown)</p>
+                <p class="chart-title">近三月业绩与最大回撤对比 (3M Return & Max Drawdown)</p>
                 <div class="performance-drawdown-chart-style" id="performanceDrawdownChart">
                     </div>
                 <div class="chart-legend">
@@ -600,16 +609,13 @@
         <div class="bg-slate-800/50 border border-sky-500/30 p-8 rounded-xl shadow-2xl">
             <ul class="list-disc list-inside space-y-4 text-gray-300 text-lg">
                 <li>
-                    <strong class="text-[#00d1ff]">注重企业财务质量和持续现金流的投资者：</strong>可关注 <strong class="text-white">现金流ETF (159399)</strong>。这类ETF通常投资于基本面扎实、能够持续产生自由现金流的公司，可能带来相对稳健的回报。
+                    <strong class="text-[#00d1ff]">注重A股市场现金流质量的投资者：</strong>可关注 <strong class="text-white">华夏国证自由现金流ETF (159201)</strong> 和 <strong class="text-white">国泰A股现金流聚焦ETF (159399)</strong>。这类ETF通常投资于A股中基本面扎实、能够持续产生自由现金流的公司。
                 </li>
                 <li>
-                    <strong class="text-[#00d1ff]">偏好稳健、注重风险控制的投资者：</strong><strong class="text-white">稳健增长ETF (159201)</strong> 或是更佳选择。其持仓多为成熟行业龙头，历史回撤较小，适合作为核心配置。
+                    <strong class="text-[#00d1ff]">寻求港股市场高股息回报的投资者：</strong><strong class="text-white">华泰柏瑞港股高股息ETF (513530)</strong> 专注于香港市场的高股息股票，适合追求稳定现金分红的投资者。
                 </li>
                 <li>
-                    <strong class="text-[#00d1ff]">希望分散风险、捕捉全球机遇的投资者：</strong>可以考虑 <strong class="text-white">全球视野ETF (513530)</strong>。通过投资于不同国家和地区的资产，能够有效降低单一市场依赖，分享全球经济发展红利。
-                </li>
-                <li>
-                    <strong class="text-[#00d1ff]">组合配置建议：</strong>投资者也可根据自身风险偏好和投资目标，将不同特点的ETF进行组合。例如，以现金流ETF或稳健增长ETF为核心，适当配置全球视野ETF以增加多元化。
+                    <strong class="text-[#00d1ff]">风险偏好与市场选择：</strong> 投资者应结合自身风险承受能力，以及对A股和港股市场的不同预期来选择。现金流策略通常被认为相对稳健，而高股息策略则侧重于股息收入。
                 </li>
             </ul>
             <p class="mt-6 text-sm text-amber-400/80">
@@ -638,29 +644,40 @@
             threshold: 0.1 
         };
 
-        const observer = new IntersectionObserver((entries, obs) => {
+        const observerCallback = (entries, obs) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
-                    // obs.unobserve(entry.target); // Optional: unobserve after first animation
+                    if (entry.target.contains(document.getElementById('etfTrendChart')) && typeof initEtfTrendChart === 'function' && !window.etfTrendChartInitialized) {
+                        initEtfTrendChart();
+                        window.etfTrendChartInitialized = true; 
+                    }
+                    if (entry.target.contains(document.getElementById('sectorAllocationChart')) && typeof initSectorAllocationChart === 'function' && !window.sectorAllocationChartInitialized) {
+                        initSectorAllocationChart();
+                        window.sectorAllocationChartInitialized = true;
+                    }
+                    if (entry.target.contains(document.getElementById('performanceDrawdownChart')) && typeof initPerformanceDrawdownChart === 'function' && !window.performanceDrawdownChartInitialized) {
+                        initPerformanceDrawdownChart();
+                        window.performanceDrawdownChartInitialized = true;
+                    }
                 }
             });
-        }, observerOptions);
-
+        };
+        const sectionObserver = new IntersectionObserver(observerCallback, observerOptions);
         sections.forEach(section => {
-            observer.observe(section);
+            sectionObserver.observe(section);
         });
 
-        // Back to Top Button
+
         const backToTopBtn = document.getElementById('backToTopBtn');
         window.onscroll = function() {
             if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-                if (backToTopBtn.style.display !== "block") { // Avoid flicker
+                if (backToTopBtn.style.display !== "block") { 
                     backToTopBtn.style.display = "block";
                     requestAnimationFrame(() => { backToTopBtn.style.opacity = "1"; });
                 }
             } else {
-                if (backToTopBtn.style.opacity === "1") { // Avoid flicker
+                if (backToTopBtn.style.opacity === "1") { 
                     backToTopBtn.style.opacity = "0";
                     setTimeout(() => { 
                         if(!(document.body.scrollTop > 100 || document.documentElement.scrollTop > 100)) {
@@ -674,26 +691,96 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         };
 
-        // --- Performance & Drawdown Chart ---
-        const performanceDrawdownData = [
-            { etf: '159399', name: '现金流ETF', returnValue: 16, drawdownValue: -7 },
-            { etf: '159201', name: '稳健增长ETF', returnValue: 10, drawdownValue: -5 },
-            { etf: '513530', name: '全球视野ETF', returnValue: 18, drawdownValue: -8 }
-        ];
+        if (typeof Chart !== 'undefined') {
+            Chart.defaults.font.family = "'Inter', 'Noto Sans SC', sans-serif";
+            Chart.defaults.color = '#e0e0e0'; 
+            Chart.defaults.borderColor = 'rgba(255, 255, 255, 0.1)'; 
+        }
 
-        const performanceDrawdownChartContainer = document.getElementById('performanceDrawdownChart');
-        if (performanceDrawdownChartContainer) {
+        function initEtfTrendChart() {
+            const etfTrendCtx = document.getElementById('etfTrendChart')?.getContext('2d');
+            if (!etfTrendCtx) return;
+
+            const labels = ["2月底", "3月初", "3月中", "3月底", "4月初", "4月中", "4月底", "5月初", "5月中", "5月底"];
+            const etf159201Data = [0, -1, 0, -1.5, -2, -4, -3, -2, -1, -0.94];      // 华夏国证自由现金流ETF
+            const etf159399Data = [0, 0.5, 1.5, 1, -2, -5, -1, 0, 1, 1.75];       // 国泰A股现金流聚焦ETF
+            const etf513530Data = [0, 1, 3, 2, -3, -8, -1, 3, 6, 7.95];         // 华泰柏瑞港股高股息ETF
+
+            new Chart(etfTrendCtx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: '159201 (华夏国证自由现金流)',
+                            data: etf159201Data,
+                            borderColor: '#3b82f6', // Blue
+                            backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                            tension: 0.3,
+                            fill: false,
+                            borderWidth: 2
+                        },
+                        {
+                            label: '159399 (国泰A股现金流聚焦)',
+                            data: etf159399Data,
+                            borderColor: '#22c55e', // Green
+                            backgroundColor: 'rgba(34, 197, 94, 0.1)',
+                            tension: 0.3,
+                            fill: false,
+                            borderWidth: 2
+                        },
+                        {
+                            label: '513530 (华泰柏瑞港股高股息)',
+                            data: etf513530Data,
+                            borderColor: '#f59e0b', // Amber/Yellow
+                            backgroundColor: 'rgba(245, 158, 11, 0.1)',
+                            tension: 0.3,
+                            fill: false,
+                            borderWidth: 2
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    animation: { duration: 1000, easing: 'easeInOutQuart' },
+                    scales: {
+                        y: { beginAtZero: false, ticks: { callback: function(value) { return value + '%';}, color: '#a0a0a0'}, grid: {color: 'rgba(255, 255, 255, 0.08)', drawBorder: false}},
+                        x: { ticks: { color: '#a0a0a0'}, grid: {display: false}}
+                    },
+                    plugins: {
+                        legend: { position: 'top', labels: {color: '#e0e0e0', usePointStyle: true, boxWidth: 8}},
+                        tooltip: {
+                            mode: 'index', intersect: false, backgroundColor: 'rgba(10, 15, 31, 0.85)', titleFont: {weight: 'bold'}, bodyFont: {size: 12}, padding: 10, cornerRadius: 6,
+                            callbacks: { label: function(context) { let label = context.dataset.label || ''; if (label) { label += ': '; } if (context.parsed.y !== null) { label += context.parsed.y.toFixed(2) + '%'; } return label;}}
+                        }
+                    },
+                    interaction: { mode: 'nearest', axis: 'x', intersect: false }
+                }
+            });
+        }
+        window.etfTrendChartInitialized = false;
+
+        function initPerformanceDrawdownChart() {
+            const performanceDrawdownData = [
+                { etf: '159201', name: '华夏国证自由现金流', returnValue: -0.94, drawdownValue: -4.0 },
+                { etf: '159399', name: '国泰A股现金流聚焦', returnValue: 1.75, drawdownValue: -5.0 },
+                { etf: '513530', name: '华泰柏瑞港股高股息', returnValue: 7.95, drawdownValue: -10.0 }
+            ];
+
+            const chartContainer = document.getElementById('performanceDrawdownChart');
+            if (!chartContainer) return;
+            // chartContainer.innerHTML = ''; // Clear existing content if re-initializing
+
             const allValues = performanceDrawdownData.flatMap(d => [Math.abs(d.returnValue), Math.abs(d.drawdownValue)]);
-            const maxValue = Math.max(...allValues, 20); // Ensure a minimum scale height, e.g., 20%
+            const maxValue = Math.max(...allValues, 10); // Min scale of 10% for visibility
 
             performanceDrawdownData.forEach(data => {
                 const group = document.createElement('div');
                 group.classList.add('etf-bar-group');
 
-                // Return Bar
                 const returnBar = document.createElement('div');
-                returnBar.classList.add('bar', 'positive');
-                // Ensure height is not negative or NaN if data is unexpected
+                returnBar.classList.add('bar', data.returnValue >= 0 ? 'positive' : 'negative');
                 const returnHeight = Math.max(0, (Math.abs(data.returnValue) / maxValue) * 100); 
                 
                 const returnValueDisplay = document.createElement('span');
@@ -705,76 +792,70 @@
                 returnLabel.classList.add('bar-label');
                 returnLabel.innerHTML = `${data.name}<br>(${data.etf} 收益)`;
                 returnBar.appendChild(returnLabel);
-                
                 group.appendChild(returnBar);
 
-                // Drawdown Bar
                 const drawdownBar = document.createElement('div');
                 drawdownBar.classList.add('bar', 'negative');
-                // Ensure height is not negative or NaN
                 const drawdownHeight = Math.max(0, (Math.abs(data.drawdownValue) / maxValue) * 100);
-
                 const drawdownValueDisplay = document.createElement('span');
                 drawdownValueDisplay.classList.add('bar-value');
                 drawdownValueDisplay.textContent = `${data.drawdownValue.toFixed(1)}%`;
                 drawdownBar.appendChild(drawdownValueDisplay);
-
                 group.appendChild(drawdownBar);
-                performanceDrawdownChartContainer.appendChild(group);
                 
-                // Animate bars
+                chartContainer.appendChild(group);
+                
                 requestAnimationFrame(() => {
                     setTimeout(() => {
                          returnBar.style.height = `${returnHeight}%`;
                          drawdownBar.style.height = `${drawdownHeight}%`;
-                    }, 100); // Small delay for CSS transition to catch up
+                    }, 100); 
                 });
             });
         }
+        window.performanceDrawdownChartInitialized = false;
 
-        // --- Sector Allocation Chart ---
-        const sectorAllocationData = [
-            { 
-                etf: '159399', 
-                name: '现金流ETF',
-                sectors: [
-                    { name: '高现金流消费', value: 20, color: '#22c55e' }, 
-                    { name: '稳定派息工业', value: 18, color: '#3b82f6' }, 
-                    { name: '优质公用事业', value: 15, color: '#f97316' }, 
-                    { name: '医疗保健现金牛', value: 12, color: '#8b5cf6' }, 
-                    { name: '精选金融服务', value: 10, color: '#ec4899'}, 
-                    { name: '其他', value: 25, color: '#71717a' }      
-                ]
-            },
-            { 
-                etf: '159201', 
-                name: '稳健增长ETF',
-                sectors: [
-                    { name: '大型银行', value: 18, color: '#3b82f6' }, 
-                    { name: '消费品龙头', value: 16, color: '#22c55e' },
-                    { name: '医疗保健巨头', value: 14, color: '#8b5cf6' },
-                    { name: '公用事业', value: 11, color: '#f97316' },
-                    { name: '房地产信托', value: 10, color: '#14b8a6'}, 
-                    { name: '其他', value: 31, color: '#71717a' }
-                ]
-            },
-            { 
-                etf: '513530', 
-                name: '全球视野ETF',
-                sectors: [
-                    { name: '美国科技', value: 15, color: '#6366f1' }, 
-                    { name: '欧洲工业', value: 12, color: '#3b82f6' },
-                    { name: '日本制造', value: 10, color: '#ef4444' }, 
-                    { name: '新兴市场消费', value: 9, color: '#f59e0b' }, 
-                    { name: '全球医疗', value: 8, color: '#8b5cf6' },
-                    { name: '其他', value: 46, color: '#71717a' }
-                ]
-            }
-        ];
+        function initSectorAllocationChart() {
+            const sectorAllocationData = [
+                { 
+                    etf: '159201', name: '华夏国证自由现金流',
+                    sectors: [
+                        { name: '家电耐用消费', value: 15, color: '#22c55e' }, 
+                        { name: '能源化工', value: 20, color: '#3b82f6' }, 
+                        { name: '工业机械', value: 18, color: '#f97316' }, 
+                        { name: '通信设备', value: 12, color: '#8b5cf6' }, 
+                        { name: '汽车制造', value: 10, color: '#ec4899'}, 
+                        { name: '其他', value: 25, color: '#71717a' }      
+                    ]
+                },
+                { 
+                    etf: '159399', name: '国泰A股现金流聚焦',
+                    sectors: [
+                        { name: '交通运输', value: 15, color: '#3b82f6' }, 
+                        { name: '工业制造', value: 20, color: '#22c55e' },
+                        { name: '能源材料', value: 18, color: '#8b5cf6' },
+                        { name: '电信服务', value: 12, color: '#f97316' },
+                        { name: '耐用消费品', value: 10, color: '#14b8a6'}, 
+                        { name: '其他', value: 25, color: '#71717a' }
+                    ]
+                },
+                { 
+                    etf: '513530', name: '华泰柏瑞港股高股息',
+                    sectors: [
+                        { name: '航运物流', value: 20, color: '#6366f1' }, 
+                        { name: '能源矿产', value: 18, color: '#3b82f6' },
+                        { name: '银行金融', value: 25, color: '#ef4444' }, 
+                        { name: '工业制造(港)', value: 10, color: '#f59e0b' }, 
+                        { name: '其他高股息', value: 27, color: '#71717a' }
+                    ]
+                }
+            ];
 
-        const sectorChartContainer = document.getElementById('sectorAllocationChart');
-        if (sectorChartContainer) {
-            const maxSectorValue = 100; // Assuming sector values are percentages
+            const chartContainer = document.getElementById('sectorAllocationChart');
+            if (!chartContainer) return;
+            // chartContainer.innerHTML = ''; 
+
+            const maxSectorValue = 100; 
 
             sectorAllocationData.forEach((etfData, etfIndex) => {
                 const etfGroupDiv = document.createElement('div');
@@ -788,38 +869,29 @@
                 etfData.sectors.forEach((sector) => {
                     const itemDiv = document.createElement('div');
                     itemDiv.classList.add('sector-bar-item');
-
                     const barDiv = document.createElement('div');
                     barDiv.classList.add('sector-bar');
                     barDiv.style.backgroundColor = sector.color; 
-                    
-                    const barWidth = Math.max(0, (sector.value / maxSectorValue) * 100); // Ensure width is not negative
-
+                    const barWidth = Math.max(0, (sector.value / maxSectorValue) * 100); 
                     const labelSpan = document.createElement('span');
                     labelSpan.classList.add('sector-bar-label');
                     labelSpan.textContent = sector.name;
-                    
                     const valueSpan = document.createElement('span');
                     valueSpan.classList.add('sector-bar-value');
                     valueSpan.textContent = `${sector.value}%`;
-
                     itemDiv.appendChild(barDiv); 
                     itemDiv.appendChild(labelSpan);
                     itemDiv.appendChild(valueSpan);
                     etfGroupDiv.appendChild(itemDiv);
-
                     requestAnimationFrame(() => {
-                        setTimeout(() => {
-                            barDiv.style.width = `${barWidth}%`;
-                        }, 100 + etfIndex * 50); 
+                        setTimeout(() => { barDiv.style.width = `${barWidth}%`; }, 100 + etfIndex * 50 + Math.random() * 50); 
                     });
                 });
-                sectorChartContainer.appendChild(etfGroupDiv);
+                chartContainer.appendChild(etfGroupDiv);
             });
         }
+        window.sectorAllocationChartInitialized = false;
 
-
-        // Add fadeInUp animation class for elements that need it after typewriter
         const styleSheet = document.createElement("style");
         styleSheet.type = "text/css";
         styleSheet.innerText = `
