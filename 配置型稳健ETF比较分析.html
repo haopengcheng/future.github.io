@@ -198,6 +198,10 @@
             margin-top: 1.5rem;
             border: 1px dashed rgba(0, 209, 255, 0.2);
         }
+        .trend-chart-container { /* Specific container for trend chart to control height */
+            height: 350px; /* Reduced height for trend chart */
+            position: relative; /* Needed for Chart.js responsiveness */
+        }
         .chart-title {
             text-align: center;
             color: #c0c0c0;
@@ -205,7 +209,6 @@
             margin-bottom: 1rem;
         }
        
-        /* Styling for Performance and Drawdown Chart Container */
         .performance-drawdown-chart-style {
             display: flex;
             flex-direction: row; 
@@ -394,6 +397,10 @@
             height: 12px;
             border-radius: 2px;
         }
+         .etf-card-pie-chart svg { /* Ensure SVG scales within its container */
+            max-width: 100%;
+            height: auto;
+        }
 
     </style>
 </head>
@@ -448,7 +455,7 @@
                     </div>
                     <div class="mt-4">
                         <span class="metric-label">主要持仓 (Top Holdings - 示例):</span>
-                        <ul class="holdings-list">
+                        <ul class="holdings-list" id="holdings-159201">
                             <li>美的集团: 1.31%</li>
                             <li>中国海油: 1.30%</li>
                             <li>中煤能源: 1.04%</li>
@@ -457,13 +464,14 @@
                         </ul>
                     </div>
                 </div>
-                <div class="chart-container-wrapper mt-6">
-                    <p class="chart-title">持仓分布图 (Holdings)</p>
-                     <svg viewBox="0 0 100 100" class="w-32 h-32 mx-auto mt-2">
-                        <circle cx="50" cy="50" r="40" fill="transparent" stroke="#00d1ff" stroke-width="10" stroke-dasharray="125.66 251.32" stroke-dashoffset="0"></circle> 
-                        <circle cx="50" cy="50" r="40" fill="transparent" stroke="#33ffcc" stroke-width="10" stroke-dasharray="113.094 251.32" stroke-dashoffset="-125.66"></circle> 
-                        <circle cx="50" cy="50" r="40" fill="transparent" stroke="#66ccff" stroke-width="10" stroke-dasharray="94.245 251.32" stroke-dashoffset="-238.754"></circle> 
-                        <text x="50" y="55" text-anchor="middle" fill="#e0e0e0" font-size="8">华夏现金流</text>
+                <div class="chart-container-wrapper mt-6 etf-card-pie-chart">
+                    <p class="chart-title">主要持仓分布 (Top 3)</p>
+                     <svg viewBox="0 0 100 100" class="w-32 h-32 mx-auto mt-2" id="pie-159201">
+                        <circle cx="50" cy="50" r="40" fill="transparent" stroke="#777" stroke-width="10" stroke-dasharray="251.32 251.32" /> 
+                        <circle cx="50" cy="50" r="40" fill="transparent" stroke="#00d1ff" stroke-width="10" data-slice="1"/> 
+                        <circle cx="50" cy="50" r="40" fill="transparent" stroke="#33ffcc" stroke-width="10" data-slice="2"/> 
+                        <circle cx="50" cy="50" r="40" fill="transparent" stroke="#66ccff" stroke-width="10" data-slice="3"/> 
+                        <text x="50" y="55" text-anchor="middle" fill="#e0e0e0" font-size="8">TOP 3</text>
                     </svg>
                 </div>
             </div>
@@ -486,7 +494,7 @@
                     </div>
                      <div class="mt-4">
                         <span class="metric-label">主要持仓 (Top Holdings - 示例):</span>
-                        <ul class="holdings-list">
+                        <ul class="holdings-list" id="holdings-159399">
                             <li>潍柴动力: 0.28%</li>
                             <li>大秦铁路: 0.26%</li>
                             <li>中国联通: 0.26%</li>
@@ -495,13 +503,14 @@
                         </ul>
                     </div>
                 </div>
-                <div class="chart-container-wrapper mt-6">
-                    <p class="chart-title">持仓分布图 (Holdings)</p>
-                     <svg viewBox="0 0 100 100" class="w-32 h-32 mx-auto mt-2">
-                        <circle cx="50" cy="50" r="40" fill="transparent" stroke="#00d1ff" stroke-width="10" stroke-dasharray="113.094 251.32" stroke-dashoffset="0"></circle> 
-                        <circle cx="50" cy="50" r="40" fill="transparent" stroke="#33ffcc" stroke-width="10" stroke-dasharray="100.528 251.32" stroke-dashoffset="-113.094"></circle> 
-                        <circle cx="50" cy="50" r="40" fill="transparent" stroke="#66ccff" stroke-width="10" stroke-dasharray="87.962 251.32" stroke-dashoffset="-213.622"></circle> 
-                        <text x="50" y="55" text-anchor="middle" fill="#e0e0e0" font-size="8">国泰现金流</text>
+                <div class="chart-container-wrapper mt-6 etf-card-pie-chart">
+                    <p class="chart-title">主要持仓分布 (Top 3)</p>
+                     <svg viewBox="0 0 100 100" class="w-32 h-32 mx-auto mt-2" id="pie-159399">
+                        <circle cx="50" cy="50" r="40" fill="transparent" stroke="#777" stroke-width="10" stroke-dasharray="251.32 251.32" />
+                        <circle cx="50" cy="50" r="40" fill="transparent" stroke="#00d1ff" stroke-width="10" data-slice="1"/> 
+                        <circle cx="50" cy="50" r="40" fill="transparent" stroke="#33ffcc" stroke-width="10" data-slice="2"/> 
+                        <circle cx="50" cy="50" r="40" fill="transparent" stroke="#66ccff" stroke-width="10" data-slice="3"/> 
+                        <text x="50" y="55" text-anchor="middle" fill="#e0e0e0" font-size="8">TOP 3</text>
                     </svg>
                 </div>
             </div>
@@ -524,7 +533,7 @@
                     </div>
                      <div class="mt-4">
                         <span class="metric-label">主要持仓 (Top Holdings - 示例):</span>
-                        <ul class="holdings-list">
+                        <ul class="holdings-list" id="holdings-513530">
                             <li>中远海控: 9.82%</li>
                             <li>兖煤澳大利亚: 5.91%</li>
                             <li>东方海外国际: 4.16%</li>
@@ -533,13 +542,14 @@
                         </ul>
                     </div>
                 </div>
-                <div class="chart-container-wrapper mt-6">
-                    <p class="chart-title">持仓分布图 (Holdings)</p>
-                     <svg viewBox="0 0 100 100" class="w-32 h-32 mx-auto mt-2">
-                        <circle cx="50" cy="50" r="40" fill="transparent" stroke="#00d1ff" stroke-width="10" stroke-dasharray="94.245 251.32" stroke-dashoffset="0"></circle> 
-                        <circle cx="50" cy="50" r="40" fill="transparent" stroke="#33ffcc" stroke-width="10" stroke-dasharray="75.396 251.32" stroke-dashoffset="-94.245"></circle> 
-                        <circle cx="50" cy="50" r="40" fill="transparent" stroke="#66ccff" stroke-width="10" stroke-dasharray="62.83 251.32" stroke-dashoffset="-169.641"></circle> 
-                        <text x="50" y="55" text-anchor="middle" fill="#e0e0e0" font-size="8">港股高股息</text>
+                <div class="chart-container-wrapper mt-6 etf-card-pie-chart">
+                    <p class="chart-title">主要持仓分布 (Top 3)</p>
+                     <svg viewBox="0 0 100 100" class="w-32 h-32 mx-auto mt-2" id="pie-513530">
+                        <circle cx="50" cy="50" r="40" fill="transparent" stroke="#777" stroke-width="10" stroke-dasharray="251.32 251.32" />
+                        <circle cx="50" cy="50" r="40" fill="transparent" stroke="#00d1ff" stroke-width="10" data-slice="1"/> 
+                        <circle cx="50" cy="50" r="40" fill="transparent" stroke="#33ffcc" stroke-width="10" data-slice="2"/> 
+                        <circle cx="50" cy="50" r="40" fill="transparent" stroke="#66ccff" stroke-width="10" data-slice="3"/> 
+                        <text x="50" y="55" text-anchor="middle" fill="#e0e0e0" font-size="8">TOP 3</text>
                     </svg>
                 </div>
             </div>
@@ -551,7 +561,7 @@
             <span class="chinese-title font-noto-sans-sc">ETF近三月走势对比</span>
             <span class="english-subtitle">Last 3 Months ETF Performance Trend (Simulated)</span>
         </div>
-        <div class="chart-container-wrapper">
+        <div class="chart-container-wrapper trend-chart-container">
             <p class="chart-title">模拟近三月累计收益率走势 (Simulated Last 3 Months Cumulative Return Trend)</p>
             <canvas id="etfTrendChart"></canvas>
         </div>
@@ -702,9 +712,9 @@
             if (!etfTrendCtx) return;
 
             const labels = ["2月底", "3月初", "3月中", "3月底", "4月初", "4月中", "4月底", "5月初", "5月中", "5月底"];
-            const etf159201Data = [0, -1, 0, -1.5, -2, -4, -3, -2, -1, -0.94];      // 华夏国证自由现金流ETF
-            const etf159399Data = [0, 0.5, 1.5, 1, -2, -5, -1, 0, 1, 1.75];       // 国泰A股现金流聚焦ETF
-            const etf513530Data = [0, 1, 3, 2, -3, -8, -1, 3, 6, 7.95];         // 华泰柏瑞港股高股息ETF
+            const etf159201Data = [0, -1, 0, -1.5, -2, -4, -3, -2, -1, -0.94];      
+            const etf159399Data = [0, 0.5, 1.5, 1, -2, -5, -1, 0, 1, 1.75];       
+            const etf513530Data = [0, 1, 3, 2, -3, -8, -1, 3, 6, 7.95];         
 
             new Chart(etfTrendCtx, {
                 type: 'line',
@@ -714,7 +724,7 @@
                         {
                             label: '159201 (华夏国证自由现金流)',
                             data: etf159201Data,
-                            borderColor: '#3b82f6', // Blue
+                            borderColor: '#3b82f6', 
                             backgroundColor: 'rgba(59, 130, 246, 0.1)',
                             tension: 0.3,
                             fill: false,
@@ -723,7 +733,7 @@
                         {
                             label: '159399 (国泰A股现金流聚焦)',
                             data: etf159399Data,
-                            borderColor: '#22c55e', // Green
+                            borderColor: '#22c55e', 
                             backgroundColor: 'rgba(34, 197, 94, 0.1)',
                             tension: 0.3,
                             fill: false,
@@ -732,7 +742,7 @@
                         {
                             label: '513530 (华泰柏瑞港股高股息)',
                             data: etf513530Data,
-                            borderColor: '#f59e0b', // Amber/Yellow
+                            borderColor: '#f59e0b', 
                             backgroundColor: 'rgba(245, 158, 11, 0.1)',
                             tension: 0.3,
                             fill: false,
@@ -742,10 +752,15 @@
                 },
                 options: {
                     responsive: true,
-                    maintainAspectRatio: false,
+                    maintainAspectRatio: false, // Important for canvas to respect container height
                     animation: { duration: 1000, easing: 'easeInOutQuart' },
                     scales: {
-                        y: { beginAtZero: false, ticks: { callback: function(value) { return value + '%';}, color: '#a0a0a0'}, grid: {color: 'rgba(255, 255, 255, 0.08)', drawBorder: false}},
+                        y: { 
+                            min: -12, // Adjusted Y-axis min
+                            max: 12,  // Adjusted Y-axis max
+                            ticks: { callback: function(value) { return value + '%';}, color: '#a0a0a0'}, 
+                            grid: {color: 'rgba(255, 255, 255, 0.08)', drawBorder: false}
+                        },
                         x: { ticks: { color: '#a0a0a0'}, grid: {display: false}}
                     },
                     plugins: {
@@ -770,10 +785,9 @@
 
             const chartContainer = document.getElementById('performanceDrawdownChart');
             if (!chartContainer) return;
-            // chartContainer.innerHTML = ''; // Clear existing content if re-initializing
-
+            
             const allValues = performanceDrawdownData.flatMap(d => [Math.abs(d.returnValue), Math.abs(d.drawdownValue)]);
-            const maxValue = Math.max(...allValues, 10); // Min scale of 10% for visibility
+            const maxValue = Math.max(...allValues, 10); 
 
             performanceDrawdownData.forEach(data => {
                 const group = document.createElement('div');
@@ -853,8 +867,7 @@
 
             const chartContainer = document.getElementById('sectorAllocationChart');
             if (!chartContainer) return;
-            // chartContainer.innerHTML = ''; 
-
+            
             const maxSectorValue = 100; 
 
             sectorAllocationData.forEach((etfData, etfIndex) => {
@@ -891,6 +904,51 @@
             });
         }
         window.sectorAllocationChartInitialized = false;
+
+        // Function to update ETF card pie charts
+        function updateSvgPieChart(etfCode, topHoldingsPercentages) {
+            const pieSvg = document.getElementById(`pie-${etfCode}`);
+            if (!pieSvg) return;
+
+            const slices = pieSvg.querySelectorAll('circle[data-slice]');
+            const circumference = 2 * Math.PI * 40; // Radius is 40
+            let accumulatedOffset = 0;
+
+            slices.forEach((slice, index) => {
+                if (index < topHoldingsPercentages.length) {
+                    const percentage = topHoldingsPercentages[index];
+                    const dashArrayValue = (percentage / 100) * circumference;
+                    const remaining = circumference - dashArrayValue;
+                    
+                    slice.setAttribute('stroke-dasharray', `${dashArrayValue} ${remaining}`);
+                    slice.setAttribute('stroke-dashoffset', `-${accumulatedOffset}`);
+                    accumulatedOffset += dashArrayValue;
+                } else { // Hide extra slices if not enough data
+                    slice.setAttribute('stroke-dasharray', `0 ${circumference}`);
+                }
+            });
+        }
+
+        // Initialize ETF Card Pie Charts
+        function initCardPieCharts() {
+            // ETF 159201 Data (Top 3 from list)
+            const holdings159201 = [1.31, 1.30, 1.04]; 
+            updateSvgPieChart('159201', holdings159201);
+
+            // ETF 159399 Data (Top 3 from list)
+            const holdings159399 = [0.28, 0.26, 0.26];
+            updateSvgPieChart('159399', holdings159399);
+
+            // ETF 513530 Data (Top 3 from list)
+            const holdings513530 = [9.82, 5.91, 4.16];
+            updateSvgPieChart('513530', holdings513530);
+        }
+        
+        // Call pie chart initialization when the relevant section is visible, or on DOMContentLoaded
+        // For simplicity, let's call it when the script runs, assuming cards are visible or will become visible.
+        // More robust would be to tie it to the IntersectionObserver for the .etf-card elements.
+        document.addEventListener('DOMContentLoaded', initCardPieCharts);
+
 
         const styleSheet = document.createElement("style");
         styleSheet.type = "text/css";
